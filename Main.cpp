@@ -2,8 +2,7 @@
 #include "Map.h"
 #include "Hero.h"
 
-int main()
-{
+int main() {
 	Init({ 60, 18 }, "Valden");
 	Map VMap(64, 32, 16, 16);
 	Hero VHero(VMap);

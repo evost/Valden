@@ -1,7 +1,6 @@
 #pragma once
 
-struct crd
-{
+struct crd {
 	short X;
 	short Y;
 };

@@ -2,8 +2,7 @@
 
 #include "Map.h"
 
-class Hero
-{
+class Hero {
 private:
 	int armor, weapon, hp, xp, defence, damage;
 public:

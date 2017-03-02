@@ -1,8 +1,7 @@
 #include "Map.h"
 #include "io.h"
 
-Map::Map(int width, int height, short visX, short visY)
-{
+Map::Map(int width, int height, short visX, short visY) {
 	curX = 0;
 	curY = 0;
 	Map::visX = visX;
@@ -31,14 +30,12 @@ Map::Map(int width, int height, short visX, short visY)
 	}
 }
 
-void Map::GetTile(int x, int y)
-{
+void Map::GetTile(int x, int y) {
 	SetColor(Black, MainMap[x][y].color);
 	SetSymbol({ (short)(x - curX + 1), (short)(y - curY + 1) }, MainMap[x][y].cell);
 }
 
-void Map::GetMap()
-{
+void Map::GetMap() {
 	for (int x = curX; x < curX + visX; x++) {
 		for (int y = curY; y < curY + visY; y++) {
 			GetTile(x, y);
@@ -46,7 +43,6 @@ void Map::GetMap()
 	}
 }
 
-bool Map::IsFree(int x, int y)
-{
+bool Map::IsFree(int x, int y) {
 	return !MainMap[x][y].type;
 }

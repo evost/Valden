@@ -4,8 +4,7 @@
 #include "structs.h"
 #include "constants.h"
 
-class Map
-{
+class Map {
 private:
 	Tile **MainMap = NULL;
 	Tile Tiles[3] = { { 0, Green, '.' },{ 1, Green, '!'},{ 2, LightGray, 'o' } };
