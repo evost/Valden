@@ -38,7 +38,5 @@ void Init(short x, short y, string name) {
 
 short ReadKey() {
 	short res = _getch();
-	//cout << res << endl;
-	//cin >> res;
 	return res;
 }
