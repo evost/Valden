@@ -27,3 +27,12 @@
 *.exe
 *.out
 *.app
+
+# VS files and folders
+.vs/
+Debug/
+Release/
+x64/
+*.sln
+*.VC.*
+*.vcxproj*
