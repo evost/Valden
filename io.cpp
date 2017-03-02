@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <time.h>
+#include <conio.h>
 #include "constants.h"
 #include "structs.h"
 
@@ -33,4 +34,11 @@ void Init(short x, short y, string name) {
 	SetConsoleTitleA(name.c_str());
 	CONSOLE_CURSOR_INFO cur = { 1, false };
 	SetConsoleCursorInfo(hStdOut, &cur);
+}
+
+short ReadKey() {
+	short res = _getch();
+	//cout << res << endl;
+	//cin >> res;
+	return res;
 }
