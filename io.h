@@ -7,6 +7,6 @@
 using namespace std;
 
 void SetColor(short background, short text);
-void SetSymbol(crd xy, char c);
-void SetString(crd xy, string s);
-void Init(crd size, string name);
+void SetSymbol(short x, short y, char c);
+void SetString(short x, short y, string s);
+void Init(short x, short y, string name);

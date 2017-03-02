@@ -3,7 +3,7 @@
 #include "Hero.h"
 
 int main() {
-	Init({ 60, 18 }, "Valden");
+	Init(60, 18, "Valden");
 	Map VMap(64, 32, 16, 16);
 	Hero VHero(VMap);
 	VMap.GetMap();

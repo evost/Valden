@@ -16,9 +16,9 @@ Hero::Hero(Map dMap) {
 
 void Hero::GetHero(Map dMap) {
 	SetColor(Black, Red);
-	SetSymbol({ (short)(x + 1 - dMap.curX), (short)(y + 1 - dMap.curX) }, 'X');
+	SetSymbol((short)(x + 1 - dMap.curX), (short)(y + 1 - dMap.curX), 'X');
 }
 
 void Hero::ShowInfo(short x, short y) {
-	SetString({ x, y }, "Координаты : " + to_string(Hero::x) + ", " + to_string(Hero::y) + "  ");
+	SetString(x, y, "Координаты : " + to_string(Hero::x) + ", " + to_string(Hero::y) + "  ");
 }
