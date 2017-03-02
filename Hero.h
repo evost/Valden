@@ -9,5 +9,6 @@ public:
 	int x, y;
 	Hero(Map dMap);
 	void GetHero(Map dMap);
-	void Hero::ShowInfo(short x, short y);
+	void ShowInfo(short x, short y);
+	void HeroStep(short dx, short dy, Map &dMap);
 };

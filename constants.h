@@ -20,3 +20,5 @@ const short White = 15;
 const int tree = 1;
 const int rock = 2;
 const int grass = 0;
+
+const short scrollDist = 3;
