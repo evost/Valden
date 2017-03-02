@@ -16,3 +16,7 @@ const short LightRed = 12;
 const short LightMagenta = 13;
 const short Yellow = 14;
 const short White = 15;
+
+const int tree = 1;
+const int rock = 2;
+const int grass = 0;
