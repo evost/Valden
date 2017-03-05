@@ -1,10 +1,8 @@
 #include "io.h"
 #include "Map.h"
 #include "Hero.h"
-#include <conio.h>
 
-void RenderWorld(Map dMap, Hero dHero)
-{
+void RenderWorld(Map dMap, Hero dHero) {
 	dMap.GetMap();
 	dHero.GetHero(dMap);
 	dHero.ShowInfo(34, 1);
