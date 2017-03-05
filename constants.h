@@ -21,4 +21,7 @@ const int tree = 1;
 const int rock = 2;
 const int grass = 0;
 
+const int bat = 0;
+const int goblin = 1;
+
 const short scrollDist = 3;
