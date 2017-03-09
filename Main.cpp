@@ -4,15 +4,16 @@
 #include "NPC.h"
 
 void RenderWorld(Map dMap, Hero dHero, NPC dNPC) {
+	Border(58, 17, 33);
 	dMap.GetMap();
 	dNPC.GetNPCs(dMap);
 	dHero.GetHero(dMap);
-	dHero.ShowInfo(34, 1);
+	dHero.ShowInfo(35, 1);
 }
 
 int main() {
 	Init(60, 18, "Valden");
-	Map VMap(64, 32, 16, 16);
+	Map VMap(64, 32, 32, 16);
 	Hero VHero(VMap);
 	NPC VNPC(32, VMap);
 	RenderWorld(VMap, VHero, VNPC);
