@@ -6,5 +6,5 @@ struct Tile {
 };
 
 struct TNPC {
-	int type, hp, xp, defence, damage, visDist, x, y;
+	int type, hp, dxp, strength, dexterity, maxhp, level, visDist, x, y;
 };

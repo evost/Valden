@@ -6,7 +6,10 @@ NPC::NPC(int k, Map dMap) {
 	NPCs = (TNPC*)malloc(k*sizeof(TNPC));
 	NPCk = k;
 	for (int i = 0; i < k; i++) {
-		NPCs[i] = NPC_types[rand() % 2];
+		if (rand() % 100 < 70)
+			NPCs[i] = NPC_types[bat];
+		else
+			NPCs[i] = NPC_types[goblin];
 		do {
 			NPCs[i].x = rand() % (dMap.Width - 4) + 2;
 			NPCs[i].y = rand() % (dMap.Height - 4) + 2;
