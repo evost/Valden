@@ -25,3 +25,4 @@ const int bat = 0;
 const int goblin = 1;
 
 const short scrollDist = 3;
+const int XP_table[10] = { 10, 20, 30, 70, 100, 170, 270, 440, 710, 1000};

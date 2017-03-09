@@ -4,7 +4,7 @@
 
 class Hero {
 private:
-	int armor, weapon, hp, xp, defence, damage;
+	int armor, weapon, hp, xp, strength, dexterity, intelligence, maxhp, maxxp, level;
 public:
 	int x, y;
 	Hero(Map dMap);
