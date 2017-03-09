@@ -1,4 +1,4 @@
-#include <Windows.h>
+﻿#include <Windows.h>
 #include <iostream>
 #include <string>
 #include <time.h>
@@ -36,7 +36,26 @@ void Init(short x, short y, string name) {
 	SetConsoleCursorInfo(hStdOut, &cur);
 }
 
+void Border(short x, short y, short x0) {
+	setlocale(LC_ALL, "C");
+	for (int i = 1; i < y; i++) {
+		SetSymbol(0, i, 186);
+		SetSymbol(x0, i, 186);
+		SetSymbol(x, i, 186);
+	}
+	for (int i = 1; i <= x; i++) {
+		SetSymbol(i, 0, 205);
+		SetSymbol(i, y, 205);
+	}
+	SetSymbol(0, 0, 201);
+	SetSymbol(0, y, 200);
+	SetSymbol(x, 0, 187);
+	SetSymbol(x, y, 188);
+	SetSymbol(x0, 0, 203);
+	SetSymbol(x0, y, 202);
+	setlocale(LC_ALL, "rus");
+}
+
 short ReadKey() {
-	short res = _getch();
-	return res;
+	return _getch();
 }
