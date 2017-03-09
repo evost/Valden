@@ -1,5 +1,6 @@
 #include "Hero.h"
 #include "io.h"
+#include "strings.h"
 
 Hero::Hero(Map dMap) {
 	armor = 0;
@@ -20,7 +21,8 @@ void Hero::GetHero(Map dMap) {
 }
 
 void Hero::ShowInfo(short x, short y) {
-	SetString(x, y, "Координаты : " + to_string(Hero::x) + ", " + to_string(Hero::y) + "  ");
+	SetString(x, y + 0, sCoordinates + " : " + to_string(Hero::x) + ", " + to_string(Hero::y) + "  ");
+	SetString(x, y + 1, sHP + " : " + to_string(Hero::hp));
 }
 
 void Hero::HeroStep(short dx, short dy, Map &dMap) {
