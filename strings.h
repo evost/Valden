@@ -12,3 +12,5 @@ string sDexterity = "Ловкость  ";
 string sIntelligence = "Интеллект ";
 string sLevel = "Уровень   ";
 string sMonsters[2] = { "л. мышь", "гоблин" };
+string sCWeapon = "Оружие : ";
+string sCArmor = "Броня  : ";

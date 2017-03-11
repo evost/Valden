@@ -2,7 +2,7 @@
 
 #include <string>
 
-struct Tile {
+struct TTile {
 	short type, color;
 	char cell;
 };

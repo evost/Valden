@@ -37,6 +37,7 @@ void Init(short x, short y, string name) {
 }
 
 void Border(short x, short y, short x0) {
+	system("cls");
 	setlocale(LC_ALL, "C");
 	for (int i = 1; i < y; i++) {
 		SetSymbol(0, i, (char)186);

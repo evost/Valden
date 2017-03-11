@@ -60,3 +60,20 @@ void Hero::HeroStep(short dx, short dy, Map &dMap) {
 		}
 	}
 }
+void Hero::ShowInventory(short x, short y) {
+	Border(58, 17, 0);
+	if (cweapon.type == -1)
+		SetString(2, 1, sCWeapon + "---");
+	else
+		SetString(2, 1, sCWeapon + cweapon.name);
+	if (cweapon.type == -1)
+		SetString(2, 2, sCArmor + "---");
+	else
+		SetString(2, 2, sCArmor + carmor.name);
+	for (int i = 0; i < 10; i++)
+		if (invertory[i].type == -1)
+			SetString(2, 4 + i, to_string(i + 1) + ") ---");
+		else
+			SetString(2, 4 + i, to_string(i + 1) + ") " + invertory[i].name);
+	while (ReadKey() != 27) {};
+}

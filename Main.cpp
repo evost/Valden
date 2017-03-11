@@ -44,6 +44,12 @@ int main() {
 		case 27:
 			return 0;
 		default:
+			if (button == 73 || button == 105 || button == 152 || button == 232) {
+				VHero.ShowInventory(58, 17);
+				Border(58, 17, 33);
+				VMap.GetMap();
+				RenderWorld(VMap, VHero, VNPC);
+			};
 			break;
 		}
 	}
