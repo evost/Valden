@@ -1,5 +1,7 @@
 #pragma once
 
+#include "structs.h"
+
 const short Black = 0;
 const short Blue = 1;
 const short Green = 2;
@@ -24,5 +26,16 @@ const int grass = 0;
 const int bat = 0;
 const int goblin = 1;
 
+const int weapon = 0;
+const int armor = 1;
+
 const short scrollDist = 3;
 const int XP_table[10] = { 10, 20, 30, 70, 100, 170, 270, 440, 710, 1000};
+
+const TItem sword1 = { 0, 2, 0, 0, 0, 0, 0 , "Sword 1" };
+const TItem spear1 = { 0, 4, 0, 0, 0, 0, 0 , "Spear 1" };
+const TItem sword2 = { 0, 8, 0, 0, 0, 0, 0 , "Sword 2" };
+
+const TItem armor1 = { 1, 1, 0, 0, 0, 0, 0 , "Armor 1" };
+const TItem armor2 = { 1, 2, 0, 0, 0, 0, 0 , "Armor 2" };
+const TItem armor3 = { 1, 4, 0, 0, 0, 0, 0 , "Armor 3" };

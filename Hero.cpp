@@ -12,8 +12,8 @@ Hero::Hero(Map dMap) {
 	hp = maxhp;
 	xp = 0;
 	maxxp = XP_table[level - 1];
-	weapon = 0;
-	armor = 0;
+	carmor = armor1;
+	cweapon = sword1;
 	do {
 		x = rand() % (dMap.visX - 6) + 3;
 		y = rand() % (dMap.visY - 6) + 3;
