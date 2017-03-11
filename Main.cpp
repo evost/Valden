@@ -17,8 +17,10 @@ int main() {
 	Border(58, 17, 33);
 	VMap.GetMap();
 	RenderWorld(VMap, VHero, VNPC);
+	short button;
 	while (true) {
-		switch (ReadKey()) {
+		button = ReadKey();
+		switch (button) {
 		case 224:
 			switch (ReadKey()) {
 			case 72:
