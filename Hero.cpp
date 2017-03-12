@@ -77,3 +77,10 @@ void Hero::ShowInventory(short x, short y) {
 			SetString(2, 4 + i, to_string(i + 1) + ") " + invertory[i].name);
 	while (ReadKey() != 27) {};
 }
+
+int Hero::GetDamage() {
+	if (cweapon.type != -1)
+		return strength;
+	else
+		return strength + cweapon.damage;
+};

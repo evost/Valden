@@ -15,4 +15,5 @@ public:
 	void ShowInfo(short x, short y);
 	void HeroStep(short dx, short dy, Map &dMap);
 	void ShowInventory(short x, short y);
+	int GetDamage();
 };
