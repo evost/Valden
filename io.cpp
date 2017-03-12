@@ -38,6 +38,7 @@ void Init(short x, short y, string name) {
 
 void Border(short x, short y, short x0) {
 	system("cls");
+	SetColor(Black, White);
 	setlocale(LC_ALL, "C");
 	for (int i = 1; i < y; i++) {
 		SetSymbol(0, i, (char)186);
@@ -59,4 +60,11 @@ void Border(short x, short y, short x0) {
 
 short ReadKey() {
 	return _getch();
+}
+
+void Clear(short x1, short y1, short x2, short y2) {
+	for (int x = x1; x <= x2; x++)
+		for (int y = y1; y <= y2; y++)
+			SetSymbol(x, y, ' ');
+
 }
