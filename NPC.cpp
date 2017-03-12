@@ -1,6 +1,7 @@
 #include "NPC.h"
 #include "io.h"
 #include "Map.h"
+#include "strings.h"
 
 NPC::NPC(int k, Map dMap) {
 	NPCs = (TNPC*)malloc(k*sizeof(TNPC));
@@ -27,13 +28,13 @@ void NPC::GetNPCs(Map dMap) {
 
 bool NPC::NoNPCs(short x, short y) {
 	for (int i = 0; i < NPCk; i++)
-		if (NPCs[i].x == x && NPCs[i].y == y) return false;
+		if (NPCs[i].x == x && NPCs[i].y == y && NPCs[i].hp > 0) return false;
 	return true;
 };
 
 void NPC::NPCstep(Map dMap, Hero &dHero) {
 	for (int i = 0; i < NPCk; i++)
-		if (sqrt(pow(abs(NPCs[i].x - dHero.x), 2) + pow(abs(NPCs[i].y - dHero.y), 2)) <= NPCs[i].visDist && (abs(NPCs[i].x - dHero.x)+abs(NPCs[i].y - dHero.y) > 1))
+		if (sqrt(pow(abs(NPCs[i].x - dHero.x), 2) + pow(abs(NPCs[i].y - dHero.y), 2)) <= NPCs[i].visDist && (abs(NPCs[i].x - dHero.x)+abs(NPCs[i].y - dHero.y) > 1) && NPCs[i].hp > 0)
 			if (NPCs[i].x < dHero.x && dMap.IsFree(NPCs[i].x + 1, NPCs[i].y) && NoNPCs(NPCs[i].x + 1, NPCs[i].y)) {
 				dMap.GetTile(NPCs[i].x, NPCs[i].y);
 				NPCs[i].x++;
@@ -50,4 +51,22 @@ void NPC::NPCstep(Map dMap, Hero &dHero) {
 				dMap.GetTile(NPCs[i].x, NPCs[i].y);
 				NPCs[i].y--;
 			}
+};
+
+int NPC::HeroAttack(int x, int y, int damage) {
+	for (int i = 0; i < NPCk; i++) 
+		if (NPCs[i].x == x && NPCs[i].y == y && NPCs[i].hp > 0) {
+			if (rand() % 100 >= NPCs[i].dexterity) {
+				NPCs[i].hp -= damage;
+				if (NPCs[i].hp > 0)
+					SetString(35, 9, sDamageToEnemy + to_string(damage));
+				else {
+					SetString(35, 9, sMonsters[NPCs[i].type] + sKilling);
+					return NPCs[i].dxp;
+				}
+			}
+			else
+				SetString(35, 9, sMonsters[NPCs[i].type] + sDodged);
+		};
+	return 0;
 };
