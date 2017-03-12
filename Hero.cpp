@@ -92,7 +92,7 @@ void Hero::ExpInc(int dxp) {
 		if (xp >= XP_table[level] && level < maxLevel) {
 			level++;
 			maxxp = XP_table[level];
-			SetString(35, 11, "Новый уровень!");
+			SetString(35, 11, sNewLevel);
 		}
 	}
 }

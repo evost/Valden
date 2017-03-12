@@ -4,16 +4,19 @@
 
 using namespace std;
 
-string sCoordinates =	"Координаты";
-string sHP = "Здоровье  ";
-string sXP = "Опыт      ";
-string sStrength = "Сила      ";
-string sDexterity = "Ловкость  ";
-string sIntelligence = "Интеллект ";
-string sLevel = "Уровень   ";
-string sMonsters[2] = { "л. мышь", "гоблин" };
-string sCWeapon = "Оружие : ";
-string sCArmor = "Броня  : ";
-string sIncExp1 = "Получено ";
-string sIncExp2 = " опыта";
-string sNewLevel = "Новый уровень!";
+static string sCoordinates =	"Координаты";
+static string sHP = "Здоровье  ";
+static string sXP = "Опыт      ";
+static string sStrength = "Сила      ";
+static string sDexterity = "Ловкость  ";
+static string sIntelligence = "Интеллект ";
+static string sLevel = "Уровень   ";
+static string sMonsters[2] = { "Л. мышь", "Гоблин" };
+static string sCWeapon = "Оружие : ";
+static string sCArmor = "Броня  : ";
+static string sIncExp1 = "Получено ";
+static string sIncExp2 = " опыта";
+static string sNewLevel = "Новый уровень!";
+static string sDamageToEnemy= "Вы нанесли урон врагу - ";
+static string sKilling = " убит!";
+static string sDodged = " увернулся!";
