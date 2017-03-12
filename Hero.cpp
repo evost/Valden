@@ -88,7 +88,7 @@ int Hero::GetDamage() {
 void Hero::ExpInc(int dxp) {
 	if (dxp > 0) {
 		xp += dxp;
-		SetString(35, 10, "Получено " + to_string(dxp) + " опыта");
+		SetString(35, 10, sIncExp1 + to_string(dxp) + sIncExp2);
 		if (xp >= XP_table[level] && level < maxLevel) {
 			level++;
 			maxxp = XP_table[level];
