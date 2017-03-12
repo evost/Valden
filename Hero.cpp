@@ -84,3 +84,15 @@ int Hero::GetDamage() {
 	else
 		return strength + cweapon.damage;
 };
+
+void Hero::ExpInc(int dxp) {
+	if (dxp > 0) {
+		xp += dxp;
+		SetString(35, 10, "Получено " + to_string(dxp) + " опыта");
+		if (xp >= XP_table[level] && level < maxLevel) {
+			level++;
+			maxxp = XP_table[level];
+			SetString(35, 11, "Новый уровень!");
+		}
+	}
+}
