@@ -14,6 +14,8 @@ Hero::Hero(Map &dMap) {
 	maxxp = XP_table[level - 1];
 	carmor = armor1;
 	cweapon = sword1;
+	for (int i = 0; i < invSize; i++)
+		invertory[i].type = -1;
 	do {
 		x = rand() % (dMap.Width - 6) + 3;
 		y = rand() % (dMap.Height - 6) + 3;
@@ -23,7 +25,7 @@ Hero::Hero(Map &dMap) {
 	if (dMap.curX > (dMap.Width - dMap.visX)) dMap.curX = dMap.Width - dMap.visX + 1;
 	dMap.curY = y - dMap.visY / 2;
 	if (dMap.curY < 0) dMap.curY = 0;
-	if (dMap.curY >(dMap.Height - dMap.visY)) dMap.curY = dMap.Height - dMap.visY + 1;
+	if (dMap.curY > (dMap.Height - dMap.visY)) dMap.curY = dMap.Height - dMap.visY + 1;
 }
 
 void Hero::GetHero(Map dMap) {
@@ -67,7 +69,7 @@ void Hero::HeroStep(short dx, short dy, Map &dMap) {
 	}
 }
 void Hero::ShowInventory(short x, short y) {
-	Border(windowX, windowY, 0);
+	Border(windowX, windowY, borderDelimiter);
 	if (cweapon.type == -1)
 		SetString(2, 1, sCWeapon + "---");
 	else
@@ -78,9 +80,9 @@ void Hero::ShowInventory(short x, short y) {
 		SetString(2, 2, sCArmor + carmor.name);
 	for (int i = 0; i < invSize; i++)
 		if (invertory[i].type == -1)
-			SetString(2, 4 + i, to_string(i + 1) + ") ---");
+			SetString(2, 4 + i, "( ) ---");
 		else
-			SetString(2, 4 + i, to_string(i + 1) + ") " + invertory[i].name);
+			SetString(2, 4 + i, "( ) " + invertory[i].name);
 	while (ReadKey() != 27) {};
 }
 
@@ -99,6 +101,26 @@ void Hero::ExpInc(int dxp) {
 			level++;
 			maxxp = XP_table[level - 1];
 			SetString(borderDelimiter + 2, 11, sNewLevel);
+		}
+
+		if (rand() % 100 < 10) {
+			for (int i = 0; i < invSize; i++)
+				if (invertory[i].type == -1) {
+					if (rand() % 100 < 50) {
+						invertory[i] = spear1;
+					}
+					else if (rand() % 100 < 75) {
+						invertory[i] = armor2;
+					}
+					else if (rand() % 100 < 90) {
+						invertory[i] = sword2;
+					}
+					else {
+						invertory[i] = armor3;
+					}
+					SetString(borderDelimiter + 2, 12, sReceived + invertory[i].name);
+					break;
+				}
 		}
 	}
 }
