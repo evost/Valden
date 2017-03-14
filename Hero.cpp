@@ -3,7 +3,7 @@
 #include "strings.h"
 #include "constants.h"
 
-Hero::Hero(Map dMap) {
+Hero::Hero(Map &dMap) {
 	strength = startSkill + rand() % startSkillRandom;
 	dexterity = startSkill + rand() % startSkillRandom;
 	intelligence = startSkill + rand() % startSkillRandom;
@@ -14,11 +14,16 @@ Hero::Hero(Map dMap) {
 	maxxp = XP_table[level - 1];
 	carmor = armor1;
 	cweapon = sword1;
-	//TODO generation coordinates  all over the map
 	do {
-		x = rand() % (dMap.visX - 6) + 3;
-		y = rand() % (dMap.visY - 6) + 3;
+		x = rand() % (dMap.Width - 6) + 3;
+		y = rand() % (dMap.Height - 6) + 3;
 	} while (!dMap.IsFree(x, y));
+	dMap.curX = x - dMap.visX / 2;
+	if (dMap.curX < 0) dMap.curX = 0;
+	if (dMap.curX > (dMap.Width - dMap.visX)) dMap.curX = dMap.Width - dMap.visX + 1;
+	dMap.curY = y - dMap.visY / 2;
+	if (dMap.curY < 0) dMap.curY = 0;
+	if (dMap.curY >(dMap.Height - dMap.visY)) dMap.curY = dMap.Height - dMap.visY + 1;
 }
 
 void Hero::GetHero(Map dMap) {
