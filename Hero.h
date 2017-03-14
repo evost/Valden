@@ -2,12 +2,13 @@
 
 #include "Map.h"
 #include "structs.h"
+#include "constants.h"
 
 class Hero {
 private:
 	int hp, xp, strength, dexterity, intelligence, maxhp, maxxp, level;
 	TItem carmor, cweapon;
-	TItem invertory[10];
+	TItem invertory[invSize];
 public:
 	int x, y;
 	Hero(Map dMap);

@@ -59,14 +59,14 @@ int NPC::HeroAttack(int x, int y, int damage) {
 			if (rand() % 100 >= NPCs[i].dexterity) {
 				NPCs[i].hp -= damage;
 				if (NPCs[i].hp > 0)
-					SetString(35, 9, sDamageToEnemy + to_string(damage));
+					SetString(borderDelimiter + 2, 9, sDamageToEnemy + to_string(damage));
 				else {
-					SetString(35, 9, sMonsters[NPCs[i].type] + sKilling);
+					SetString(borderDelimiter + 2, 9, sMonsters[NPCs[i].type] + sKilling);
 					return NPCs[i].dxp;
 				}
 			}
 			else
-				SetString(35, 9, sMonsters[NPCs[i].type] + sDodged);
+				SetString(borderDelimiter + 2, 9, sMonsters[NPCs[i].type] + sDodged);
 		};
 	return 0;
 };

@@ -14,7 +14,7 @@ Map::Map(int width, int height, short visX, short visY) {
 	for (int x = 0; x <= Width; x++)
 		for (int y = 0; y <= Height; y++) {
 			int chance = rand() % 100 + 1;
-			if (chance > 70)
+			if (chance > 75)
 				if (chance > 90)
 					MainMap[x][y] = Tiles[rock];
 				else

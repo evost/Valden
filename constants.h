@@ -2,6 +2,17 @@
 
 #include "structs.h"
 
+const int windowX = 58;
+const int windowY = 17;
+const int borderDelimiter = 33;
+const int mapVisX = 32;
+const int mapVisY = 16;
+
+const int invSize = 9;
+const int startSkill = 5;
+const int startSkillRandom = 5;
+const int startHp = 10;
+
 const short Black = 0;
 const short Blue = 1;
 const short Green = 2;

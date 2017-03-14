@@ -2,25 +2,26 @@
 #include "Map.h"
 #include "Hero.h"
 #include "NPC.h"
+#include "constants.h"
 
 void RenderWorld(Map dMap, Hero dHero, NPC dNPC) {
 	dNPC.GetNPCs(dMap);
 	dHero.GetHero(dMap);
-	dHero.ShowInfo(35, 1);
+	dHero.ShowInfo(borderDelimiter + 2, 1);
 }
 
 int main() {
-	Init(60, 18, "Valden");
-	Map VMap(64, 32, 32, 16);
+	Init(windowX + 1, windowY + 1, "Valden");
+	Map VMap(64, 32, mapVisX, mapVisY);
 	Hero VHero(VMap);
 	NPC VNPC(16, VMap);
-	Border(58, 17, 33);
+	Border(windowX, windowY, borderDelimiter);
 	VMap.GetMap();
 	RenderWorld(VMap, VHero, VNPC);
 	short button;
 	while (true) {
 		button = ReadKey();
-		Clear(35, 9, 57, 11);
+		Clear(borderDelimiter + 2, 9, windowX - 1 , 11);
 		switch (button) {
 		case 224:
 			switch (ReadKey()) {
@@ -45,12 +46,12 @@ int main() {
 			return 0;
 		default:
 			if (button == 73 || button == 105 || button == 152 || button == 232) {
-				VHero.ShowInventory(58, 17);
-				Border(58, 17, 33);
+				VHero.ShowInventory(windowX, windowY);
+				Border(windowX, windowY, borderDelimiter);
 				VMap.GetMap();
 			}
 			else {
-				if (button == 87 || button == 119 || button == 150 || button == 130) {
+				if (button == 87 || button == 119 || button == 150 || button == 230) {
 					VHero.ExpInc(VNPC.HeroAttack(VHero.x, VHero.y - 1, VHero.GetDamage()));
 					VMap.GetTile(VHero.x, VHero.y - 1);
 				}

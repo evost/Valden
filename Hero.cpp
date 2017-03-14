@@ -4,16 +4,17 @@
 #include "constants.h"
 
 Hero::Hero(Map dMap) {
-	strength = 5 + rand() % 5;
-	dexterity = 5 + rand() % 5;
-	intelligence = 5 + rand() % 5;
+	strength = startSkill + rand() % startSkillRandom;
+	dexterity = startSkill + rand() % startSkillRandom;
+	intelligence = startSkill + rand() % startSkillRandom;
 	level = 1;
-	maxhp = 10 + strength;
+	maxhp = startHp + strength;
 	hp = maxhp;
 	xp = 0;
 	maxxp = XP_table[level - 1];
 	carmor = armor1;
 	cweapon = sword1;
+	//TODO generation coordinates  all over the map
 	do {
 		x = rand() % (dMap.visX - 6) + 3;
 		y = rand() % (dMap.visY - 6) + 3;
@@ -61,7 +62,7 @@ void Hero::HeroStep(short dx, short dy, Map &dMap) {
 	}
 }
 void Hero::ShowInventory(short x, short y) {
-	Border(58, 17, 0);
+	Border(windowX, windowY, 0);
 	if (cweapon.type == -1)
 		SetString(2, 1, sCWeapon + "---");
 	else
@@ -70,7 +71,7 @@ void Hero::ShowInventory(short x, short y) {
 		SetString(2, 2, sCArmor + "---");
 	else
 		SetString(2, 2, sCArmor + carmor.name);
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < invSize; i++)
 		if (invertory[i].type == -1)
 			SetString(2, 4 + i, to_string(i + 1) + ") ---");
 		else
@@ -88,11 +89,11 @@ int Hero::GetDamage() {
 void Hero::ExpInc(int dxp) {
 	if (dxp > 0) {
 		xp += dxp;
-		SetString(35, 10, sIncExp1 + to_string(dxp) + sIncExp2);
-		if (xp >= XP_table[level] && level < maxLevel) {
+		SetString(borderDelimiter + 2, 10, sIncExp1 + to_string(dxp) + sIncExp2);
+		if (xp >= XP_table[level - 1] && level < maxLevel) {
 			level++;
-			maxxp = XP_table[level];
-			SetString(35, 11, sNewLevel);
+			maxxp = XP_table[level - 1];
+			SetString(borderDelimiter + 2, 11, sNewLevel);
 		}
 	}
 }
