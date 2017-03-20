@@ -1,23 +1,23 @@
-#pragma once
+п»ї#pragma once
 
 #include <string>
 
 using namespace std;
 
-static string sCoordinates =	"Координаты";
-static string sHP = "Здоровье  ";
-static string sXP = "Опыт      ";
-static string sStrength = "Сила      ";
-static string sDexterity = "Ловкость  ";
-static string sIntelligence = "Интеллект ";
-static string sLevel = "Уровень   ";
-static string sMonsters[2] = { "Л. мышь", "Гоблин" };
-static string sCWeapon = "Оружие : ";
-static string sCArmor = "Броня  : ";
-static string sIncExp1 = "Получено ";
-static string sIncExp2 = " опыта";
-static string sNewLevel = "Новый уровень!";
-static string sDamageToEnemy= "Нанесен урон ";
-static string sKilling = " убит!";
-static string sDodged = " увернулся!";
-static string sReceived = "Получено ";
+static string sCoordinates =	"РљРѕРѕСЂРґРёРЅР°С‚С‹";
+static string sHP = "Р—РґРѕСЂРѕРІСЊРµ  ";
+static string sXP = "РћРїС‹С‚      ";
+static string sStrength = "РЎРёР»Р°      ";
+static string sDexterity = "Р›РѕРІРєРѕСЃС‚СЊ  ";
+static string sIntelligence = "РРЅС‚РµР»Р»РµРєС‚ ";
+static string sLevel = "РЈСЂРѕРІРµРЅСЊ   ";
+static string sMonsters[2] = { "Р›. РјС‹С€СЊ", "Р“РѕР±Р»РёРЅ" };
+static string sCWeapon = "РћСЂСѓР¶РёРµ : ";
+static string sCArmor = "Р‘СЂРѕРЅСЏ  : ";
+static string sIncExp1 = "РџРѕР»СѓС‡РµРЅРѕ ";
+static string sIncExp2 = " РѕРїС‹С‚Р°";
+static string sNewLevel = "РќРѕРІС‹Р№ СѓСЂРѕРІРµРЅСЊ!";
+static string sDamageToEnemy= "РќР°РЅРµСЃРµРЅ СѓСЂРѕРЅ ";
+static string sKilling = " СѓР±РёС‚!";
+static string sDodged = " СѓРІРµСЂРЅСѓР»СЃСЏ!";
+static string sReceived = "РџРѕР»СѓС‡РµРЅРѕ ";
