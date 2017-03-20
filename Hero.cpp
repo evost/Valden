@@ -83,7 +83,53 @@ void Hero::ShowInventory(short x, short y) {
 			SetString(2, 4 + i, "( ) ---");
 		else
 			SetString(2, 4 + i, "( ) " + invertory[i].name);
-	while (ReadKey() != 27) {};
+
+	int k = 0;
+	short button = 0;
+	TItem item;
+	while (button != 27) {
+		SetString(3, 4 + k, "*");
+		button = ReadKey();
+		switch (button) {
+		case 224:
+			SetString(3, 4 + k, " ");
+			switch (ReadKey()) {
+			case 72:
+				k = (k - 1 + invSize) % invSize;
+				break;
+			case 80:
+				k = (k + 1 + invSize) % invSize;
+				break;
+			default:
+				break;
+			}
+		case 13:
+			switch (invertory[k].type) {
+			case 0:
+				item = cweapon;
+				cweapon = invertory[k];
+				invertory[k] = item;
+				SetString(2, 1, sCWeapon + cweapon.name);
+				SetString(2, 4 + k, "( ) " + invertory[k].name);
+				break;
+			case 1:
+				item = carmor;
+				carmor = invertory[k];
+				invertory[k] = item;
+				SetString(2, 2, sCArmor + carmor.name);
+				SetString(2, 4 + k, "( ) " + invertory[k].name);
+				break;
+			default:
+				break;
+			}
+			break;
+		case 32:
+			invertory[k].type = -1;
+			break;
+		default:
+			break;
+		}
+	}
 }
 
 int Hero::GetDamage() {
