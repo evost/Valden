@@ -18,8 +18,8 @@ int main() {
 	Border(windowX, windowY, borderDelimiter);
 	VMap.GetMap();
 	RenderWorld(VMap, VHero, VNPC);
-	short button;
-	while (true) {
+	short button = 0;
+	while (button != 27) {
 		button = ReadKey();
 		Clear(borderDelimiter + 2, 9, windowX - 1 , 11);
 		switch (button) {
@@ -42,8 +42,6 @@ int main() {
 			}
 			VNPC.NPCstep(VMap, VHero);
 			break;
-		case 27:
-			return 0;
 		default:
 			if (button == 73 || button == 105 || button == 152 || button == 232) {
 				VHero.ShowInventory(windowX, windowY);
