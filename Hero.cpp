@@ -73,16 +73,16 @@ void Hero::ShowInventory(short x, short y) {
 	if (cweapon.type == -1)
 		SetString(2, 1, sCWeapon + "---");
 	else
-		SetString(2, 1, sCWeapon + cweapon.name);
+		SetString(2, 1, sCWeapon + sItems[cweapon.id]);
 	if (cweapon.type == -1)
 		SetString(2, 2, sCArmor + "---");
 	else
-		SetString(2, 2, sCArmor + carmor.name);
+		SetString(2, 2, sCArmor + sItems[carmor.id]);
 	for (int i = 0; i < invSize; i++)
 		if (invertory[i].type == -1)
 			SetString(2, 4 + i, "( ) ---");
 		else
-			SetString(2, 4 + i, "( ) " + invertory[i].name);
+			SetString(2, 4 + i, "( ) " + sItems[invertory[i].id]);
 
 	int k = 0;
 	short button = 0;
@@ -109,15 +109,15 @@ void Hero::ShowInventory(short x, short y) {
 				item = cweapon;
 				cweapon = invertory[k];
 				invertory[k] = item;
-				SetString(2, 1, sCWeapon + cweapon.name);
-				SetString(2, 4 + k, "( ) " + invertory[k].name);
+				SetString(2, 1, sCWeapon + sItems[cweapon.id]);
+				SetString(2, 4 + k, "( ) " + sItems[invertory[k].id]);
 				break;
 			case 1:
 				item = carmor;
 				carmor = invertory[k];
 				invertory[k] = item;
-				SetString(2, 2, sCArmor + carmor.name);
-				SetString(2, 4 + k, "( ) " + invertory[k].name);
+				SetString(2, 2, sCArmor + sItems[carmor.id]);
+				SetString(2, 4 + k, "( ) " + sItems[invertory[k].id]);
 				break;
 			default:
 				break;
@@ -164,7 +164,7 @@ void Hero::ExpInc(int dxp) {
 					else {
 						invertory[i] = armor3;
 					}
-					SetString(borderDelimiter + 2, 12, sReceived + invertory[i].name);
+					SetString(borderDelimiter + 2, 12, sReceived + sItems[invertory[i].id]);
 					break;
 				}
 		}

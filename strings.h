@@ -4,7 +4,7 @@
 
 using namespace std;
 
-static string sCoordinates =	"Координаты";
+static string sCoordinates = "Координаты";
 static string sHP = "Здоровье  ";
 static string sXP = "Опыт      ";
 static string sStrength = "Сила      ";
@@ -21,3 +21,4 @@ static string sDamageToEnemy= "Нанесен урон ";
 static string sKilling = " убит!";
 static string sDodged = " увернулся!";
 static string sReceived = "Получено ";
+static string sItems[6] = { "Железный меч" ,"Копье" ,"Стальной меч" ,"Кожанная броня" ,"Кольчуга" ,"Латные доспехи" };

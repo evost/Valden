@@ -1,7 +1,5 @@
 #pragma once
 
-#include <string>
-
 struct TTile {
 	short type, color;
 	char cell;
@@ -12,6 +10,5 @@ struct TNPC {
 };
 
 struct TItem {
-	int type, damage, defence, dstrength, ddexterity, dintelligence, dmaxhp;
-	std::string name;
+	int type, damage, defence, dstrength, ddexterity, dintelligence, dmaxhp, id;
 };

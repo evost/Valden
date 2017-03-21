@@ -44,10 +44,10 @@ const short scrollDist = 3;
 const int maxLevel = 10;
 const int XP_table[maxLevel] = { 10, 20, 30, 70, 100, 170, 270, 440, 710, 1000};
 
-const TItem sword1 = { 0, 2, 0, 0, 0, 0, 0 , "Sword 1" };
-const TItem spear1 = { 0, 4, 0, 0, 0, 0, 0 , "Spear 1" };
-const TItem sword2 = { 0, 8, 0, 0, 0, 0, 0 , "Sword 2" };
+const TItem sword1 = { 0, 2, 0, 0, 0, 0, 0 , 1 };
+const TItem spear1 = { 0, 4, 0, 0, 0, 0, 0 , 2 };
+const TItem sword2 = { 0, 8, 0, 0, 0, 0, 0 , 3 };
 
-const TItem armor1 = { 1, 1, 0, 0, 0, 0, 0 , "Armor 1" };
-const TItem armor2 = { 1, 2, 0, 0, 0, 0, 0 , "Armor 2" };
-const TItem armor3 = { 1, 4, 0, 0, 0, 0, 0 , "Armor 3" };
+const TItem armor1 = { 1, 1, 0, 0, 0, 0, 0 , 4 };
+const TItem armor2 = { 1, 2, 0, 0, 0, 0, 0 , 5 };
+const TItem armor3 = { 1, 4, 0, 0, 0, 0, 0 , 6 };
