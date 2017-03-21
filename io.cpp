@@ -25,6 +25,12 @@ void SetString(short x, short y, string s) {
 	cout << s;
 }
 
+void SetString(short x, short y, string s, short background, short text) {
+	SetConsoleTextAttribute(hStdOut, (WORD)((background << 4) | text));
+	SetConsoleCursorPosition(hStdOut, { x, y });
+	cout << s;
+}
+
 void Init(short x, short y, string name) {
 	srand((int)time(0));
 	setlocale(LC_ALL, "rus");
