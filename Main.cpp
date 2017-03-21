@@ -4,11 +4,7 @@
 #include "NPC.h"
 #include "constants.h"
 
-void RenderWorld(Map dMap, Hero dHero, NPC dNPC) {
-	dNPC.GetNPCs(dMap);
-	dHero.GetHero(dMap);
-	dHero.ShowInfo(borderDelimiter + 2, 1);
-}
+#include "game.h"
 
 int main() {
 	Init(windowX + 1, windowY + 1, "Valden");
@@ -17,7 +13,8 @@ int main() {
 	NPC VNPC(16, VMap);
 	Border(windowX, windowY, borderDelimiter);
 	VMap.GetMap();
-	RenderWorld(VMap, VHero, VNPC);
+	bool showHints = false;
+	RenderWorld(VMap, VHero, VNPC, showHints);
 	short button = 0;
 	while (button != 27) {
 		button = ReadKey();
@@ -41,6 +38,9 @@ int main() {
 				break;
 			}
 			VNPC.NPCstep(VMap, VHero);
+			break;
+		case 9:
+			showHints = !showHints;
 			break;
 		default:
 			if (button == 73 || button == 105 || button == 152 || button == 232) {
@@ -69,7 +69,7 @@ int main() {
 			}
 			break;
 		}
-		RenderWorld(VMap, VHero, VNPC);
+		RenderWorld(VMap, VHero, VNPC, showHints);
 	}
 	return 0;
 }

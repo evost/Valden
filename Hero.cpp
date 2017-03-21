@@ -2,6 +2,7 @@
 #include "io.h"
 #include "strings.h"
 #include "constants.h"
+#include "game.h"
 
 Hero::Hero(Map &dMap) {
 	strength = startSkill + rand() % startSkillRandom;
@@ -34,7 +35,7 @@ void Hero::GetHero(Map dMap) {
 }
 
 void Hero::ShowInfo(short x, short y) {
-	SetString(x, y + 0, sCoordinates + " : " + to_string(Hero::x) + ", " + to_string(Hero::y) + "  ");
+	SetString(x, y + 0, sCoordinates + " : " + to_string(Hero::x) + ", " + to_string(Hero::y));
 	SetString(x, y + 1, sHP + " : " + to_string(Hero::hp) + " / " + to_string(Hero::maxhp));
 	SetString(x, y + 2, sXP + " : " + to_string(Hero::xp) + " / " + to_string(Hero::maxxp));
 	SetString(x, y + 3, sLevel + " : " + to_string(Hero::level));
@@ -83,7 +84,7 @@ void Hero::ShowInventory(short x, short y) {
 			SetString(2, 4 + i, "( ) ---");
 		else
 			SetString(2, 4 + i, "( ) " + sItems[invertory[i].id]);
-
+	ShowInventoryHints(borderDelimiter + 2, 1);
 	int k = 0;
 	short button = 0;
 	TItem item;
