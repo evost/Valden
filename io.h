@@ -1,7 +1,11 @@
 #pragma once
 
 #include <Windows.h>
+#include <iostream>
 #include <string>
+#include <time.h>
+#include <conio.h>
+#include "constants.h"
 #include "structs.h"
 
 using namespace std;

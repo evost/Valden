@@ -1,10 +1,4 @@
-﻿#include <Windows.h>
-#include <iostream>
-#include <string>
-#include <time.h>
-#include <conio.h>
-#include "constants.h"
-#include "structs.h"
+﻿#include "io.h"
 
 using namespace std;
 
