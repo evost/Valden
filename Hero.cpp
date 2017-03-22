@@ -137,7 +137,7 @@ void Hero::ShowCharacteristics() {
 	SetString(1, 2, sDexterity + ": " + to_string(dexterity));
 	SetString(1, 3, sIntelligence + ": " + to_string(intelligence));
 	SetString(1, 5, sDamage + ": " + to_string(GetDamage()));
-	SetString(1, 6, sDefense + ": " + to_string(0));
+	SetString(1, 6, sDefense + ": " + to_string(GetDefense()));
 	ShowCharacteristicsHints(borderDelimiter + 2, 1);
 	short button = 0;
 	while (button != 27)
@@ -145,10 +145,17 @@ void Hero::ShowCharacteristics() {
 };
 
 int Hero::GetDamage() {
-	if (cweapon.type != -1)
+	if (cweapon.type == -1)
 		return strength;
 	else
 		return strength + cweapon.damage;
+};
+
+int Hero::GetDefense() {
+	if (carmor.type == -1)
+		return 0;
+	else
+		return carmor.defense;
 };
 
 void Hero::ExpInc(int dxp) {

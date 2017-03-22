@@ -18,5 +18,6 @@ public:
 	void ShowInventory(short x, short y);
 	void ShowCharacteristics();
 	int GetDamage();
+	int GetDefense();
 	void ExpInc(int dxp);
 };

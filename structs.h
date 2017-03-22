@@ -10,5 +10,5 @@ struct TNPC {
 };
 
 struct TItem {
-	int type, damage, defence, dstrength, ddexterity, dintelligence, dmaxhp, id;
+	int type, damage, defense, dstrength, ddexterity, dintelligence, dmaxhp, id;
 };
