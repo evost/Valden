@@ -11,6 +11,11 @@ void ShowGameHints(short x, short y) {
 	SetString(x + 6, y + 3, ": " + sMenu);
 };
 
+void ShowCharacteristicsHints(short x, short y) {
+	SetString(x, y + 0, "Esc", Black, Green);
+	SetString(x + 3, y + 0, ": " + sBack);
+};
+
 void ShowInventoryHints(short x, short y) {
 	SetString(x, y + 0, "arrows", Black, Green);
 	SetString(x + 6, y + 0, ": " + sSelect);

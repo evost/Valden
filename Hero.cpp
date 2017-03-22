@@ -35,13 +35,10 @@ void Hero::GetHero(Map dMap) {
 }
 
 void Hero::ShowInfo(short x, short y) {
-	SetString(x, y + 0, sCoordinates + " : " + to_string(Hero::x) + ", " + to_string(Hero::y));
-	SetString(x, y + 1, sHP + " : " + to_string(Hero::hp) + " / " + to_string(Hero::maxhp));
-	SetString(x, y + 2, sXP + " : " + to_string(Hero::xp) + " / " + to_string(Hero::maxxp));
-	SetString(x, y + 3, sLevel + " : " + to_string(Hero::level));
-	SetString(x, y + 4, sStrength + " : " + to_string(Hero::strength));
-	SetString(x, y + 5, sDexterity + " : " + to_string(Hero::dexterity));
-	SetString(x, y + 6, sIntelligence + " : " + to_string(Hero::intelligence));
+	SetString(x, y + 0, sCoordinates + ": " + to_string(Hero::x) + ", " + to_string(Hero::y));
+	SetString(x, y + 1, sHP + ": " + to_string(hp) + " / " + to_string(maxhp));
+	SetString(x, y + 2, sXP + ": " + to_string(xp) + " / " + to_string(maxxp));
+	SetString(x, y + 3, sLevel + ": " + to_string(level));
 }
 
 void Hero::HeroStep(short dx, short dy, Map &dMap) {
@@ -69,6 +66,7 @@ void Hero::HeroStep(short dx, short dy, Map &dMap) {
 		}
 	}
 }
+
 void Hero::ShowInventory(short x, short y) {
 	Border(windowX, windowY, borderDelimiter);
 	if (cweapon.type == -1)
@@ -133,6 +131,19 @@ void Hero::ShowInventory(short x, short y) {
 	}
 }
 
+void Hero::ShowCharacteristics() {
+	Border(windowX, windowY, borderDelimiter);
+	SetString(1, 1, sStrength + ": " + to_string(strength));
+	SetString(1, 2, sDexterity + ": " + to_string(dexterity));
+	SetString(1, 3, sIntelligence + ": " + to_string(intelligence));
+	SetString(1, 5, sDamage + ": " + to_string(GetDamage()));
+	SetString(1, 6, sDefense + ": " + to_string(0));
+	ShowCharacteristicsHints(borderDelimiter + 2, 1);
+	short button = 0;
+	while (button != 27)
+		button = ReadKey();
+};
+
 int Hero::GetDamage() {
 	if (cweapon.type != -1)
 		return strength;
@@ -149,7 +160,6 @@ void Hero::ExpInc(int dxp) {
 			maxxp = XP_table[level - 1];
 			SetString(borderDelimiter + 2, 11, sNewLevel);
 		}
-
 		if (rand() % 100 < 10) {
 			for (int i = 0; i < invSize; i++)
 				if (invertory[i].type == -1) {

@@ -9,4 +9,5 @@
 
 void ShowGameHints(short x, short y);
 void ShowInventoryHints(short x, short y);
+void ShowCharacteristicsHints(short x, short y);
 void RenderWorld(Map dMap, Hero dHero, NPC dNPC, bool hint);
