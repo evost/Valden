@@ -6,7 +6,7 @@
 
 class Hero {
 private:
-	int hp, xp, strength, dexterity, intelligence, maxhp, maxxp, level;
+	int hp, xp, strength, dexterity, intelligence, maxhp, maxxp, level, cpoints;
 	TItem carmor, cweapon;
 	TItem invertory[invSize];
 public:

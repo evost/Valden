@@ -12,8 +12,18 @@ void ShowGameHints(short x, short y) {
 };
 
 void ShowCharacteristicsHints(short x, short y) {
-	SetString(x, y + 0, "Esc", Black, Green);
-	SetString(x + 3, y + 0, ": " + sBack);
+	SetString(x, y + 0, "arrows", Black, Green);
+	SetString(x + 6, y + 0, ": " + sSelect);
+	SetString(x, y + 1, "+", Black, Green);
+	SetString(x + 6, y + 1, ": " + sIncrease);
+	SetString(x, y + 2, "-", Black, Green);
+	SetString(x + 6, y + 2, ": " + sDecrease);
+	SetString(x, y + 3, "Enter", Black, Green);
+	SetString(x + 6, y + 3, ": " + sAccept);
+	SetString(x, y + 4, "Space", Black, Green);
+	SetString(x + 6, y + 4, ": " + sClear);
+	SetString(x, y + 5, "Esc", Black, Green);
+	SetString(x + 6, y + 5, ": " + sBack);
 };
 
 void ShowInventoryHints(short x, short y) {

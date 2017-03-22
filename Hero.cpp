@@ -9,6 +9,7 @@ Hero::Hero(Map &dMap) {
 	dexterity = startSkill + rand() % startSkillRandom;
 	intelligence = startSkill + rand() % startSkillRandom;
 	level = 1;
+	cpoints = newLevelPoints;
 	maxhp = startHp + strength;
 	hp = maxhp;
 	xp = 0;
@@ -51,16 +52,13 @@ void Hero::HeroStep(short dx, short dy, Map &dMap) {
 		if (((dMap.curX + dMap.visX - x) <= scrollDist) && (dMap.curX <= (dMap.Width - dMap.visX))) {
 			dMap.curX++;
 			dMap.GetMap();
-		}
-		else if (((dMap.curY + dMap.visY - y) <= scrollDist) && (dMap.curY <= (dMap.Height - dMap.visY))) {
+		} else if (((dMap.curY + dMap.visY - y) <= scrollDist) && (dMap.curY <= (dMap.Height - dMap.visY))) {
 			dMap.curY++;
 			dMap.GetMap();
-		}
-		else if (((x - dMap.curX) < scrollDist) && (dMap.curX > 0)) {
+		} else if (((x - dMap.curX) < scrollDist) && (dMap.curX > 0)) {
 			dMap.curX--;
 			dMap.GetMap();
-		}
-		else if (((y - dMap.curY) < scrollDist) && (dMap.curY > 0)) {
+		} else if (((y - dMap.curY) < scrollDist) && (dMap.curY > 0)) {
 			dMap.curY--;
 			dMap.GetMap();
 		}
@@ -133,15 +131,124 @@ void Hero::ShowInventory(short x, short y) {
 
 void Hero::ShowCharacteristics() {
 	Border(windowX, windowY, borderDelimiter);
-	SetString(1, 1, sStrength + ": " + to_string(strength));
-	SetString(1, 2, sDexterity + ": " + to_string(dexterity));
-	SetString(1, 3, sIntelligence + ": " + to_string(intelligence));
-	SetString(1, 5, sDamage + ": " + to_string(GetDamage()));
-	SetString(1, 6, sDefense + ": " + to_string(GetDefense()));
+	int dstrength = 0, ddexterity = 0, dintelligence = 0;
+	SetString(2, 1, "( ) " + sStrength + ": " + to_string(strength + dstrength));
+	SetString(2, 2, "( ) " + sDexterity + ": " + to_string(dexterity + ddexterity));
+	SetString(2, 3, "( ) " + sIntelligence + ": " + to_string(intelligence + dintelligence));
+	SetString(2, 4, sMaxHP + ": " + to_string(maxhp + dstrength));
+	SetString(2, 5, sDamage + ": " + to_string(GetDamage() + dstrength));
+	SetString(2, 6, sDefense + ": " + to_string(GetDefense()));
+	SetString(2, 8, sPoints + ": " + to_string(cpoints));
 	ShowCharacteristicsHints(borderDelimiter + 2, 1);
+	int k = 0;
 	short button = 0;
-	while (button != 27)
+	while (button != 27) {
+		SetString(3, 1 + k, "*");
 		button = ReadKey();
+		switch (button) {
+		case 224:
+			SetString(3, 1 + k, " ");
+			switch (ReadKey()) {
+			case 72:
+				k = (k - 1 + characteristicsNumber) % characteristicsNumber;
+				break;
+			case 80:
+				k = (k + 1 + characteristicsNumber) % characteristicsNumber;
+				break;
+			default:
+				break;
+			}
+			break;
+		case 61:
+			if (cpoints > 0) {
+				switch (k) {
+				case 0:
+					dstrength++;
+					SetString(2, 1, "( ) " + sStrength + ": " + to_string(strength + dstrength));
+					SetString(2, 4, sMaxHP + ": " + to_string(maxhp + dstrength));
+					SetString(2, 5, sDamage + ": " + to_string(GetDamage() + dstrength));
+					break;
+				case 1:
+					ddexterity++;
+					SetString(2, 2, "( ) " + sDexterity + ": " + to_string(dexterity + ddexterity));
+					break;
+				case 2:
+					dintelligence++;
+					SetString(2, 3, "( ) " + sIntelligence + ": " + to_string(intelligence + dintelligence));
+					break;
+				default:
+					break;
+				}
+				cpoints--;
+				Clear(2, 8, borderDelimiter - 1, 8);
+				SetString(2, 8, sPoints + ": " + to_string(cpoints));
+			}
+			break;
+		case 45:
+			switch (k) {
+			case 0:
+				if (dstrength > 0) {
+					dstrength--;
+					Clear(2, 1, borderDelimiter - 1, 1);
+					SetString(2, 1, "( ) " + sStrength + ": " + to_string(strength + dstrength));
+					Clear(2, 4, borderDelimiter - 1, 5);
+					SetString(2, 4, sMaxHP + ": " + to_string(maxhp + dstrength));
+					SetString(2, 5, sDamage + ": " + to_string(GetDamage() + dstrength));
+					cpoints++;
+					SetString(2, 8, sPoints + ": " + to_string(cpoints));
+				}
+				break;
+			case 1:
+				if (ddexterity > 0) {
+					ddexterity--;
+					Clear(2, 2, borderDelimiter - 1, 2);
+					SetString(2, 2, "( ) " + sDexterity + ": " + to_string(dexterity + ddexterity));
+					cpoints++;
+					SetString(2, 8, sPoints + ": " + to_string(cpoints));
+				}
+				break;
+			case 2:
+				if (dintelligence > 0) {
+					dintelligence--;
+					Clear(2, 3, borderDelimiter - 1, 3);
+					SetString(2, 3, "( ) " + sIntelligence + ": " + to_string(intelligence + dintelligence));
+					cpoints++;
+					SetString(2, 8, sPoints + ": " + to_string(cpoints));
+				}
+				break;
+			default:
+				break;
+			}
+			break;
+		case 13:
+			strength += dstrength;
+			maxhp += dstrength;
+			hp += dstrength;
+			dexterity += ddexterity;
+			intelligence += dintelligence;
+			dstrength = 0;
+			ddexterity = 0;
+			dintelligence = 0;
+			break;
+		case 32:
+			cpoints += dstrength;
+			cpoints += ddexterity;
+			cpoints += dintelligence;
+			dstrength = 0;
+			ddexterity = 0;
+			dintelligence = 0;
+			Clear(2, 1, borderDelimiter - 1, 5);
+			SetString(2, 1, "( ) " + sStrength + ": " + to_string(strength));
+			SetString(2, 2, "( ) " + sDexterity + ": " + to_string(dexterity));
+			SetString(2, 3, "( ) " + sIntelligence + ": " + to_string(intelligence));
+			SetString(2, 4, sMaxHP + ": " + to_string(maxhp + dstrength));
+			SetString(2, 5, sDamage + ": " + to_string(GetDamage() + dstrength));
+			SetString(2, 8, sPoints + ": " + to_string(cpoints));
+			break;
+		default:
+			break;
+		}
+	}
 };
 
 int Hero::GetDamage() {
@@ -166,6 +273,7 @@ void Hero::ExpInc(int dxp) {
 			level++;
 			maxxp = XP_table[level - 1];
 			SetString(borderDelimiter + 2, 8, sNewLevel);
+			cpoints += newLevelPoints;
 		}
 		if (rand() % 100 < 10)
 			for (int i = 0; i < invSize; i++)
