@@ -30,7 +30,7 @@ void ShowInventoryHints(short x, short y) {
 void RenderWorld(Map dMap, Hero dHero, NPC dNPC, bool hint) {
 	dNPC.GetNPCs(dMap);
 	dHero.GetHero(dMap);
-	Clear(borderDelimiter + 2, 1, windowX - 1, 8);
+	Clear(borderDelimiter + 2, 1, windowX - 1, 4);
 	Clear(borderDelimiter + 2, windowY - 1, windowX - 1, windowY - 1);
 	SetString(borderDelimiter + 2, windowY - 1, "Tab", Black, Green);
 	if (hint) {
