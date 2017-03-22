@@ -4,7 +4,7 @@
 #include "strings.h"
 
 NPC::NPC(int k, Map dMap) {
-	NPCs = (TNPC*)malloc(k*sizeof(TNPC));
+	NPCs = (TNPC*)malloc(k * sizeof(TNPC));
 	NPCk = k;
 	for (int i = 0; i < k; i++) {
 		if (rand() % 100 < 70)
@@ -34,27 +34,24 @@ bool NPC::NoNPCs(short x, short y) {
 
 void NPC::NPCstep(Map dMap, Hero &dHero) {
 	for (int i = 0; i < NPCk; i++)
-		if (sqrt(pow(abs(NPCs[i].x - dHero.x), 2) + pow(abs(NPCs[i].y - dHero.y), 2)) <= NPCs[i].visDist && (abs(NPCs[i].x - dHero.x)+abs(NPCs[i].y - dHero.y) > 1) && NPCs[i].hp > 0)
+		if (sqrt(pow(abs(NPCs[i].x - dHero.x), 2) + pow(abs(NPCs[i].y - dHero.y), 2)) <= NPCs[i].visDist && (abs(NPCs[i].x - dHero.x) + abs(NPCs[i].y - dHero.y) > 1) && NPCs[i].hp > 0)
 			if (NPCs[i].x < dHero.x && dMap.IsFree(NPCs[i].x + 1, NPCs[i].y) && NoNPCs(NPCs[i].x + 1, NPCs[i].y)) {
 				dMap.GetTile(NPCs[i].x, NPCs[i].y);
 				NPCs[i].x++;
-			}
-			else if (NPCs[i].x > dHero.x && dMap.IsFree(NPCs[i].x - 1, NPCs[i].y) && NoNPCs(NPCs[i].x - 1, NPCs[i].y)) {
+			} else if (NPCs[i].x > dHero.x && dMap.IsFree(NPCs[i].x - 1, NPCs[i].y) && NoNPCs(NPCs[i].x - 1, NPCs[i].y)) {
 				dMap.GetTile(NPCs[i].x, NPCs[i].y);
 				NPCs[i].x--;
-			}
-			else if (NPCs[i].y < dHero.y && dMap.IsFree(NPCs[i].x, NPCs[i].y + 1) && NoNPCs(NPCs[i].x, NPCs[i].y + 1)) {
+			} else if (NPCs[i].y < dHero.y && dMap.IsFree(NPCs[i].x, NPCs[i].y + 1) && NoNPCs(NPCs[i].x, NPCs[i].y + 1)) {
 				dMap.GetTile(NPCs[i].x, NPCs[i].y);
 				NPCs[i].y++;
-			}
-			else if (NPCs[i].y > dHero.y && dMap.IsFree(NPCs[i].x, NPCs[i].y - 1) && NoNPCs(NPCs[i].x, NPCs[i].y - 1)) {
+			} else if (NPCs[i].y > dHero.y && dMap.IsFree(NPCs[i].x, NPCs[i].y - 1) && NoNPCs(NPCs[i].x, NPCs[i].y - 1)) {
 				dMap.GetTile(NPCs[i].x, NPCs[i].y);
 				NPCs[i].y--;
 			}
 };
 
 int NPC::HeroAttack(int x, int y, int damage) {
-	for (int i = 0; i < NPCk; i++) 
+	for (int i = 0; i < NPCk; i++)
 		if (NPCs[i].x == x && NPCs[i].y == y && NPCs[i].hp > 0) {
 			if (rand() % 100 >= NPCs[i].dexterity) {
 				NPCs[i].hp -= damage;
@@ -64,8 +61,7 @@ int NPC::HeroAttack(int x, int y, int damage) {
 					SetString(borderDelimiter + 2, 6, sMonsters[NPCs[i].type] + sKilling);
 					return NPCs[i].dxp;
 				}
-			}
-			else
+			} else
 				SetString(borderDelimiter + 2, 6, sMonsters[NPCs[i].type] + sDodged);
 		};
 	return 0;

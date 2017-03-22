@@ -10,7 +10,7 @@ Map::Map(int width, int height, short visX, short visY) {
 	Width = width - 1;
 	Height = height - 1;
 	for (int x = 0; x <= Width; x++)
-	MainMap[x] = new TTile[Height + 1];
+		MainMap[x] = new TTile[Height + 1];
 	for (int x = 0; x <= Width; x++)
 		for (int y = 0; y <= Height; y++) {
 			int chance = rand() % 100 + 1;
