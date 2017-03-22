@@ -16,4 +16,3 @@ public:
 	void NPCstep(Map dMap, Hero &dHero);
 	int HeroAttack(int x, int y, int damage);
 };
-
