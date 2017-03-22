@@ -170,11 +170,12 @@ void Hero::ExpInc(int dxp) {
 		if (rand() % 100 < 10)
 			for (int i = 0; i < invSize; i++)
 				if (invertory[i].type == -1) {
-					if (rand() % 100 < 50)
+					int random = rand() % 100;
+					if (random < 50)
 						invertory[i] = spear1;
-					else if (rand() % 100 < 75)
+					else if (random < 75)
 						invertory[i] = armor2;
-					else if (rand() % 100 < 90)
+					else if (random < 90)
 						invertory[i] = sword2;
 					else
 						invertory[i] = armor3;
