@@ -30,7 +30,7 @@ bool NPC::NoNPCs(short x, short y) {
 	for (int i = 0; i < NPCk; i++)
 		if (NPCs[i].x == x && NPCs[i].y == y && NPCs[i].hp > 0) return false;
 	return true;
-};
+}
 
 void NPC::NPCstep(Map dMap, Hero &dHero) {
 	for (int i = 0; i < NPCk; i++)
@@ -48,7 +48,7 @@ void NPC::NPCstep(Map dMap, Hero &dHero) {
 				dMap.GetTile(NPCs[i].x, NPCs[i].y);
 				NPCs[i].y--;
 			}
-};
+}
 
 int NPC::HeroAttack(int x, int y, int damage) {
 	for (int i = 0; i < NPCk; i++)
@@ -63,6 +63,6 @@ int NPC::HeroAttack(int x, int y, int damage) {
 				}
 			} else
 				SetString(borderDelimiter + 2, 6, sMonsters[NPCs[i].type] + sDodged);
-		};
+		}
 	return 0;
-};
+}

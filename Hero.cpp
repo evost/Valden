@@ -36,10 +36,10 @@ void Hero::GetHero(Map dMap) {
 }
 
 void Hero::ShowInfo(short x, short y) {
-	SetString(x, y + 0, sCoordinates + ": " + to_string(Hero::x) + ", " + to_string(Hero::y));
-	SetString(x, y + 1, sHP + ": " + to_string(hp) + " / " + to_string(maxhp));
-	SetString(x, y + 2, sXP + ": " + to_string(xp) + " / " + to_string(maxxp));
-	SetString(x, y + 3, sLevel + ": " + to_string(level));
+	SetString(x, y + 0, sCoordinates + sDelimeter + to_string(Hero::x) + sComma + to_string(Hero::y));
+	SetString(x, y + 1, sHP + sDelimeter + to_string(hp) + sSlash + to_string(maxhp));
+	SetString(x, y + 2, sXP + sDelimeter + to_string(xp) + sSlash + to_string(maxxp));
+	SetString(x, y + 3, sLevel + sDelimeter + to_string(level));
 }
 
 void Hero::HeroStep(short dx, short dy, Map &dMap) {
@@ -68,28 +68,28 @@ void Hero::HeroStep(short dx, short dy, Map &dMap) {
 void Hero::ShowInventory(short x, short y) {
 	Border(windowX, windowY, borderDelimiter);
 	if (cweapon.type == -1)
-		SetString(2, 1, sCWeapon + "---");
+		SetString(2, 1, sCWeapon + sLack);
 	else
 		SetString(2, 1, sCWeapon + sItems[cweapon.id]);
 	if (cweapon.type == -1)
-		SetString(2, 2, sCArmor + "---");
+		SetString(2, 2, sCArmor + sLack);
 	else
 		SetString(2, 2, sCArmor + sItems[carmor.id]);
 	for (int i = 0; i < invSize; i++)
 		if (invertory[i].type == -1)
-			SetString(2, 4 + i, "( ) ---");
+			SetString(2, 4 + i, sRadio + sLack);
 		else
-			SetString(2, 4 + i, "( ) " + sItems[invertory[i].id]);
+			SetString(2, 4 + i, sRadio + sItems[invertory[i].id]);
 	ShowInventoryHints(borderDelimiter + 2, 1);
 	int k = 0;
 	short button = 0;
 	TItem item;
 	while (button != 27) {
-		SetString(3, 4 + k, "*");
+		SetString(3, 4 + k, sAsterisk);
 		button = ReadKey();
 		switch (button) {
 		case 224:
-			SetString(3, 4 + k, " ");
+			SetString(3, 4 + k, sSpace);
 			switch (ReadKey()) {
 			case 72:
 				k = (k - 1 + invSize) % invSize;
@@ -107,14 +107,14 @@ void Hero::ShowInventory(short x, short y) {
 				cweapon = invertory[k];
 				invertory[k] = item;
 				SetString(2, 1, sCWeapon + sItems[cweapon.id]);
-				SetString(2, 4 + k, "( ) " + sItems[invertory[k].id]);
+				SetString(2, 4 + k, sRadio + sItems[invertory[k].id]);
 				break;
 			case 1:
 				item = carmor;
 				carmor = invertory[k];
 				invertory[k] = item;
 				SetString(2, 2, sCArmor + sItems[carmor.id]);
-				SetString(2, 4 + k, "( ) " + sItems[invertory[k].id]);
+				SetString(2, 4 + k, sRadio + sItems[invertory[k].id]);
 				break;
 			default:
 				break;
@@ -132,22 +132,22 @@ void Hero::ShowInventory(short x, short y) {
 void Hero::ShowCharacteristics() {
 	Border(windowX, windowY, borderDelimiter);
 	int dstrength = 0, ddexterity = 0, dintelligence = 0;
-	SetString(2, 1, "( ) " + sStrength + ": " + to_string(strength + dstrength));
-	SetString(2, 2, "( ) " + sDexterity + ": " + to_string(dexterity + ddexterity));
-	SetString(2, 3, "( ) " + sIntelligence + ": " + to_string(intelligence + dintelligence));
-	SetString(2, 4, sMaxHP + ": " + to_string(maxhp + dstrength));
-	SetString(2, 5, sDamage + ": " + to_string(GetDamage() + dstrength));
-	SetString(2, 6, sDefense + ": " + to_string(GetDefense()));
-	SetString(2, 8, sPoints + ": " + to_string(cpoints));
+	SetString(2, 1, sRadio + sStrength + sDelimeter + to_string(strength + dstrength));
+	SetString(2, 2, sRadio + sDexterity + sDelimeter + to_string(dexterity + ddexterity));
+	SetString(2, 3, sRadio + sIntelligence + sDelimeter + to_string(intelligence + dintelligence));
+	SetString(2, 4, sMaxHP + sDelimeter + to_string(maxhp + dstrength));
+	SetString(2, 5, sDamage + sDelimeter + to_string(GetDamage() + dstrength));
+	SetString(2, 6, sDefense + sDelimeter + to_string(GetDefense()));
+	SetString(2, 8, sPoints + sDelimeter + to_string(cpoints));
 	ShowCharacteristicsHints(borderDelimiter + 2, 1);
 	int k = 0;
 	short button = 0;
 	while (button != 27) {
-		SetString(3, 1 + k, "*");
+		SetString(3, 1 + k, sAsterisk);
 		button = ReadKey();
 		switch (button) {
 		case 224:
-			SetString(3, 1 + k, " ");
+			SetString(3, 1 + k, sSpace);
 			switch (ReadKey()) {
 			case 72:
 				k = (k - 1 + characteristicsNumber) % characteristicsNumber;
@@ -164,24 +164,24 @@ void Hero::ShowCharacteristics() {
 				switch (k) {
 				case 0:
 					dstrength++;
-					SetString(2, 1, "( ) " + sStrength + ": " + to_string(strength + dstrength));
-					SetString(2, 4, sMaxHP + ": " + to_string(maxhp + dstrength));
-					SetString(2, 5, sDamage + ": " + to_string(GetDamage() + dstrength));
+					SetString(2, 1, sRadio + sStrength + sDelimeter + to_string(strength + dstrength));
+					SetString(2, 4, sMaxHP + sDelimeter + to_string(maxhp + dstrength));
+					SetString(2, 5, sDamage + sDelimeter + to_string(GetDamage() + dstrength));
 					break;
 				case 1:
 					ddexterity++;
-					SetString(2, 2, "( ) " + sDexterity + ": " + to_string(dexterity + ddexterity));
+					SetString(2, 2, sRadio + sDexterity + sDelimeter + to_string(dexterity + ddexterity));
 					break;
 				case 2:
 					dintelligence++;
-					SetString(2, 3, "( ) " + sIntelligence + ": " + to_string(intelligence + dintelligence));
+					SetString(2, 3, sRadio + sIntelligence + sDelimeter + to_string(intelligence + dintelligence));
 					break;
 				default:
 					break;
 				}
 				cpoints--;
 				Clear(2, 8, borderDelimiter - 1, 8);
-				SetString(2, 8, sPoints + ": " + to_string(cpoints));
+				SetString(2, 8, sPoints + sDelimeter + to_string(cpoints));
 			}
 			break;
 		case 45:
@@ -190,30 +190,30 @@ void Hero::ShowCharacteristics() {
 				if (dstrength > 0) {
 					dstrength--;
 					Clear(2, 1, borderDelimiter - 1, 1);
-					SetString(2, 1, "( ) " + sStrength + ": " + to_string(strength + dstrength));
+					SetString(2, 1, sRadio + sStrength + sDelimeter + to_string(strength + dstrength));
 					Clear(2, 4, borderDelimiter - 1, 5);
-					SetString(2, 4, sMaxHP + ": " + to_string(maxhp + dstrength));
-					SetString(2, 5, sDamage + ": " + to_string(GetDamage() + dstrength));
+					SetString(2, 4, sMaxHP + sDelimeter + to_string(maxhp + dstrength));
+					SetString(2, 5, sDamage + sDelimeter + to_string(GetDamage() + dstrength));
 					cpoints++;
-					SetString(2, 8, sPoints + ": " + to_string(cpoints));
+					SetString(2, 8, sPoints + sDelimeter + to_string(cpoints));
 				}
 				break;
 			case 1:
 				if (ddexterity > 0) {
 					ddexterity--;
 					Clear(2, 2, borderDelimiter - 1, 2);
-					SetString(2, 2, "( ) " + sDexterity + ": " + to_string(dexterity + ddexterity));
+					SetString(2, 2, sRadio + sDexterity + sDelimeter + to_string(dexterity + ddexterity));
 					cpoints++;
-					SetString(2, 8, sPoints + ": " + to_string(cpoints));
+					SetString(2, 8, sPoints + sDelimeter + to_string(cpoints));
 				}
 				break;
 			case 2:
 				if (dintelligence > 0) {
 					dintelligence--;
 					Clear(2, 3, borderDelimiter - 1, 3);
-					SetString(2, 3, "( ) " + sIntelligence + ": " + to_string(intelligence + dintelligence));
+					SetString(2, 3, sRadio + sIntelligence + sDelimeter + to_string(intelligence + dintelligence));
 					cpoints++;
-					SetString(2, 8, sPoints + ": " + to_string(cpoints));
+					SetString(2, 8, sPoints + sDelimeter + to_string(cpoints));
 				}
 				break;
 			default:
@@ -238,32 +238,32 @@ void Hero::ShowCharacteristics() {
 			ddexterity = 0;
 			dintelligence = 0;
 			Clear(2, 1, borderDelimiter - 1, 5);
-			SetString(2, 1, "( ) " + sStrength + ": " + to_string(strength));
-			SetString(2, 2, "( ) " + sDexterity + ": " + to_string(dexterity));
-			SetString(2, 3, "( ) " + sIntelligence + ": " + to_string(intelligence));
-			SetString(2, 4, sMaxHP + ": " + to_string(maxhp + dstrength));
-			SetString(2, 5, sDamage + ": " + to_string(GetDamage() + dstrength));
-			SetString(2, 8, sPoints + ": " + to_string(cpoints));
+			SetString(2, 1, sRadio + sStrength + sDelimeter + to_string(strength));
+			SetString(2, 2, sRadio + sDexterity + sDelimeter + to_string(dexterity));
+			SetString(2, 3, sRadio + sIntelligence + sDelimeter + to_string(intelligence));
+			SetString(2, 4, sMaxHP + sDelimeter + to_string(maxhp + dstrength));
+			SetString(2, 5, sDamage + sDelimeter + to_string(GetDamage() + dstrength));
+			SetString(2, 8, sPoints + sDelimeter + to_string(cpoints));
 			break;
 		default:
 			break;
 		}
 	}
-};
+}
 
 int Hero::GetDamage() {
 	if (cweapon.type == -1)
 		return strength;
 	else
 		return strength + cweapon.damage;
-};
+}
 
 int Hero::GetDefense() {
 	if (carmor.type == -1)
 		return 0;
 	else
 		return carmor.defense;
-};
+}
 
 void Hero::ExpInc(int dxp) {
 	if (dxp > 0) {

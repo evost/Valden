@@ -3,11 +3,10 @@
 #include "Hero.h"
 #include "NPC.h"
 #include "constants.h"
-
 #include "game.h"
 
 int main() {
-	Init(windowX + 1, windowY + 1, "Valden");
+	Init(windowX + 1, windowY + 1, sWindowName);
 	Map VMap(64, 32, mapVisX, mapVisY);
 	Hero VHero(VMap);
 	NPC VNPC(16, VMap);
