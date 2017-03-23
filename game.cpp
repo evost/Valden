@@ -7,8 +7,10 @@ void ShowGameHints(short x, short y) {
 	SetString(x + 6, y + 1, ": " + sAttack);
 	SetString(x, y + 2, "i     ", Black, Green);
 	SetString(x + 6, y + 2, ": " + sInventory);
-	SetString(x, y + 3, "Esc   ", Black, Green);
-	SetString(x + 6, y + 3, ": " + sMenu);
+	SetString(x, y + 3, "ñ     ", Black, Green);
+	SetString(x + 6, y + 3, ": " + sInventory);
+	SetString(x, y + 4, "Esc   ", Black, Green);
+	SetString(x + 6, y + 4, ": " + sMenu);
 };
 
 void ShowCharacteristicsHints(short x, short y) {
