@@ -20,7 +20,7 @@ NPC::NPC(int k, Map dMap) {
 
 void NPC::GetNPCs(Map dMap) {
 	for (int i = 0; i < NPCk; i++)
-		if (NPCs[i].hp > 0 && NPCs[i].x >= dMap.curX && NPCs[i].x <= dMap.curX + dMap.visX - 1 && NPCs[i].y >= dMap.curY && NPCs[i].y <= dMap.curY + dMap.visY - 1) {
+		if (NPCs[i].hp > 0 && NPCs[i].x >= dMap.curX && NPCs[i].x <= dMap.curX + mapVisX - 1 && NPCs[i].y >= dMap.curY && NPCs[i].y <= dMap.curY + mapVisX - 1) {
 			SetSymbol((short)(NPCs[i].x + 1 - dMap.curX), (short)(NPCs[i].y + 1 - dMap.curY), NPC_tiles[NPCs[i].type].cell, Black, NPC_tiles[NPCs[i].type].color);
 		}
 }

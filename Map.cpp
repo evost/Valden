@@ -4,11 +4,15 @@
 Map::Map(int width, int height, short visX, short visY) {
 	curX = 0;
 	curY = 0;
-	Map::visX = visX;
-	Map::visY = visY;
 	MainMap = (TTile**)malloc(width*height);
-	Width = width - 1;
-	Height = height - 1;
+	if (width - 1 < mapVisX)
+		Width = mapVisX;
+	else
+		Width = width - 1;
+	if (height - 1 < mapVisY)
+		Height = mapVisY;
+	else
+		Height = height - 1;
 	for (int x = 0; x <= Width; x++)
 		MainMap[x] = new TTile[Height + 1];
 	for (int x = 0; x <= Width; x++)
@@ -25,8 +29,8 @@ Map::Map(int width, int height, short visX, short visY) {
 }
 
 void Map::GetMap() {
-	for (int x = curX; x < curX + visX; x++)
-		for (int y = curY; y < curY + visY; y++)
+	for (int x = curX; x < curX + mapVisX; x++)
+		for (int y = curY; y < curY + mapVisY; y++)
 			SetSymbol((short)(x - curX + 1), (short)(y - curY + 1), MainMap[x][y].cell, Black, MainMap[x][y].color);
 }
 

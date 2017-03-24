@@ -21,12 +21,12 @@ Hero::Hero(Map &dMap) {
 		x = rand() % (dMap.Width - 6) + 3;
 		y = rand() % (dMap.Height - 6) + 3;
 	} while (!dMap.IsFree(x, y));
-	dMap.curX = x - dMap.visX / 2;
+	dMap.curX = x - mapVisX / 2;
 	if (dMap.curX < 0) dMap.curX = 0;
-	if (dMap.curX > (dMap.Width - dMap.visX)) dMap.curX = dMap.Width - dMap.visX + 1;
-	dMap.curY = y - dMap.visY / 2;
+	if (dMap.curX > (dMap.Width - mapVisX)) dMap.curX = dMap.Width - mapVisX + 1;
+	dMap.curY = y - mapVisY / 2;
 	if (dMap.curY < 0) dMap.curY = 0;
-	if (dMap.curY > (dMap.Height - dMap.visY)) dMap.curY = dMap.Height - dMap.visY + 1;
+	if (dMap.curY > (dMap.Height - mapVisY)) dMap.curY = dMap.Height - mapVisY + 1;
 }
 
 void Hero::GetHero(Map dMap) {
@@ -46,9 +46,9 @@ void Hero::HeroStep(short dx, short dy, Map &dMap) {
 	if (dx >= 0 && dy >= 0 && dx <= dMap.Width && dy <= dMap.Height && dMap.IsFree(dx, dy)) {
 		x = dx;
 		y = dy;
-		if (((dMap.curX + dMap.visX - x) <= scrollDist) && (dMap.curX <= (dMap.Width - dMap.visX)))
+		if (((dMap.curX + mapVisX - x) <= scrollDist) && (dMap.curX <= (dMap.Width - mapVisX)))
 			dMap.curX++;
-		else if (((dMap.curY + dMap.visY - y) <= scrollDist) && (dMap.curY <= (dMap.Height - dMap.visY)))
+		else if (((dMap.curY + mapVisY - y) <= scrollDist) && (dMap.curY <= (dMap.Height - mapVisY)))
 			dMap.curY++;
 		else if (((x - dMap.curX) < scrollDist) && (dMap.curX > 0))
 			dMap.curX--;
