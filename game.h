@@ -7,6 +7,10 @@
 #include "Hero.h"
 #include "NPC.h"
 
+static wstring gameLog[logSize];
+static short logPosition = 0;
+
+void AddLog(wstring s);
 void ShowGameHints(short x, short y);
 void ShowInventoryHints(short x, short y);
 void ShowCharacteristicsHints(short x, short y);

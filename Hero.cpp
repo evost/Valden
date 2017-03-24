@@ -232,11 +232,11 @@ int Hero::GetDefense() {
 void Hero::ExpInc(int dxp) {
 	if (dxp > 0) {
 		xp += dxp;
-		SetString(borderDelimiter + 2, 7, sIncExp1 + to_wstring(dxp) + sIncExp2, Black, White);
+		AddLog(sIncExp1 + to_wstring(dxp) + sIncExp2);
 		if (xp >= XP_table[level - 1] && level < maxLevel) {
 			level++;
 			maxxp = XP_table[level - 1];
-			SetString(borderDelimiter + 2, 8, sNewLevel, Black, White);
+			AddLog(sNewLevel);
 			cpoints += newLevelPoints;
 		}
 		if (rand() % 100 < 10)
@@ -251,7 +251,7 @@ void Hero::ExpInc(int dxp) {
 						invertory[i] = sword2;
 					else
 						invertory[i] = armor3;
-					SetString(borderDelimiter + 2, 9, sReceived + sItems[invertory[i].id], Black, White);
+					AddLog(sReceived + sItems[invertory[i].id]);
 					break;
 				}
 	}

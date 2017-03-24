@@ -1,5 +1,15 @@
 #include "game.h"
 
+void AddLog(wstring s) {
+	gameLog[logPosition] = s;
+	logPosition = (logPosition + 1) % logSize;
+}
+
+void ShowLog() {
+	for (int i = 0; i < logSize; i++)
+		SetString(borderDelimiter + 2, windowY - 2 - logSize + i, gameLog[(logPosition - 1 - i + logSize) % logSize], Black, White);
+}
+
 void ShowGameHints(short x, short y) {
 	SetString(x, y + 0, skArrows, Black, Green);
 	SetString(x + 6, y + 0, sDelimeter + sMotion, Black, White);
@@ -43,6 +53,7 @@ void RenderWorld(Map dMap, Hero dHero, NPC dNPC, bool hint) {
 	dMap.GetMap();
 	dNPC.GetNPCs(dMap);
 	dHero.GetHero(dMap);
+	ShowLog();
 	Border(windowX, windowY, borderDelimiter);
 	SetString(borderDelimiter + 2, windowY - 1, skTab, Black, Green);
 	if (hint) {

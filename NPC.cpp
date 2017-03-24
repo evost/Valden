@@ -2,6 +2,7 @@
 #include "io.h"
 #include "Map.h"
 #include "strings.h"
+#include "game.h"
 
 NPC::NPC(int k, Map dMap) {
 	NPCs = (TNPC*)malloc(k * sizeof(TNPC));
@@ -20,7 +21,7 @@ NPC::NPC(int k, Map dMap) {
 
 void NPC::GetNPCs(Map dMap) {
 	for (int i = 0; i < NPCk; i++)
-		if (NPCs[i].hp > 0 && NPCs[i].x >= dMap.curX && NPCs[i].x <= dMap.curX + mapVisX - 1 && NPCs[i].y >= dMap.curY && NPCs[i].y <= dMap.curY + mapVisX - 1) {
+		if (NPCs[i].hp > 0 && NPCs[i].x >= dMap.curX && NPCs[i].x <= dMap.curX + mapVisX - 1 && NPCs[i].y >= dMap.curY && NPCs[i].y <= dMap.curY + mapVisY - 1) {
 			SetSymbol((short)(NPCs[i].x + 1 - dMap.curX), (short)(NPCs[i].y + 1 - dMap.curY), NPC_tiles[NPCs[i].type].cell, Black, NPC_tiles[NPCs[i].type].color);
 		}
 }
@@ -50,13 +51,13 @@ int NPC::HeroAttack(int x, int y, int damage) {
 			if (rand() % 100 >= NPCs[i].dexterity) {
 				NPCs[i].hp -= damage;
 				if (NPCs[i].hp > 0)
-					SetString(borderDelimiter + 2, 6, sDamageToEnemy + to_wstring(damage), Black, White);
+					AddLog(sDamageToEnemy + to_wstring(damage));
 				else {
-					SetString(borderDelimiter + 2, 6, sMonsters[NPCs[i].type] + sKilling, Black, White);
+					AddLog(sMonsters[NPCs[i].type] + sKilling);
 					return NPCs[i].dxp;
 				}
 			} else
-				SetString(borderDelimiter + 2, 6, sMonsters[NPCs[i].type] + sDodged, Black, White);
+				AddLog(sMonsters[NPCs[i].type] + sDodged);
 		}
 	return 0;
 }

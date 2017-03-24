@@ -45,6 +45,7 @@ const int maxLevel = 10;
 const int XP_table[maxLevel] = { 10, 20, 30, 70, 100, 170, 270, 440, 710, 1000 };
 const int characteristicsNumber = 3;
 const int newLevelPoints = characteristicsNumber;
+const int logSize = 16;
 
 const TItem sword1 = { 0, 2, 0, 0, 0, 0, 0 , 0 };
 const TItem spear1 = { 0, 4, 0, 0, 0, 0, 0 , 1 };
