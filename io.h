@@ -10,10 +10,11 @@ using namespace std;
 
 static HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
 static SMALL_RECT src;
+static CHAR_INFO* buffer = NULL;
 
-void SetSymbol(short x, short y, char c, short background, short text);
-void SetString(short x, short y, string s, short background, short text);
-void Init(short x, short y, string name);
+void SetSymbol(short x, short y, wchar_t c, short background, short text);
+void SetString(short x, short y, wstring s, short background, short text);
+void Init(short x, short y, wstring name);
 void Border(short x, short y, short x0);
-void Clear(short x1, short y1, short x2, short y2);
 short ReadKey();
+void Render();

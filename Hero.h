@@ -3,6 +3,8 @@
 #include "Map.h"
 #include "structs.h"
 #include "constants.h"
+#include "io.h"
+#include "strings.h"
 
 class Hero {
 private:

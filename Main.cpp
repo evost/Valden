@@ -10,14 +10,12 @@ int main() {
 	Map VMap(128, 64, mapVisX, mapVisY);
 	Hero VHero(VMap);
 	NPC VNPC(16, VMap);
-	Border(windowX, windowY, borderDelimiter);
-	VMap.GetMap();
 	bool showHints = false;
-	RenderWorld(VMap, VHero, VNPC, showHints);
 	short button = 0;
 	while (button != 27) {
+		RenderWorld(VMap, VHero, VNPC, showHints);
+		Render();
 		button = ReadKey();
-		Clear(borderDelimiter + 2, 9, windowX - 1, 11);
 		switch (button) {
 		case 224:
 			switch (ReadKey()) {
@@ -42,33 +40,23 @@ int main() {
 			showHints = !showHints;
 			break;
 		default:
-			if (button == 73 || button == 105 || button == 152 || button == 232) {
+			if (button == 73 || button == 105 || button == 152 || button == 232)
 				VHero.ShowInventory(windowX, windowY);
-				Border(windowX, windowY, borderDelimiter);
-				VMap.GetMap();
-			} else if (button == 67 || button == 99 || button == 145 || button == 225) {
+			else if (button == 67 || button == 99 || button == 145 || button == 225)
 				VHero.ShowCharacteristics();
-				Border(windowX, windowY, borderDelimiter);
-				VMap.GetMap();
-			} else {
-				if (button == 87 || button == 119 || button == 150 || button == 230) {
+			else {
+				if (button == 87 || button == 119 || button == 150 || button == 230)
 					VHero.ExpInc(VNPC.HeroAttack(VHero.x, VHero.y - 1, VHero.GetDamage()));
-					VMap.GetTile(VHero.x, VHero.y - 1);
-				} else if (button == 68 || button == 100 || button == 130 || button == 162) {
+				else if (button == 68 || button == 100 || button == 130 || button == 162)
 					VHero.ExpInc(VNPC.HeroAttack(VHero.x + 1, VHero.y, VHero.GetDamage()));
-					VMap.GetTile(VHero.x + 1, VHero.y);
-				} else if (button == 83 || button == 115 || button == 155 || button == 235) {
+				else if (button == 83 || button == 115 || button == 155 || button == 235)
 					VHero.ExpInc(VNPC.HeroAttack(VHero.x, VHero.y + 1, VHero.GetDamage()));
-					VMap.GetTile(VHero.x, VHero.y + 1);
-				} else if (button == 65 || button == 97 || button == 148 || button == 228) {
+				else if (button == 65 || button == 97 || button == 148 || button == 228)
 					VHero.ExpInc(VNPC.HeroAttack(VHero.x - 1, VHero.y, VHero.GetDamage()));
-					VMap.GetTile(VHero.x - 1, VHero.y);
-				}
 				VNPC.NPCstep(VMap, VHero);
 			}
 			break;
 		}
-		RenderWorld(VMap, VHero, VNPC, showHints);
 	}
 	return 0;
 }

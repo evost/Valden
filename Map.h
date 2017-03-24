@@ -13,6 +13,5 @@ public:
 	short visX, visY;
 	Map(int width, int height, short visX, short visY);
 	void GetMap();
-	void GetTile(int x, int y);
 	bool IsFree(int x, int y);
 };

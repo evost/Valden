@@ -24,14 +24,10 @@ Map::Map(int width, int height, short visX, short visY) {
 		}
 }
 
-void Map::GetTile(int x, int y) {
-	SetSymbol((short)(x - curX + 1), (short)(y - curY + 1), MainMap[x][y].cell, Black, MainMap[x][y].color);
-}
-
 void Map::GetMap() {
 	for (int x = curX; x < curX + visX; x++)
 		for (int y = curY; y < curY + visY; y++)
-			GetTile(x, y);
+			SetSymbol((short)(x - curX + 1), (short)(y - curY + 1), MainMap[x][y].cell, Black, MainMap[x][y].color);
 }
 
 bool Map::IsFree(int x, int y) {
