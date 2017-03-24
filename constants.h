@@ -2,11 +2,11 @@
 
 #include "structs.h"
 
-const int windowX = 58;
-const int windowY = 17;
-const int borderDelimiter = 33;
-const int mapVisX = 32;
-const int mapVisY = 16;
+const int mapVisX = 64;
+const int mapVisY = 32;
+const int windowX = mapVisX + 32;
+const int windowY = mapVisY + 1;
+const int borderDelimiter = mapVisX + 1;
 
 const int invSize = 9;
 const int startSkill = 5;
