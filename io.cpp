@@ -57,3 +57,7 @@ void Render() {
 	WriteConsoleOutputW(hStdOut, buffer, { src.Right + 1 , src.Bottom + 1 }, { 0, 0 }, &src);
 	Clear();
 }
+
+wstring FloatToWstring(float k) {
+	return (to_wstring((int)k) + L"." + to_wstring((int)((k - (float)(int)k) * 100)));
+}

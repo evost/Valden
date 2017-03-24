@@ -18,3 +18,4 @@ void Init(short x, short y, wstring name);
 void Border(short x, short y, short x0);
 short ReadKey();
 void Render();
+wstring FloatToWstring(float k);
