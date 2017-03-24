@@ -2,8 +2,6 @@
 
 using namespace std;
 
-HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
-
 void SetColor(short background, short text) {
 	SetConsoleTextAttribute(hStdOut, (WORD)((background << 4) | text));
 }
@@ -13,10 +11,10 @@ void SetSymbol(short x, short y, char c) {
 	cout << c;
 }
 
-void SetString(short x, short y, string s) {
-	SetColor(Black, White);
+void SetSymbol(short x, short y, char c, short background, short text) {
+	SetConsoleTextAttribute(hStdOut, (WORD)((background << 4) | text));
 	SetConsoleCursorPosition(hStdOut, { x, y });
-	cout << s;
+	cout << c;
 }
 
 void SetString(short x, short y, string s, short background, short text) {
@@ -28,9 +26,9 @@ void SetString(short x, short y, string s, short background, short text) {
 void Init(short x, short y, string name) {
 	srand((int)time(0));
 	setlocale(LC_ALL, "rus");
-	SMALL_RECT src = { 0, 0, x - 1, y - 1 };
+	src = { 0, 0, x, y };
 	SetConsoleWindowInfo(hStdOut, true, &src);
-	SetConsoleScreenBufferSize(hStdOut, { x, y });
+	SetConsoleScreenBufferSize(hStdOut, { x+1, y+1 });
 	SetConsoleTitleA(name.c_str());
 	CONSOLE_CURSOR_INFO cur = { 1, false };
 	SetConsoleCursorInfo(hStdOut, &cur);
@@ -38,7 +36,7 @@ void Init(short x, short y, string name) {
 
 void Border(short x, short y, short x0) {
 	system("cls");
-	SetColor(Black, White);
+	SetColor(0, 15);
 	setlocale(LC_ALL, "C");
 	for (int i = 1; i < y; i++) {
 		SetSymbol(0, i, (char)186);

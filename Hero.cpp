@@ -31,15 +31,14 @@ Hero::Hero(Map &dMap) {
 }
 
 void Hero::GetHero(Map dMap) {
-	SetColor(Black, Red);
-	SetSymbol((short)(x + 1 - dMap.curX), (short)(y + 1 - dMap.curY), 'X');
+	SetSymbol((short)(x + 1 - dMap.curX), (short)(y + 1 - dMap.curY), 'X', Black, Red);
 }
 
 void Hero::ShowInfo(short x, short y) {
-	SetString(x, y + 0, sCoordinates + sDelimeter + to_string(Hero::x) + sComma + to_string(Hero::y));
-	SetString(x, y + 1, sHP + sDelimeter + to_string(hp) + sSlash + to_string(maxhp));
-	SetString(x, y + 2, sXP + sDelimeter + to_string(xp) + sSlash + to_string(maxxp));
-	SetString(x, y + 3, sLevel + sDelimeter + to_string(level));
+	SetString(x, y + 0, sCoordinates + sDelimeter + to_string(Hero::x) + sComma + to_string(Hero::y), Black, White);
+	SetString(x, y + 1, sHP + sDelimeter + to_string(hp) + sSlash + to_string(maxhp), Black, White);
+	SetString(x, y + 2, sXP + sDelimeter + to_string(xp) + sSlash + to_string(maxxp), Black, White);
+	SetString(x, y + 3, sLevel + sDelimeter + to_string(level), Black, White);
 }
 
 void Hero::HeroStep(short dx, short dy, Map &dMap) {
@@ -68,28 +67,28 @@ void Hero::HeroStep(short dx, short dy, Map &dMap) {
 void Hero::ShowInventory(short x, short y) {
 	Border(windowX, windowY, borderDelimiter);
 	if (cweapon.type == -1)
-		SetString(2, 1, sCWeapon + sLack);
+		SetString(2, 1, sCWeapon + sLack, Black, White);
 	else
-		SetString(2, 1, sCWeapon + sItems[cweapon.id]);
+		SetString(2, 1, sCWeapon + sItems[cweapon.id], Black, White);
 	if (cweapon.type == -1)
-		SetString(2, 2, sCArmor + sLack);
+		SetString(2, 2, sCArmor + sLack, Black, White);
 	else
-		SetString(2, 2, sCArmor + sItems[carmor.id]);
+		SetString(2, 2, sCArmor + sItems[carmor.id], Black, White);
 	for (int i = 0; i < invSize; i++)
 		if (invertory[i].type == -1)
-			SetString(2, 4 + i, sRadio + sLack);
+			SetString(2, 4 + i, sRadio + sLack, Black, White);
 		else
-			SetString(2, 4 + i, sRadio + sItems[invertory[i].id]);
+			SetString(2, 4 + i, sRadio + sItems[invertory[i].id], Black, White);
 	ShowInventoryHints(borderDelimiter + 2, 1);
 	int k = 0;
 	short button = 0;
 	TItem item;
 	while (button != 27) {
-		SetString(3, 4 + k, sAsterisk);
+		SetString(3, 4 + k, sAsterisk, Black, White);
 		button = ReadKey();
 		switch (button) {
 		case 224:
-			SetString(3, 4 + k, sSpace);
+			SetString(3, 4 + k, sSpace, Black, White);
 			switch (ReadKey()) {
 			case 72:
 				k = (k - 1 + invSize) % invSize;
@@ -106,15 +105,15 @@ void Hero::ShowInventory(short x, short y) {
 				item = cweapon;
 				cweapon = invertory[k];
 				invertory[k] = item;
-				SetString(2, 1, sCWeapon + sItems[cweapon.id]);
-				SetString(2, 4 + k, sRadio + sItems[invertory[k].id]);
+				SetString(2, 1, sCWeapon + sItems[cweapon.id], Black, White);
+				SetString(2, 4 + k, sRadio + sItems[invertory[k].id], Black, White);
 				break;
 			case 1:
 				item = carmor;
 				carmor = invertory[k];
 				invertory[k] = item;
-				SetString(2, 2, sCArmor + sItems[carmor.id]);
-				SetString(2, 4 + k, sRadio + sItems[invertory[k].id]);
+				SetString(2, 2, sCArmor + sItems[carmor.id], Black, White);
+				SetString(2, 4 + k, sRadio + sItems[invertory[k].id], Black, White);
 				break;
 			default:
 				break;
@@ -132,22 +131,22 @@ void Hero::ShowInventory(short x, short y) {
 void Hero::ShowCharacteristics() {
 	Border(windowX, windowY, borderDelimiter);
 	int dstrength = 0, ddexterity = 0, dintelligence = 0;
-	SetString(2, 1, sRadio + sStrength + sDelimeter + to_string(strength + dstrength));
-	SetString(2, 2, sRadio + sDexterity + sDelimeter + to_string(dexterity + ddexterity));
-	SetString(2, 3, sRadio + sIntelligence + sDelimeter + to_string(intelligence + dintelligence));
-	SetString(2, 4, sMaxHP + sDelimeter + to_string(maxhp + dstrength));
-	SetString(2, 5, sDamage + sDelimeter + to_string(GetDamage() + dstrength));
-	SetString(2, 6, sDefense + sDelimeter + to_string(GetDefense()));
-	SetString(2, 8, sPoints + sDelimeter + to_string(cpoints));
+	SetString(2, 1, sRadio + sStrength + sDelimeter + to_string(strength + dstrength), Black, White);
+	SetString(2, 2, sRadio + sDexterity + sDelimeter + to_string(dexterity + ddexterity), Black, White);
+	SetString(2, 3, sRadio + sIntelligence + sDelimeter + to_string(intelligence + dintelligence), Black, White);
+	SetString(2, 4, sMaxHP + sDelimeter + to_string(maxhp + dstrength), Black, White);
+	SetString(2, 5, sDamage + sDelimeter + to_string(GetDamage() + dstrength), Black, White);
+	SetString(2, 6, sDefense + sDelimeter + to_string(GetDefense()), Black, White);
+	SetString(2, 8, sPoints + sDelimeter + to_string(cpoints), Black, White);
 	ShowCharacteristicsHints(borderDelimiter + 2, 1);
 	int k = 0;
 	short button = 0;
 	while (button != 27) {
-		SetString(3, 1 + k, sAsterisk);
+		SetString(3, 1 + k, sAsterisk, Black, White);
 		button = ReadKey();
 		switch (button) {
 		case 224:
-			SetString(3, 1 + k, sSpace);
+			SetString(3, 1 + k, sSpace, Black, White);
 			switch (ReadKey()) {
 			case 72:
 				k = (k - 1 + characteristicsNumber) % characteristicsNumber;
@@ -164,24 +163,24 @@ void Hero::ShowCharacteristics() {
 				switch (k) {
 				case 0:
 					dstrength++;
-					SetString(2, 1, sRadio + sStrength + sDelimeter + to_string(strength + dstrength));
-					SetString(2, 4, sMaxHP + sDelimeter + to_string(maxhp + dstrength));
-					SetString(2, 5, sDamage + sDelimeter + to_string(GetDamage() + dstrength));
+					SetString(2, 1, sRadio + sStrength + sDelimeter + to_string(strength + dstrength), Black, White);
+					SetString(2, 4, sMaxHP + sDelimeter + to_string(maxhp + dstrength), Black, White);
+					SetString(2, 5, sDamage + sDelimeter + to_string(GetDamage() + dstrength), Black, White);
 					break;
 				case 1:
 					ddexterity++;
-					SetString(2, 2, sRadio + sDexterity + sDelimeter + to_string(dexterity + ddexterity));
+					SetString(2, 2, sRadio + sDexterity + sDelimeter + to_string(dexterity + ddexterity), Black, White);
 					break;
 				case 2:
 					dintelligence++;
-					SetString(2, 3, sRadio + sIntelligence + sDelimeter + to_string(intelligence + dintelligence));
+					SetString(2, 3, sRadio + sIntelligence + sDelimeter + to_string(intelligence + dintelligence), Black, White);
 					break;
 				default:
 					break;
 				}
 				cpoints--;
 				Clear(2, 8, borderDelimiter - 1, 8);
-				SetString(2, 8, sPoints + sDelimeter + to_string(cpoints));
+				SetString(2, 8, sPoints + sDelimeter + to_string(cpoints), Black, White);
 			}
 			break;
 		case 45:
@@ -190,30 +189,30 @@ void Hero::ShowCharacteristics() {
 				if (dstrength > 0) {
 					dstrength--;
 					Clear(2, 1, borderDelimiter - 1, 1);
-					SetString(2, 1, sRadio + sStrength + sDelimeter + to_string(strength + dstrength));
+					SetString(2, 1, sRadio + sStrength + sDelimeter + to_string(strength + dstrength), Black, White);
 					Clear(2, 4, borderDelimiter - 1, 5);
-					SetString(2, 4, sMaxHP + sDelimeter + to_string(maxhp + dstrength));
-					SetString(2, 5, sDamage + sDelimeter + to_string(GetDamage() + dstrength));
+					SetString(2, 4, sMaxHP + sDelimeter + to_string(maxhp + dstrength), Black, White);
+					SetString(2, 5, sDamage + sDelimeter + to_string(GetDamage() + dstrength), Black, White);
 					cpoints++;
-					SetString(2, 8, sPoints + sDelimeter + to_string(cpoints));
+					SetString(2, 8, sPoints + sDelimeter + to_string(cpoints), Black, White);
 				}
 				break;
 			case 1:
 				if (ddexterity > 0) {
 					ddexterity--;
 					Clear(2, 2, borderDelimiter - 1, 2);
-					SetString(2, 2, sRadio + sDexterity + sDelimeter + to_string(dexterity + ddexterity));
+					SetString(2, 2, sRadio + sDexterity + sDelimeter + to_string(dexterity + ddexterity), Black, White);
 					cpoints++;
-					SetString(2, 8, sPoints + sDelimeter + to_string(cpoints));
+					SetString(2, 8, sPoints + sDelimeter + to_string(cpoints), Black, White);
 				}
 				break;
 			case 2:
 				if (dintelligence > 0) {
 					dintelligence--;
 					Clear(2, 3, borderDelimiter - 1, 3);
-					SetString(2, 3, sRadio + sIntelligence + sDelimeter + to_string(intelligence + dintelligence));
+					SetString(2, 3, sRadio + sIntelligence + sDelimeter + to_string(intelligence + dintelligence), Black, White);
 					cpoints++;
-					SetString(2, 8, sPoints + sDelimeter + to_string(cpoints));
+					SetString(2, 8, sPoints + sDelimeter + to_string(cpoints), Black, White);
 				}
 				break;
 			default:
@@ -238,12 +237,12 @@ void Hero::ShowCharacteristics() {
 			ddexterity = 0;
 			dintelligence = 0;
 			Clear(2, 1, borderDelimiter - 1, 5);
-			SetString(2, 1, sRadio + sStrength + sDelimeter + to_string(strength));
-			SetString(2, 2, sRadio + sDexterity + sDelimeter + to_string(dexterity));
-			SetString(2, 3, sRadio + sIntelligence + sDelimeter + to_string(intelligence));
-			SetString(2, 4, sMaxHP + sDelimeter + to_string(maxhp + dstrength));
-			SetString(2, 5, sDamage + sDelimeter + to_string(GetDamage() + dstrength));
-			SetString(2, 8, sPoints + sDelimeter + to_string(cpoints));
+			SetString(2, 1, sRadio + sStrength + sDelimeter + to_string(strength), Black, White);
+			SetString(2, 2, sRadio + sDexterity + sDelimeter + to_string(dexterity), Black, White);
+			SetString(2, 3, sRadio + sIntelligence + sDelimeter + to_string(intelligence), Black, White);
+			SetString(2, 4, sMaxHP + sDelimeter + to_string(maxhp + dstrength), Black, White);
+			SetString(2, 5, sDamage + sDelimeter + to_string(GetDamage() + dstrength), Black, White);
+			SetString(2, 8, sPoints + sDelimeter + to_string(cpoints), Black, White);
 			break;
 		default:
 			break;
@@ -268,11 +267,11 @@ int Hero::GetDefense() {
 void Hero::ExpInc(int dxp) {
 	if (dxp > 0) {
 		xp += dxp;
-		SetString(borderDelimiter + 2, 7, sIncExp1 + to_string(dxp) + sIncExp2);
+		SetString(borderDelimiter + 2, 7, sIncExp1 + to_string(dxp) + sIncExp2, Black, White);
 		if (xp >= XP_table[level - 1] && level < maxLevel) {
 			level++;
 			maxxp = XP_table[level - 1];
-			SetString(borderDelimiter + 2, 8, sNewLevel);
+			SetString(borderDelimiter + 2, 8, sNewLevel, Black, White);
 			cpoints += newLevelPoints;
 		}
 		if (rand() % 100 < 10)
@@ -287,7 +286,7 @@ void Hero::ExpInc(int dxp) {
 						invertory[i] = sword2;
 					else
 						invertory[i] = armor3;
-					SetString(borderDelimiter + 2, 9, sReceived + sItems[invertory[i].id]);
+					SetString(borderDelimiter + 2, 9, sReceived + sItems[invertory[i].id], Black, White);
 					break;
 				}
 	}

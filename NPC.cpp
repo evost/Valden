@@ -21,8 +21,7 @@ NPC::NPC(int k, Map dMap) {
 void NPC::GetNPCs(Map dMap) {
 	for (int i = 0; i < NPCk; i++)
 		if (NPCs[i].hp > 0 && NPCs[i].x >= dMap.curX && NPCs[i].x <= dMap.curX + dMap.visX - 1 && NPCs[i].y >= dMap.curY && NPCs[i].y <= dMap.curY + dMap.visY - 1) {
-			SetColor(Black, NPC_tiles[NPCs[i].type].color);
-			SetSymbol((short)(NPCs[i].x + 1 - dMap.curX), (short)(NPCs[i].y + 1 - dMap.curY), NPC_tiles[NPCs[i].type].cell);
+			SetSymbol((short)(NPCs[i].x + 1 - dMap.curX), (short)(NPCs[i].y + 1 - dMap.curY), NPC_tiles[NPCs[i].type].cell, Black, NPC_tiles[NPCs[i].type].color);
 		}
 }
 
@@ -56,13 +55,13 @@ int NPC::HeroAttack(int x, int y, int damage) {
 			if (rand() % 100 >= NPCs[i].dexterity) {
 				NPCs[i].hp -= damage;
 				if (NPCs[i].hp > 0)
-					SetString(borderDelimiter + 2, 6, sDamageToEnemy + to_string(damage));
+					SetString(borderDelimiter + 2, 6, sDamageToEnemy + to_string(damage), Black, White);
 				else {
-					SetString(borderDelimiter + 2, 6, sMonsters[NPCs[i].type] + sKilling);
+					SetString(borderDelimiter + 2, 6, sMonsters[NPCs[i].type] + sKilling, Black, White);
 					return NPCs[i].dxp;
 				}
 			} else
-				SetString(borderDelimiter + 2, 6, sMonsters[NPCs[i].type] + sDodged);
+				SetString(borderDelimiter + 2, 6, sMonsters[NPCs[i].type] + sDodged, Black, White);
 		}
 	return 0;
 }

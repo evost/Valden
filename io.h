@@ -5,14 +5,13 @@
 #include <string>
 #include <time.h>
 #include <conio.h>
-#include "constants.h"
-#include "structs.h"
 
 using namespace std;
 
-void SetColor(short background, short text);
-void SetSymbol(short x, short y, char c);
-void SetString(short x, short y, string s);
+static HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+static SMALL_RECT src;
+
+void SetSymbol(short x, short y, char c, short background, short text);
 void SetString(short x, short y, string s, short background, short text);
 void Init(short x, short y, string name);
 void Border(short x, short y, short x0);
