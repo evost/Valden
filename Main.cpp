@@ -6,8 +6,8 @@
 #include "game.h"
 
 int main() {
-	Init(windowX + 1, windowY + 1, sWindowName);
-	Map VMap(64, 32, mapVisX, mapVisY);
+	Init(windowX, windowY, sWindowName);
+	Map VMap(128, 64, mapVisX, mapVisY);
 	Hero VHero(VMap);
 	NPC VNPC(16, VMap);
 	Border(windowX, windowY, borderDelimiter);
