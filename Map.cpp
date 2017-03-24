@@ -1,7 +1,7 @@
 #include "Map.h"
 #include "io.h"
 
-Map::Map(int width, int height, short visX, short visY) {
+Map::Map(int width, int height) {
 	curX = 0;
 	curY = 0;
 	MainMap = (TTile**)malloc(width*height);

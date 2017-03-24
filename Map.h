@@ -10,7 +10,7 @@ private:
 	TTile Tiles[3] = { { 0, Green, '.' },{ 1, Green, '!'},{ 2, LightGray, 'o' } };
 public:
 	int Width, Height, curX, curY;
-	Map(int width, int height, short visX, short visY);
+	Map(int width, int height);
 	void GetMap();
 	bool IsFree(int x, int y);
 };

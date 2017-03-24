@@ -7,9 +7,9 @@
 
 int main() {
 	Init(windowX, windowY, sWindowName);
-	Map VMap(128, 64, mapVisX, mapVisY);
+	Map VMap(128, 64);
 	Hero VHero(VMap);
-	NPC VNPC(16, VMap);
+	NPC VNPC(64, VMap);
 	bool showHints = false;
 	short button = 0;
 	while (button != 27) {
