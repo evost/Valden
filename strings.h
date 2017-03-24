@@ -40,12 +40,14 @@ static wstring sAccept = L"Принять";
 static wstring sClear = L"Очистить";
 static wstring sIncrease = L"Увеличить";
 static wstring sDecrease = L"Уменьшить";
+static wstring sMulExp = L"Множитель опыта";
 
 static wstring sDelimeter = L": ";
 static wstring sSlash = L" / ";
 static wstring sComma = L", ";
 static wstring sSpace = L" ";
 static wstring sAsterisk = L"*";
+static wstring sPercent= L"%";
 static wstring sRadio = L"( ) ";
 static wstring sLack = L"---";
 static wstring sWindowName = L"Valden";

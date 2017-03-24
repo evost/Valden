@@ -36,7 +36,7 @@ void Hero::GetHero(Map dMap) {
 void Hero::ShowInfo(short x, short y) {
 	SetString(x, y + 0, sCoordinates + sDelimeter + to_wstring(Hero::x) + sComma + to_wstring(Hero::y), Black, White);
 	SetString(x, y + 1, sHP + sDelimeter + to_wstring(hp) + sSlash + to_wstring(maxhp), Black, White);
-	SetString(x, y + 2, sXP + sDelimeter + to_wstring(xp) + sSlash + to_wstring(maxxp), Black, White);
+	SetString(x, y + 2, sXP + sDelimeter + FloatToWstring(xp) + sSlash + to_wstring(maxxp), Black, White);
 	SetString(x, y + 3, sLevel + sDelimeter + to_wstring(level), Black, White);
 }
 
@@ -129,8 +129,9 @@ void Hero::ShowCharacteristics() {
 		SetString(2, 2, sRadio + sDexterity + sDelimeter + to_wstring(dexterity + ddexterity), Black, White);
 		SetString(2, 3, sRadio + sIntelligence + sDelimeter + to_wstring(intelligence + dintelligence), Black, White);
 		SetString(2, 4, sMaxHP + sDelimeter + to_wstring(maxhp + dstrength), Black, White);
-		SetString(2, 5, sDamage + sDelimeter + to_wstring(GetDamage() + dstrength), Black, White);
-		SetString(2, 6, sDefense + sDelimeter + to_wstring(GetDefense()), Black, White);
+		SetString(2, 5, sMulExp + sDelimeter + to_wstring(100 + intelligence + dintelligence) + sPercent, Black, White);
+		SetString(2, 6, sDamage + sDelimeter + to_wstring(GetDamage() + dstrength), Black, White);
+		SetString(2, 7, sDefense + sDelimeter + to_wstring(GetDefense()), Black, White);
 		SetString(2, 8, sPoints + sDelimeter + to_wstring(cpoints), Black, White);
 		SetString(3, 1 + k, sAsterisk, Black, White);
 		ShowCharacteristicsHints(borderDelimiter + 2, 1);
@@ -229,10 +230,11 @@ int Hero::GetDefense() {
 		return carmor.defense;
 }
 
-void Hero::ExpInc(int dxp) {
+void Hero::ExpInc(float dxp) {
 	if (dxp > 0) {
+		dxp += (dxp*intelligence) / 100;
 		xp += dxp;
-		AddLog(sIncExp1 + to_wstring(dxp) + sIncExp2);
+		AddLog(sIncExp1 + FloatToWstring(dxp) + sIncExp2);
 		if (xp >= XP_table[level - 1] && level < maxLevel) {
 			level++;
 			maxxp = XP_table[level - 1];

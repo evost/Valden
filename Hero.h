@@ -8,7 +8,8 @@
 
 class Hero {
 private:
-	int hp, xp, strength, dexterity, intelligence, maxhp, maxxp, level, cpoints;
+	int hp, strength, dexterity, intelligence, maxhp, maxxp, level, cpoints;
+	float xp;
 	TItem carmor, cweapon;
 	TItem invertory[invSize];
 public:
@@ -21,5 +22,5 @@ public:
 	void ShowCharacteristics();
 	int GetDamage();
 	int GetDefense();
-	void ExpInc(int dxp);
+	void ExpInc(float dxp);
 };
