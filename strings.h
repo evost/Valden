@@ -43,6 +43,7 @@ static wstring sIncrease = L"Увеличить";
 static wstring sDecrease = L"Уменьшить";
 static wstring sMulExp = L"Множитель опыта";
 static wstring sSkip = L"Пропуск хода";
+static wstring sDeath = L"Вы убиты!";
 
 static wstring sDelimeter = L": ";
 static wstring sSlash = L" / ";

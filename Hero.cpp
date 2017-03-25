@@ -258,3 +258,8 @@ void Hero::ExpInc(float dxp) {
 				}
 	}
 }
+
+void Hero::Death() {
+	hp = 0;
+	AddLog(sDeath);
+}
