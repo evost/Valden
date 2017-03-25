@@ -1,8 +1,12 @@
 #include "game.h"
 
 void AddLog(wstring s) {
-	gameLog[logPosition] = s;
-	logPosition = (logPosition + 1) % logSize;
+	int k = 0;
+	while (k*(windowX - 3 - borderDelimiter) < s.length()) {
+		gameLog[logPosition] = s.substr(k*(windowX - 3 - borderDelimiter), windowX - 3 - borderDelimiter);
+		logPosition = (logPosition + 1) % logSize;
+		k++;
+	}
 }
 
 void ShowLog() {
