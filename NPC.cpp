@@ -34,15 +34,28 @@ bool NPC::NoNPCs(short x, short y) {
 
 void NPC::NPCstep(Map dMap, Hero &dHero) {
 	for (int i = 0; i < NPCk; i++)
-		if (sqrt(pow(abs(NPCs[i].x - dHero.x), 2) + pow(abs(NPCs[i].y - dHero.y), 2)) <= NPCs[i].visDist && (abs(NPCs[i].x - dHero.x) + abs(NPCs[i].y - dHero.y) > 1) && NPCs[i].hp > 0)
-			if (NPCs[i].x < dHero.x && dMap.IsFree(NPCs[i].x + 1, NPCs[i].y) && NoNPCs(NPCs[i].x + 1, NPCs[i].y))
-				NPCs[i].x++;
-			else if (NPCs[i].x > dHero.x && dMap.IsFree(NPCs[i].x - 1, NPCs[i].y) && NoNPCs(NPCs[i].x - 1, NPCs[i].y))
-				NPCs[i].x--;
-			else if (NPCs[i].y < dHero.y && dMap.IsFree(NPCs[i].x, NPCs[i].y + 1) && NoNPCs(NPCs[i].x, NPCs[i].y + 1))
-				NPCs[i].y++;
-			else if (NPCs[i].y > dHero.y && dMap.IsFree(NPCs[i].x, NPCs[i].y - 1) && NoNPCs(NPCs[i].x, NPCs[i].y - 1))
-				NPCs[i].y--;
+		if (NPCs[i].hp > 0) {
+			if (abs(NPCs[i].x - dHero.x) + abs(NPCs[i].y - dHero.y) == 1) {
+				if (rand() % 100 >= dHero.dexterity) {
+					if (NPCs[i].strength - dHero.GetDefense() > 0) {
+						AddLog(sMonsters[NPCs[i].type] + sDamageToHero1 + to_wstring(NPCs[i].strength - dHero.GetDefense()) + sDamageToHero2);
+						dHero.hp -= NPCs[i].strength - dHero.GetDefense();
+					} else 
+						AddLog(sMonsters[NPCs[i].type] + sNoDamage);
+					if (dHero.hp <= 0) dHero.Death();
+				} else
+					AddLog(sHeroDodged + sMonsters[NPCs[i].type]);
+			} else
+				if (sqrt(pow(abs(NPCs[i].x - dHero.x), 2) + pow(abs(NPCs[i].y - dHero.y), 2)) <= NPCs[i].visDist && (abs(NPCs[i].x - dHero.x) + abs(NPCs[i].y - dHero.y) > 1))
+					if (NPCs[i].x < dHero.x && dMap.IsFree(NPCs[i].x + 1, NPCs[i].y) && NoNPCs(NPCs[i].x + 1, NPCs[i].y))
+						NPCs[i].x++;
+					else if (NPCs[i].x > dHero.x && dMap.IsFree(NPCs[i].x - 1, NPCs[i].y) && NoNPCs(NPCs[i].x - 1, NPCs[i].y))
+						NPCs[i].x--;
+					else if (NPCs[i].y < dHero.y && dMap.IsFree(NPCs[i].x, NPCs[i].y + 1) && NoNPCs(NPCs[i].x, NPCs[i].y + 1))
+						NPCs[i].y++;
+					else if (NPCs[i].y > dHero.y && dMap.IsFree(NPCs[i].x, NPCs[i].y - 1) && NoNPCs(NPCs[i].x, NPCs[i].y - 1))
+						NPCs[i].y--;
+		}
 }
 
 int NPC::HeroAttack(int x, int y, int damage) {
