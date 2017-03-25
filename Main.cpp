@@ -39,6 +39,9 @@ int main() {
 		case 9:
 			showHints = !showHints;
 			break;
+		case 32:
+			VNPC.NPCstep(VMap, VHero);
+			break;
 		default:
 			if (button == 73 || button == 105 || button == 152 || button == 232)
 				VHero.ShowInventory(windowX, windowY);

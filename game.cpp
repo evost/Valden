@@ -18,9 +18,11 @@ void ShowGameHints(short x, short y) {
 	SetString(x, y + 2, skI, Black, Green);
 	SetString(x + 6, y + 2, sDelimeter + sInventory, Black, White);
 	SetString(x, y + 3, skC, Black, Green);
-	SetString(x + 6, y + 3, sDelimeter + sInventory, Black, White);
-	SetString(x, y + 4, skEsc, Black, Green);
-	SetString(x + 6, y + 4, sDelimeter + sMenu, Black, White);
+	SetString(x + 6, y + 3, sDelimeter + sCharacteristics, Black, White);
+	SetString(x, y + 4, skSpace, Black, Green);
+	SetString(x + 6, y + 4, sDelimeter + sSkip, Black, White);
+	SetString(x, y + 5, skEsc, Black, Green);
+	SetString(x + 6, y + 5, sDelimeter + sMenu, Black, White);
 }
 
 void ShowCharacteristicsHints(short x, short y) {
