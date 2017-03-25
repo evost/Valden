@@ -1,5 +1,4 @@
 ﻿#include "io.h"
-
 using namespace std;
 
 void SetSymbol(short x, short y, wchar_t c, short background, short text) {
@@ -22,6 +21,22 @@ void Clear() {
 void Init(short x, short y, wstring name) {
 	srand((int)time(0));
 	src = { 0, 0, x, y };
+
+	CONSOLE_FONT_INFOEX fontInfo;
+
+	// эта строка нужна
+	fontInfo.cbSize = sizeof(fontInfo);
+
+	GetCurrentConsoleFontEx(hStdOut, TRUE, &fontInfo);
+
+	// это неправильное использование функции
+	//wcsncpy(L"Lucida Console", fontInfo.FaceName, LF_FACESIZE);
+
+	wcscpy_s(fontInfo.FaceName, L"Lucida Console");
+
+	fontInfo.dwFontSize.Y = 20;
+	SetCurrentConsoleFontEx(hStdOut, TRUE, &fontInfo);
+
 	SetConsoleWindowInfo(hStdOut, true, &src);
 	SetConsoleScreenBufferSize(hStdOut, { x + 1, y + 1 });
 	SetConsoleTitleW(name.c_str());
