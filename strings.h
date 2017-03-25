@@ -30,6 +30,7 @@ static wstring sMotion = L"Движение";
 static wstring sAttack = L"Атака";
 static wstring sInventory = L"Инвентарь";
 static wstring sCharacteristics = L"Характеристики";
+static wstring sDodgeСhance = L"Шанс увернуться";
 static wstring sMenu = L"Меню";
 static wstring sInfo = L"Информация";
 static wstring sHints = L"Управление";

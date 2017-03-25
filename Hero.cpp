@@ -130,9 +130,10 @@ void Hero::ShowCharacteristics() {
 		SetString(2, 3, sRadio + sIntelligence + sDelimeter + to_wstring(intelligence + dintelligence), Black, White);
 		SetString(2, 4, sMaxHP + sDelimeter + to_wstring(maxhp + dstrength), Black, White);
 		SetString(2, 5, sMulExp + sDelimeter + to_wstring(100 + intelligence + dintelligence) + sPercent, Black, White);
-		SetString(2, 6, sDamage + sDelimeter + to_wstring(GetDamage() + dstrength), Black, White);
-		SetString(2, 7, sDefense + sDelimeter + to_wstring(GetDefense()), Black, White);
-		SetString(2, 8, sPoints + sDelimeter + to_wstring(cpoints), Black, White);
+		SetString(2, 6, sDodge—hance + sDelimeter + to_wstring(dexterity + ddexterity) + sPercent, Black, White);
+		SetString(2, 7, sDamage + sDelimeter + to_wstring(GetDamage() + dstrength), Black, White);
+		SetString(2, 8, sDefense + sDelimeter + to_wstring(GetDefense()), Black, White);
+		SetString(2, 9, sPoints + sDelimeter + to_wstring(cpoints), Black, White);
 		SetString(3, 1 + k, sAsterisk, Black, White);
 		ShowCharacteristicsHints(borderDelimiter + 2, 1);
 		Render();
