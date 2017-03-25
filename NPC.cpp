@@ -40,7 +40,7 @@ void NPC::NPCstep(Map dMap, Hero &dHero) {
 					if (NPCs[i].strength - dHero.GetDefense() > 0) {
 						AddLog(sMonsters[NPCs[i].type] + sDamageToHero1 + to_wstring(NPCs[i].strength - dHero.GetDefense()) + sDamageToHero2);
 						dHero.hp -= NPCs[i].strength - dHero.GetDefense();
-					} else 
+					} else
 						AddLog(sMonsters[NPCs[i].type] + sNoDamage);
 					if (dHero.hp <= 0) dHero.Death();
 				} else
