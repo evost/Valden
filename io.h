@@ -13,6 +13,8 @@ static CHAR_INFO* buffer = NULL;
 
 void SetSymbol(short x, short y, wchar_t c, short background, short text);
 void SetString(short x, short y, wstring s, short background, short text);
+void Randomize();
+void Randomize(int sid);
 void Init(short x, short y, wstring name);
 void Border(short x, short y, short x0);
 short ReadKey();

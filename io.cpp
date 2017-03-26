@@ -19,8 +19,16 @@ void Clear() {
 	}
 }
 
-void Init(short x, short y, wstring name) {
+void Randomize() {
 	srand((int)time(0));
+}
+
+void Randomize(int sid) {
+	srand(sid);
+}
+
+void Init(short x, short y, wstring name) {
+	Randomize();
 	src = { 0, 0, x, y };
 	CONSOLE_FONT_INFOEX fontInfo;
 	fontInfo.cbSize = sizeof(fontInfo);
