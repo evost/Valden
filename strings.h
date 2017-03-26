@@ -54,7 +54,6 @@ static wstring sNewGame = L"Новая игра";
 static wstring sSettings = L"Настройки";
 static wstring sExit = L"Выход";
 
-
 static wstring sDelimeter = L": ";
 static wstring sSlash = L" / ";
 static wstring sComma = L", ";
