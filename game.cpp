@@ -1,7 +1,7 @@
 #include "game.h"
 
 void AddLog(wstring s) {
-	int k = 0;
+	unsigned int k = 0;
 	while (k*(windowX - 3 - borderDelimiter) < s.length()) {
 		gameLog[logPosition] = s.substr(k*(windowX - 3 - borderDelimiter), windowX - 3 - borderDelimiter);
 		logPosition = (logPosition + 1) % logSize;
@@ -93,7 +93,7 @@ void NewGame(Map &dMap, Hero &dHero, NPC dNPC) {
 	ReadKey();
 }
 
-void Game(Map &dMap, Hero dHero, NPC dNPC, bool &dShowHints) {
+void Game(Map &dMap, Hero &dHero, NPC &dNPC, bool &dShowHints) {
 	short button = 0;
 	while (button != 27) {
 		RenderWorld(dMap, dHero, dNPC, dShowHints);
@@ -142,28 +142,28 @@ void Game(Map &dMap, Hero dHero, NPC dNPC, bool &dShowHints) {
 			case 119:
 			case 150:
 			case 230:
-				dHero.ExpInc(dNPC.HeroAttack(dHero.x, dHero.y - 1, dHero.GetDamage()));
+				dHero.ExpInc((float)dNPC.HeroAttack(dHero.x, dHero.y - 1, dHero.GetDamage()));
 				dNPC.NPCstep(dMap, dHero);
 				break;
 			case 68:
 			case 100:
 			case 130:
 			case 162:
-				dHero.ExpInc(dNPC.HeroAttack(dHero.x + 1, dHero.y, dHero.GetDamage()));
+				dHero.ExpInc((float)dNPC.HeroAttack(dHero.x + 1, dHero.y, dHero.GetDamage()));
 				dNPC.NPCstep(dMap, dHero);
 				break;
 			case 83:
 			case 115:
 			case 155:
 			case 235:
-				dHero.ExpInc(dNPC.HeroAttack(dHero.x, dHero.y + 1, dHero.GetDamage()));
+				dHero.ExpInc((float)dNPC.HeroAttack(dHero.x, dHero.y + 1, dHero.GetDamage()));
 				dNPC.NPCstep(dMap, dHero);
 				break;
 			case 65:
 			case 97:
 			case 148:
 			case 228:
-				dHero.ExpInc(dNPC.HeroAttack(dHero.x - 1, dHero.y, dHero.GetDamage()));
+				dHero.ExpInc((float)dNPC.HeroAttack(dHero.x - 1, dHero.y, dHero.GetDamage()));
 				dNPC.NPCstep(dMap, dHero);
 				break;
 			default:

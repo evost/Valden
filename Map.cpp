@@ -4,7 +4,7 @@
 Map::Map(int width, int height) {
 	curX = 0;
 	curY = 0;
-	MainMap = (TTile**)malloc(width*height);
+	MainMap = (TTile**)malloc(width * height * sizeof(TTile));
 	if (width - 1 < mapVisX)
 		Width = mapVisX;
 	else
