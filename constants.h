@@ -13,6 +13,14 @@ const int startSkill = 5;
 const int startSkillRandom = 5;
 const int startHp = 10;
 const int raceCount = 3;
+const short scrollDist = 3;
+const int maxLevel = 10;
+const int XP_table[maxLevel] = { 10, 20, 30, 70, 100, 170, 270, 440, 710, 1000 };
+const int characteristicsNumber = 3;
+const int newLevelPoints = characteristicsNumber;
+const int logSize = 16;
+const int logoSize = 5;
+const int historySize = 24;
 
 const short Black = 0;
 const short Blue = 1;
@@ -40,13 +48,6 @@ const int goblin = 1;
 
 const int weapon = 0;
 const int armor = 1;
-
-const short scrollDist = 3;
-const int maxLevel = 10;
-const int XP_table[maxLevel] = { 10, 20, 30, 70, 100, 170, 270, 440, 710, 1000 };
-const int characteristicsNumber = 3;
-const int newLevelPoints = characteristicsNumber;
-const int logSize = 16;
 
 const TItem sword1 = { 0, 2, 0, 0, 0, 0, 0 , 0 };
 const TItem spear1 = { 0, 4, 0, 0, 0, 0, 0 , 1 };

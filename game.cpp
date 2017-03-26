@@ -86,6 +86,11 @@ void NewGame(Map &dMap, Hero &dHero, NPC dNPC) {
 	dHero = nHero;
 	dNPC = nNPC;
 	dHero.CreateHero();
+	Border(windowX, windowY, borderDelimiter);
+	for (int i = 0; i < historySize; i++)
+		SetString(2, 1 + i, sHistory[i], Black, White);
+	Render();
+	ReadKey();
 }
 
 void Game(Map &dMap, Hero dHero, NPC dNPC, bool &dShowHints) {
@@ -152,17 +157,17 @@ int Menu(bool inGame) {
 	while (button != 13) {
 		Border(windowX, windowY, borderDelimiter);
 		ShowMenuHints(borderDelimiter + 2, 1);
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < logoSize; i++)
 			SetString(2, 1 + i, sLogo[i], Black, Red);
 		if (inGame) {
-			SetString(2, 7, sRadio + sContinue, Black, White);
-			SetString(2, 8, sRadio + sNewGame, Black, White);
-			SetString(2, 9, sRadio + sSettings, Black, White);
-			SetString(2, 10, sRadio + sExit, Black, White);
+			SetString(2, logoSize + 2, sRadio + sContinue, Black, White);
+			SetString(2, logoSize + 3, sRadio + sNewGame, Black, White);
+			SetString(2, logoSize + 4, sRadio + sSettings, Black, White);
+			SetString(2, logoSize + 5, sRadio + sExit, Black, White);
 		} else {
-			SetString(2, 7, sRadio + sNewGame, Black, White);
-			SetString(2, 8, sRadio + sSettings, Black, White);
-			SetString(2, 9, sRadio + sExit, Black, White);
+			SetString(2, logoSize + 2, sRadio + sNewGame, Black, White);
+			SetString(2, logoSize + 3, sRadio + sSettings, Black, White);
+			SetString(2, logoSize + 4, sRadio + sExit, Black, White);
 		}
 		SetString(3, 7 + k, sAsterisk, Black, White);
 		Render();
