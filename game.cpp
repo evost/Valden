@@ -80,6 +80,60 @@ void NewGame(Map &dMap, Hero &dHero, NPC dNPC) {
 	dNPC = nNPC;
 }
 
+void Game(Map &dMap, Hero dHero, NPC dNPC, bool &dShowHints) {
+	short button = 0;
+	while (button != 27) {
+		RenderWorld(dMap, dHero, dNPC, dShowHints);
+		Render();
+		button = ReadKey();
+		if (dHero.hp > 0)
+			switch (button) {
+			case 224:
+				switch (ReadKey()) {
+				case 72:
+					if (dNPC.NoNPCs(dHero.x, dHero.y - 1)) dHero.HeroStep(0, -1, dMap);
+					break;
+				case 75:
+					if (dNPC.NoNPCs(dHero.x - 1, dHero.y)) dHero.HeroStep(-1, 0, dMap);
+					break;
+				case 77:
+					if (dNPC.NoNPCs(dHero.x + 1, dHero.y)) dHero.HeroStep(1, 0, dMap);
+					break;
+				case 80:
+					if (dNPC.NoNPCs(dHero.x, dHero.y + 1)) dHero.HeroStep(0, 1, dMap);
+					break;
+				default:
+					break;
+				}
+				dNPC.NPCstep(dMap, dHero);
+				break;
+			case 9:
+				dShowHints = !dShowHints;
+				break;
+			case 32:
+				dNPC.NPCstep(dMap, dHero);
+				break;
+			default:
+				if (button == 73 || button == 105 || button == 152 || button == 232)
+					dHero.ShowInventory(windowX, windowY);
+				else if (button == 67 || button == 99 || button == 145 || button == 225)
+					dHero.ShowCharacteristics();
+				else {
+					if (button == 87 || button == 119 || button == 150 || button == 230)
+						dHero.ExpInc(dNPC.HeroAttack(dHero.x, dHero.y - 1, dHero.GetDamage()));
+					else if (button == 68 || button == 100 || button == 130 || button == 162)
+						dHero.ExpInc(dNPC.HeroAttack(dHero.x + 1, dHero.y, dHero.GetDamage()));
+					else if (button == 83 || button == 115 || button == 155 || button == 235)
+						dHero.ExpInc(dNPC.HeroAttack(dHero.x, dHero.y + 1, dHero.GetDamage()));
+					else if (button == 65 || button == 97 || button == 148 || button == 228)
+						dHero.ExpInc(dNPC.HeroAttack(dHero.x - 1, dHero.y, dHero.GetDamage()));
+					dNPC.NPCstep(dMap, dHero);
+				}
+				break;
+			}
+	}
+}
+
 int Menu(bool inGame) {
 	int k = 0, n;
 	if (inGame)
