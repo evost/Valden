@@ -13,7 +13,7 @@ private:
 	TItem invertory[invSize];
 public:
 	int x, y;
-	int hp, strength, dexterity, intelligence, maxhp, maxxp, level, cpoints;
+	int hp, strength, dexterity, intelligence, maxhp, maxxp, level, cpoints, race;
 	Hero(Map &dMap);
 	void GetHero(Map dMap);
 	void ShowInfo(short x, short y);
@@ -24,4 +24,5 @@ public:
 	int GetDefense();
 	void ExpInc(float dxp);
 	void Death();
+	void CreateHero();
 };

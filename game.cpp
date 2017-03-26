@@ -78,6 +78,7 @@ void NewGame(Map &dMap, Hero &dHero, NPC dNPC) {
 	dMap = nMap;
 	dHero = nHero;
 	dNPC = nNPC;
+	dHero.CreateHero();
 }
 
 void Game(Map &dMap, Hero dHero, NPC dNPC, bool &dShowHints) {

@@ -53,6 +53,12 @@ static wstring sContinue = L"Продолжить";
 static wstring sNewGame = L"Новая игра";
 static wstring sSettings = L"Настройки";
 static wstring sExit = L"Выход";
+static wstring sSelectRace = L"Выберите расу";
+static wstring sRaceHuman = L"Человек (+ к ловкости и интеллекту)";
+static wstring sRaceDwarf = L"Дварф (+ к силе и интеллекту)";
+static wstring sRaceElf = L"Эльф (+ к силе и ловкости)";
+static wstring sRace = L"Раса";
+static wstring sRaces[3] = { L"Человек", L"Дварф", L"Эльф" };
 
 static wstring sDelimeter = L": ";
 static wstring sSlash = L" / ";

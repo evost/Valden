@@ -12,6 +12,7 @@ const int invSize = 9;
 const int startSkill = 5;
 const int startSkillRandom = 5;
 const int startHp = 10;
+const int raceCount = 3;
 
 const short Black = 0;
 const short Blue = 1;

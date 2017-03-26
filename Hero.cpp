@@ -125,16 +125,17 @@ void Hero::ShowCharacteristics() {
 	short button = 0;
 	while (button != 27) {
 		Border(windowX, windowY, borderDelimiter);
-		SetString(2, 1, sRadio + sStrength + sDelimeter + to_wstring(strength + dstrength), Black, White);
-		SetString(2, 2, sRadio + sDexterity + sDelimeter + to_wstring(dexterity + ddexterity), Black, White);
-		SetString(2, 3, sRadio + sIntelligence + sDelimeter + to_wstring(intelligence + dintelligence), Black, White);
-		SetString(2, 4, sMaxHP + sDelimeter + to_wstring(maxhp + dstrength), Black, White);
-		SetString(2, 5, sMulExp + sDelimeter + to_wstring(100 + intelligence + dintelligence) + sPercent, Black, White);
-		SetString(2, 6, sDodge—hance + sDelimeter + to_wstring(dexterity + ddexterity) + sPercent, Black, White);
-		SetString(2, 7, sDamage + sDelimeter + to_wstring(GetDamage() + dstrength), Black, White);
-		SetString(2, 8, sDefense + sDelimeter + to_wstring(GetDefense()), Black, White);
-		SetString(2, 9, sPoints + sDelimeter + to_wstring(cpoints), Black, White);
-		SetString(3, 1 + k, sAsterisk, Black, White);
+		SetString(2, 1, sRace + sDelimeter + sRaces[race], Black, White);
+		SetString(2, 2, sRadio + sStrength + sDelimeter + to_wstring(strength + dstrength), Black, White);
+		SetString(2, 3, sRadio + sDexterity + sDelimeter + to_wstring(dexterity + ddexterity), Black, White);
+		SetString(2, 4, sRadio + sIntelligence + sDelimeter + to_wstring(intelligence + dintelligence), Black, White);
+		SetString(2, 5, sMaxHP + sDelimeter + to_wstring(maxhp + dstrength), Black, White);
+		SetString(2, 6, sMulExp + sDelimeter + to_wstring(100 + intelligence + dintelligence) + sPercent, Black, White);
+		SetString(2, 7, sDodge—hance + sDelimeter + to_wstring(dexterity + ddexterity) + sPercent, Black, White);
+		SetString(2, 8, sDamage + sDelimeter + to_wstring(GetDamage() + dstrength), Black, White);
+		SetString(2, 9, sDefense + sDelimeter + to_wstring(GetDefense()), Black, White);
+		SetString(2, 10, sPoints + sDelimeter + to_wstring(cpoints), Black, White);
+		SetString(3, 2 + k, sAsterisk, Black, White);
 		ShowCharacteristicsHints(borderDelimiter + 2, 1);
 		Render();
 		button = ReadKey();
@@ -263,4 +264,52 @@ void Hero::ExpInc(float dxp) {
 void Hero::Death() {
 	hp = 0;
 	AddLog(sDeath);
+}
+
+void Hero::CreateHero() {
+	int k = 0;
+	short button = 0;
+	while (button != 13) {
+		Border(windowX, windowY, borderDelimiter);
+		SetString(2, 1, sSelectRace, Black, White);
+		SetString(2, 3, sRadio + sRaceHuman, Black, White);
+		SetString(2, 4, sRadio + sRaceDwarf, Black, White);
+		SetString(2, 5, sRadio + sRaceElf, Black, White);
+		SetString(3, 3 + k, sAsterisk, Black, White);
+		Render();
+		button = ReadKey();
+		switch (button) {
+		case 224:
+			switch (ReadKey()) {
+			case 72:
+				k = (k - 1 + raceCount) % raceCount;
+				break;
+			case 80:
+				k = (k + 1 + raceCount) % raceCount;
+				break;
+			default:
+				break;
+			}
+			break;
+		default:
+			break;
+		}
+	}
+	race = k;
+	switch (race) {
+	case 0:
+		dexterity++;
+		intelligence++;
+		break;
+	case 1:
+		strength++;
+		intelligence++;
+		break;
+	case 2:
+		strength++;
+		dexterity++;
+		break;
+	default:
+		break;
+	}
 }
