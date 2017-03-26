@@ -70,3 +70,12 @@ void RenderWorld(Map dMap, Hero dHero, NPC dNPC, bool hint) {
 		SetString(borderDelimiter + 5, windowY - 1, sDelimeter + sHints, Black, White);
 	}
 }
+
+void NewGame(Map &dMap, Hero &dHero, NPC dNPC) {
+	Map nMap(dMap.Width, dMap.Height);
+	Hero nHero(nMap);
+	NPC nNPC(dNPC.NPCk, nMap);
+	dMap = nMap;
+	dHero = nHero;
+	dNPC = nNPC;
+}
