@@ -79,3 +79,52 @@ void NewGame(Map &dMap, Hero &dHero, NPC dNPC) {
 	dHero = nHero;
 	dNPC = nNPC;
 }
+
+int Menu(bool inGame) {
+	int k = 0, n;
+	if (inGame)
+		n = 4;
+	else
+		n = 3;
+	short button = 0;
+	while (button != 13) {
+		Border(windowX, windowY, borderDelimiter);
+		if (inGame) {
+			SetString(2, 2, sRadio + sContinue, Black, White);
+			SetString(2, 3, sRadio + sNewGame, Black, White);
+			SetString(2, 4, sRadio + sSettings, Black, White);
+			SetString(2, 5, sRadio + sExit, Black, White);
+		} else {
+			SetString(2, 2, sRadio + sNewGame, Black, White);
+			SetString(2, 3, sRadio + sSettings, Black, White);
+			SetString(2, 4, sRadio + sExit, Black, White);
+		}
+		SetString(3, 2 + k, sAsterisk, Black, White);
+		Render();
+		button = ReadKey();
+		switch (button) {
+		case 224:
+			switch (ReadKey()) {
+			case 72:
+				k = (k - 1 + n) % n;
+				break;
+			case 80:
+				k = (k + 1 + n) % n;
+				break;
+			default:
+				break;
+			}
+			break;
+		case 27:
+			if (inGame)
+				return 0;
+			break;
+		default:
+			break;
+		}
+	}
+	if (inGame)
+		return k;
+	else
+		return k + 1;
+}

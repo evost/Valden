@@ -49,6 +49,11 @@ static wstring sDecrease = L"Уменьшить";
 static wstring sMulExp = L"Множитель опыта";
 static wstring sSkip = L"Пропуск хода";
 static wstring sDeath = L"Вы убиты!";
+static wstring sContinue = L"Продолжить";
+static wstring sNewGame = L"Новая игра";
+static wstring sSettings = L"Настройки";
+static wstring sExit = L"Выход";
+
 
 static wstring sDelimeter = L": ";
 static wstring sSlash = L" / ";
