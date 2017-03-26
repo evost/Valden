@@ -74,3 +74,10 @@ static wstring skMinus = L"-";
 static wstring skEnter = L"Enter";
 static wstring skSpace = L"Space";
 static wstring skTab = L"Tab";
+static wstring sLogo[5] = {
+	L" _    __        __     __           ",
+	L"| |  / /____ _ / /____/ /___   ____ ",
+	L"| | / // __ `// // __  // _ \\ / __ \\",
+	L"| |/ // /_/ // // /_/ //  __// / / /",
+	L"|___/ \\__,_//_/ \\__,_/ \\___//_/ /_/ "
+};

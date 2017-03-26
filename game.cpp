@@ -143,17 +143,19 @@ int Menu(bool inGame) {
 	short button = 0;
 	while (button != 13) {
 		Border(windowX, windowY, borderDelimiter);
+		for (int i = 0; i < 5; i++)
+			SetString(2, 1 + i, sLogo[i], Black, Red);
 		if (inGame) {
-			SetString(2, 2, sRadio + sContinue, Black, White);
-			SetString(2, 3, sRadio + sNewGame, Black, White);
-			SetString(2, 4, sRadio + sSettings, Black, White);
-			SetString(2, 5, sRadio + sExit, Black, White);
+			SetString(2, 7, sRadio + sContinue, Black, White);
+			SetString(2, 8, sRadio + sNewGame, Black, White);
+			SetString(2, 9, sRadio + sSettings, Black, White);
+			SetString(2, 10, sRadio + sExit, Black, White);
 		} else {
-			SetString(2, 2, sRadio + sNewGame, Black, White);
-			SetString(2, 3, sRadio + sSettings, Black, White);
-			SetString(2, 4, sRadio + sExit, Black, White);
+			SetString(2, 7, sRadio + sNewGame, Black, White);
+			SetString(2, 8, sRadio + sSettings, Black, White);
+			SetString(2, 9, sRadio + sExit, Black, White);
 		}
-		SetString(3, 2 + k, sAsterisk, Black, White);
+		SetString(3, 7 + k, sAsterisk, Black, White);
 		Render();
 		button = ReadKey();
 		switch (button) {
