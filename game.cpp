@@ -126,22 +126,47 @@ void Game(Map &dMap, Hero dHero, NPC dNPC, bool &dShowHints) {
 			case 32:
 				dNPC.NPCstep(dMap, dHero);
 				break;
+			case 73:
+			case 105:
+			case 152:
+			case 232:
+				dHero.ShowInventory(windowX, windowY);
+				break;
+			case 67:
+			case 99:
+			case 145:
+			case 225:
+				dHero.ShowCharacteristics();
+				break;
+			case 87:
+			case 119:
+			case 150:
+			case 230:
+				dHero.ExpInc(dNPC.HeroAttack(dHero.x, dHero.y - 1, dHero.GetDamage()));
+				dNPC.NPCstep(dMap, dHero);
+				break;
+			case 68:
+			case 100:
+			case 130:
+			case 162:
+				dHero.ExpInc(dNPC.HeroAttack(dHero.x + 1, dHero.y, dHero.GetDamage()));
+				dNPC.NPCstep(dMap, dHero);
+				break;
+			case 83:
+			case 115:
+			case 155:
+			case 235:
+				dHero.ExpInc(dNPC.HeroAttack(dHero.x, dHero.y + 1, dHero.GetDamage()));
+				dNPC.NPCstep(dMap, dHero);
+				break;
+			case 65:
+			case 97:
+			case 148:
+			case 228:
+				dHero.ExpInc(dNPC.HeroAttack(dHero.x - 1, dHero.y, dHero.GetDamage()));
+				dNPC.NPCstep(dMap, dHero);
+				break;
 			default:
-				if (button == 73 || button == 105 || button == 152 || button == 232)
-					dHero.ShowInventory(windowX, windowY);
-				else if (button == 67 || button == 99 || button == 145 || button == 225)
-					dHero.ShowCharacteristics();
-				else {
-					if (button == 87 || button == 119 || button == 150 || button == 230)
-						dHero.ExpInc(dNPC.HeroAttack(dHero.x, dHero.y - 1, dHero.GetDamage()));
-					else if (button == 68 || button == 100 || button == 130 || button == 162)
-						dHero.ExpInc(dNPC.HeroAttack(dHero.x + 1, dHero.y, dHero.GetDamage()));
-					else if (button == 83 || button == 115 || button == 155 || button == 235)
-						dHero.ExpInc(dNPC.HeroAttack(dHero.x, dHero.y + 1, dHero.GetDamage()));
-					else if (button == 65 || button == 97 || button == 148 || button == 228)
-						dHero.ExpInc(dNPC.HeroAttack(dHero.x - 1, dHero.y, dHero.GetDamage()));
-					dNPC.NPCstep(dMap, dHero);
-				}
 				break;
 			}
 	}
