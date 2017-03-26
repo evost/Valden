@@ -55,6 +55,13 @@ void ShowInventoryHints(short x, short y) {
 	SetString(x + 6, y + 3, sDelimeter + sBack, Black, White);
 }
 
+void ShowMenuHints(short x, short y) {
+	SetString(x, y + 0, skArrows, Black, Green);
+	SetString(x + 6, y + 0, sDelimeter + sSelect, Black, White);
+	SetString(x, y + 1, skEnter, Black, Green);
+	SetString(x + 6, y + 1, sDelimeter + sUse, Black, White);
+}
+
 void RenderWorld(Map dMap, Hero dHero, NPC dNPC, bool hint) {
 	dMap.GetMap();
 	dNPC.GetNPCs(dMap);
@@ -144,6 +151,7 @@ int Menu(bool inGame) {
 	short button = 0;
 	while (button != 13) {
 		Border(windowX, windowY, borderDelimiter);
+		ShowMenuHints(borderDelimiter + 2, 1);
 		for (int i = 0; i < 5; i++)
 			SetString(2, 1 + i, sLogo[i], Black, Red);
 		if (inGame) {
