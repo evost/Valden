@@ -4,7 +4,7 @@
 #include "strings.h"
 #include "game.h"
 
-NPC::NPC(int k, Map dMap) {
+NPC::NPC(int k, Map &dMap) {
 	NPCs = (TNPC*)malloc(k * sizeof(TNPC));
 	NPCk = k;
 	for (int i = 0; i < k; i++) {
@@ -19,7 +19,7 @@ NPC::NPC(int k, Map dMap) {
 	}
 }
 
-void NPC::GetNPCs(Map dMap, Hero dHero) {
+void NPC::GetNPCs(Map &dMap, Hero &dHero) {
 	for (int i = 0; i < NPCk; i++)
 		if (NPCs[i].hp > 0 && NPCs[i].x >= dMap.curX && NPCs[i].x <= dMap.curX + mapVisX - 1 && NPCs[i].y >= dMap.curY && NPCs[i].y <= dMap.curY + mapVisY - 1 && Distance(NPCs[i].x, NPCs[i].y, dHero.x, dHero.y) <= dHero.visDistance)
 			SetSymbol((short)(NPCs[i].x + 1 - dMap.curX), (short)(NPCs[i].y + 1 - dMap.curY), NPC_tiles[NPCs[i].type].cell, Black, NPC_tiles[NPCs[i].type].color);
@@ -32,7 +32,7 @@ bool NPC::NoNPCs(short x, short y) {
 	return true;
 }
 
-void NPC::NPCstep(Map dMap, Hero &dHero) {
+void NPC::NPCstep(Map &dMap, Hero &dHero) {
 	for (int i = 0; i < NPCk; i++)
 		if (NPCs[i].hp > 0) {
 			if (abs(NPCs[i].x - dHero.x) + abs(NPCs[i].y - dHero.y) == 1) {

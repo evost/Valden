@@ -62,7 +62,7 @@ void ShowMenuHints(short x, short y) {
 	SetString(x + 6, y + 1, sDelimeter + sUse, Black, White);
 }
 
-void RenderWorld(Map dMap, Hero dHero, NPC dNPC, bool hint) {
+void RenderWorld(Map &dMap, Hero &dHero, NPC &dNPC, bool hint) {
 	dMap.GetMap();
 	dNPC.GetNPCs(dMap, dHero);
 	dHero.GetHero(dMap);
@@ -78,7 +78,7 @@ void RenderWorld(Map dMap, Hero dHero, NPC dNPC, bool hint) {
 	}
 }
 
-void NewGame(Map &dMap, Hero &dHero, NPC dNPC) {
+void NewGame(Map &dMap, Hero &dHero, NPC &dNPC) {
 	Map nMap(dMap.Width, dMap.Height);
 	Hero nHero(nMap);
 	NPC nNPC(dNPC.NPCk, nMap);

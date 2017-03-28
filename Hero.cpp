@@ -31,7 +31,7 @@ Hero::Hero(Map &dMap) {
 	SetVisibleCells(dMap);
 }
 
-void Hero::GetHero(Map dMap) {
+void Hero::GetHero(Map &dMap) {
 	SetSymbol((short)(x + 1 - dMap.curX), (short)(y + 1 - dMap.curY), 'X', Black, Red);
 }
 
