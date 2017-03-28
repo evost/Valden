@@ -11,6 +11,7 @@ Hero::Hero(Map &dMap) {
 	hp = maxhp;
 	xp = 0;
 	maxxp = XP_table[level - 1];
+	visDistance = heroStartVisDistance + intelligence;
 	carmor = armor1;
 	cweapon = sword1;
 	for (int i = 0; i < invSize; i++)
@@ -27,6 +28,7 @@ Hero::Hero(Map &dMap) {
 	dMap.curY = y - mapVisY / 2;
 	if (dMap.curY < 0) dMap.curY = 0;
 	if (dMap.curY > (dMap.Height - mapVisY)) dMap.curY = dMap.Height - mapVisY + 1;
+	SetVisibleCells(dMap);
 }
 
 void Hero::GetHero(Map dMap) {
@@ -40,6 +42,12 @@ void Hero::ShowInfo(short x, short y) {
 	SetString(x, y + 3, sLevel + sDelimeter + to_wstring(level), Black, White);
 }
 
+void Hero::SetVisibleCells(Map &dMap) {
+	for (int mx = x - visDistance; mx <= x + visDistance; mx++)
+		for (int my = y - visDistance; my <= y + visDistance; my++)
+			if (mx >= 0 && my >= 0 && mx < dMap.Width && my < dMap.Height && Distance(mx, my, x, y) <= visDistance)
+				dMap.SetVisible(mx, my);
+}
 void Hero::HeroStep(short dx, short dy, Map &dMap) {
 	dx += x;
 	dy += y;
@@ -54,6 +62,7 @@ void Hero::HeroStep(short dx, short dy, Map &dMap) {
 			dMap.curX--;
 		else if (((y - dMap.curY) < scrollDist) && (dMap.curY > 0))
 			dMap.curY--;
+		SetVisibleCells(dMap);
 	}
 }
 
@@ -132,9 +141,10 @@ void Hero::ShowCharacteristics() {
 		SetString(2, 5, sMaxHP + sDelimeter + to_wstring(maxhp + dstrength), Black, White);
 		SetString(2, 6, sMulExp + sDelimeter + to_wstring(100 + intelligence + dintelligence) + sPercent, Black, White);
 		SetString(2, 7, sDodgeÑhance + sDelimeter + to_wstring(dexterity + ddexterity) + sPercent, Black, White);
-		SetString(2, 8, sDamage + sDelimeter + to_wstring(GetDamage() + dstrength), Black, White);
-		SetString(2, 9, sDefense + sDelimeter + to_wstring(GetDefense()), Black, White);
-		SetString(2, 10, sPoints + sDelimeter + to_wstring(cpoints), Black, White);
+		SetString(2, 8, sVisDistance + sDelimeter + to_wstring(visDistance), Black, White);
+		SetString(2, 9, sDamage + sDelimeter + to_wstring(GetDamage() + dstrength), Black, White);
+		SetString(2, 10, sDefense + sDelimeter + to_wstring(GetDefense()), Black, White);
+		SetString(2, 11, sPoints + sDelimeter + to_wstring(cpoints), Black, White);
 		SetString(3, 2 + k, sAsterisk, Black, White);
 		ShowCharacteristicsHints(borderDelimiter + 2, 1);
 		Render();
@@ -164,6 +174,7 @@ void Hero::ShowCharacteristics() {
 					break;
 				case 2:
 					dintelligence++;
+					visDistance++;
 					break;
 				default:
 					break;
@@ -188,6 +199,7 @@ void Hero::ShowCharacteristics() {
 			case 2:
 				if (dintelligence > 0) {
 					dintelligence--;
+					visDistance--;
 					cpoints++;
 				}
 				break;
@@ -209,6 +221,7 @@ void Hero::ShowCharacteristics() {
 			cpoints += dstrength;
 			cpoints += ddexterity;
 			cpoints += dintelligence;
+			visDistance -= dintelligence;
 			dstrength = 0;
 			ddexterity = 0;
 			dintelligence = 0;

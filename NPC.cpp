@@ -19,11 +19,11 @@ NPC::NPC(int k, Map dMap) {
 	}
 }
 
-void NPC::GetNPCs(Map dMap) {
+void NPC::GetNPCs(Map dMap, Hero dHero) {
 	for (int i = 0; i < NPCk; i++)
-		if (NPCs[i].hp > 0 && NPCs[i].x >= dMap.curX && NPCs[i].x <= dMap.curX + mapVisX - 1 && NPCs[i].y >= dMap.curY && NPCs[i].y <= dMap.curY + mapVisY - 1) {
+		if (NPCs[i].hp > 0 && NPCs[i].x >= dMap.curX && NPCs[i].x <= dMap.curX + mapVisX - 1 && NPCs[i].y >= dMap.curY && NPCs[i].y <= dMap.curY + mapVisY - 1 && Distance(NPCs[i].x, NPCs[i].y, dHero.x, dHero.y) <= dHero.visDistance)
 			SetSymbol((short)(NPCs[i].x + 1 - dMap.curX), (short)(NPCs[i].y + 1 - dMap.curY), NPC_tiles[NPCs[i].type].cell, Black, NPC_tiles[NPCs[i].type].color);
-		}
+
 }
 
 bool NPC::NoNPCs(short x, short y) {
@@ -46,7 +46,7 @@ void NPC::NPCstep(Map dMap, Hero &dHero) {
 				} else
 					AddLog(sHeroDodged + sMonsters[NPCs[i].type]);
 			} else
-				if (sqrt(pow(abs(NPCs[i].x - dHero.x), 2) + pow(abs(NPCs[i].y - dHero.y), 2)) <= NPCs[i].visDist && (abs(NPCs[i].x - dHero.x) + abs(NPCs[i].y - dHero.y) > 1))
+				if (Distance(NPCs[i].x, NPCs[i].y, dHero.x, dHero.y) <= NPCs[i].visDist && (abs(NPCs[i].x - dHero.x) + abs(NPCs[i].y - dHero.y) > 1))
 					if (NPCs[i].x < dHero.x && dMap.IsFree(NPCs[i].x + 1, NPCs[i].y) && NoNPCs(NPCs[i].x + 1, NPCs[i].y))
 						NPCs[i].x++;
 					else if (NPCs[i].x > dHero.x && dMap.IsFree(NPCs[i].x - 1, NPCs[i].y) && NoNPCs(NPCs[i].x - 1, NPCs[i].y))

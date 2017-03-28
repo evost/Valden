@@ -17,6 +17,7 @@ Map::Map(int width, int height) {
 		MainMap[x] = new TTile[Height + 1];
 	for (int x = 0; x <= Width; x++)
 		for (int y = 0; y <= Height; y++) {
+			MainMap[x][y].isVisible = false;
 			int chance = rand() % 100 + 1;
 			if (chance > 75)
 				if (chance > 90)
@@ -31,9 +32,14 @@ Map::Map(int width, int height) {
 void Map::GetMap() {
 	for (int x = curX; x < curX + mapVisX; x++)
 		for (int y = curY; y < curY + mapVisY; y++)
-			SetSymbol((short)(x - curX + 1), (short)(y - curY + 1), MainMap[x][y].cell, Black, MainMap[x][y].color);
+			if (MainMap[x][y].isVisible)
+				SetSymbol((short)(x - curX + 1), (short)(y - curY + 1), MainMap[x][y].cell, Black, MainMap[x][y].color);
 }
 
 bool Map::IsFree(int x, int y) {
 	return !MainMap[x][y].type;
+}
+
+void Map::SetVisible(int x, int y) {
+	MainMap[x][y].isVisible = true;
 }

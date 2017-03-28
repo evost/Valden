@@ -3,6 +3,7 @@
 struct TTile {
 	short type, color;
 	char cell;
+	bool isVisible;
 };
 
 struct TNPC {

@@ -12,6 +12,7 @@ const int invSize = 9;
 const int startSkill = 5;
 const int startSkillRandom = 5;
 const int startHp = 10;
+const int heroStartVisDistance = 0;
 const int raceCount = 3;
 const short scrollDist = 8;
 const int maxLevel = 10;

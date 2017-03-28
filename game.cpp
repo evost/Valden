@@ -64,7 +64,7 @@ void ShowMenuHints(short x, short y) {
 
 void RenderWorld(Map dMap, Hero dHero, NPC dNPC, bool hint) {
 	dMap.GetMap();
-	dNPC.GetNPCs(dMap);
+	dNPC.GetNPCs(dMap, dHero);
 	dHero.GetHero(dMap);
 	ShowLog();
 	Border(windowX, windowY, borderDelimiter);
