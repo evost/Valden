@@ -19,3 +19,4 @@ void RenderWorld(Map dMap, Hero dHero, NPC dNPC, bool hint);
 void NewGame(Map &dMap, Hero &dHero, NPC dNPC);
 void Game(Map &dMap, Hero &dHero, NPC &dNPC, bool &showHints);
 int Menu(bool inGame);
+double Distance(int x1, int y1, int x2, int y2);
