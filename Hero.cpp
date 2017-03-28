@@ -61,7 +61,7 @@ void Hero::ShowInventory(short x, short y) {
 	int k = 0;
 	short button = 0;
 	TItem item;
-	while (button != 27) {
+	while (button != 27 && button != 73 && button != 105 && button != 152 && button != 232) {
 		Border(windowX, windowY, borderDelimiter);
 		if (cweapon.type == -1)
 			SetString(2, 1, sCWeapon + sLack, Black, White);
@@ -123,7 +123,7 @@ void Hero::ShowCharacteristics() {
 	int dstrength = 0, ddexterity = 0, dintelligence = 0;
 	int k = 0;
 	short button = 0;
-	while (button != 27) {
+	while (button != 27 && button != 67 && button != 99 && button != 145 && button != 225) {
 		Border(windowX, windowY, borderDelimiter);
 		SetString(2, 1, sRace + sDelimeter + sRaces[race], Black, White);
 		SetString(2, 2, sRadio + sStrength + sDelimeter + to_wstring(strength + dstrength), Black, White);
@@ -153,6 +153,7 @@ void Hero::ShowCharacteristics() {
 			}
 			break;
 		case 61:
+		case 43:
 			if (cpoints > 0) {
 				switch (k) {
 				case 0:

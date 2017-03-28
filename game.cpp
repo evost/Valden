@@ -40,7 +40,7 @@ void ShowCharacteristicsHints(short x, short y) {
 	SetString(x + 6, y + 3, sDelimeter + sAccept, Black, White);
 	SetString(x, y + 4, skSpace, Black, Green);
 	SetString(x + 6, y + 4, sDelimeter + sClear, Black, White);
-	SetString(x, y + 5, skEsc, Black, Green);
+	SetString(x, y + 5, skEsc + sComma + skI, Black, Green);
 	SetString(x + 6, y + 5, sDelimeter + sBack, Black, White);
 }
 
@@ -51,7 +51,7 @@ void ShowInventoryHints(short x, short y) {
 	SetString(x + 6, y + 1, sDelimeter + sUse, Black, White);
 	SetString(x, y + 2, skSpace, Black, Green);
 	SetString(x + 6, y + 2, sDelimeter + sDelete, Black, White);
-	SetString(x, y + 3, skEsc, Black, Green);
+	SetString(x, y + 3, skEsc + sComma + skC, Black, Green);
 	SetString(x + 6, y + 3, sDelimeter + sBack, Black, White);
 }
 
