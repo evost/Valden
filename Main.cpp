@@ -8,23 +8,25 @@
 int main() {
 	Init(windowX, windowY, sWindowName);
 	Map VMap(128, 64);
-	Hero VHero(VMap);
+	Hero VHero;
 	NPC VNPC(64, VMap);
 	bool showHints = false;
 	bool inGame = false;
 	while (true)
 		switch (Menu(inGame)) {
-		case 1:
-			NewGame(VMap, VHero, VNPC);
-			inGame = true;
+		case 2:
+			NewHero(VHero);
 			for (int i = 0; i < logSize; i++)
 				AddLog(sSpace);
+		case 1:
+			NewMap(VMap, VHero, VNPC);
+			inGame = true;
 		case 0:
 			Game(VMap, VHero, VNPC, showHints);
 			break;
-		case 2:
-			break;
 		case 3:
+			break;
+		case 4:
 			return 0;
 			break;
 		default:

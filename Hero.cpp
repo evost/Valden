@@ -1,7 +1,7 @@
 #include "Hero.h"
 #include "game.h"
 
-Hero::Hero(Map &dMap) {
+Hero::Hero() {
 	strength = startSkill + rand() % startSkillRandom;
 	dexterity = startSkill + rand() % startSkillRandom;
 	intelligence = startSkill + rand() % startSkillRandom;
@@ -18,17 +18,8 @@ Hero::Hero(Map &dMap) {
 		invertory[i].type = -1;
 	invertory[0] = spear1;
 	invertory[1] = armor2;
-	do {
-		x = rand() % (dMap.Width - 6) + 3;
-		y = rand() % (dMap.Height - 6) + 3;
-	} while (!dMap.IsFree(x, y));
-	dMap.curX = x - mapVisX / 2;
-	if (dMap.curX < 0) dMap.curX = 0;
-	if (dMap.curX > (dMap.Width - mapVisX)) dMap.curX = dMap.Width - mapVisX + 1;
-	dMap.curY = y - mapVisY / 2;
-	if (dMap.curY < 0) dMap.curY = 0;
-	if (dMap.curY > (dMap.Height - mapVisY)) dMap.curY = dMap.Height - mapVisY + 1;
-	SetVisibleCells(dMap);
+	x = 0;
+	y = 0;
 }
 
 void Hero::GetHero(Map &dMap) {

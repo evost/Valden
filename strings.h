@@ -52,6 +52,7 @@ static wstring sSkip = L"Пропуск хода";
 static wstring sDeath = L"Вы убиты!";
 static wstring sContinue = L"Продолжить";
 static wstring sNewGame = L"Новая игра";
+static wstring sNewMap = L"Новая карта";
 static wstring sSettings = L"Настройки";
 static wstring sExit = L"Выход";
 static wstring sSelectRace = L"Выберите расу";

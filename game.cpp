@@ -78,19 +78,33 @@ void RenderWorld(Map &dMap, Hero &dHero, NPC &dNPC, bool hint) {
 	}
 }
 
-void NewGame(Map &dMap, Hero &dHero, NPC &dNPC) {
-	Map nMap(dMap.Width, dMap.Height);
-	Hero nHero(nMap);
-	NPC nNPC(dNPC.NPCk, nMap);
-	dMap = nMap;
+void NewHero(Hero &dHero) {
+	Hero nHero;
 	dHero = nHero;
-	dNPC = nNPC;
 	dHero.CreateHero();
-	Border(windowX, windowY, borderDelimiter);
 	for (int i = 0; i < historySize; i++)
 		SetString(2, 1 + i, sHistory[i], Black, White);
+	Border(windowX, windowY, borderDelimiter);
 	Render();
 	ReadKey();
+}
+
+void NewMap(Map &dMap, Hero &dHero, NPC &dNPC) {
+	Map nMap(dMap.Width, dMap.Height);
+	NPC nNPC(dNPC.NPCk, nMap);
+	dMap = nMap;
+	dNPC = nNPC;
+	do {
+		dHero.x = rand() % (dMap.Width - 6) + 3;
+		dHero.y = rand() % (dMap.Height - 6) + 3;
+	} while (!dMap.IsFree(dHero.x, dHero.y));
+	dMap.curX = dHero.x - mapVisX / 2;
+	if (dMap.curX < 0) dMap.curX = 0;
+	if (dMap.curX > (dMap.Width - mapVisX)) dMap.curX = dMap.Width - mapVisX + 1;
+	dMap.curY = dHero.y - mapVisY / 2;
+	if (dMap.curY < 0) dMap.curY = 0;
+	if (dMap.curY > (dMap.Height - mapVisY)) dMap.curY = dMap.Height - mapVisY + 1;
+	dHero.SetVisibleCells(dMap);
 }
 
 void Game(Map &dMap, Hero &dHero, NPC &dNPC, bool &dShowHints) {
@@ -175,7 +189,7 @@ void Game(Map &dMap, Hero &dHero, NPC &dNPC, bool &dShowHints) {
 int Menu(bool inGame) {
 	int k = 0, n;
 	if (inGame)
-		n = 4;
+		n = 5;
 	else
 		n = 3;
 	short button = 0;
@@ -186,9 +200,10 @@ int Menu(bool inGame) {
 			SetString(2, 1 + i, sLogo[i], Black, Red);
 		if (inGame) {
 			SetString(2, logoSize + 2, sRadio + sContinue, Black, White);
-			SetString(2, logoSize + 3, sRadio + sNewGame, Black, White);
-			SetString(2, logoSize + 4, sRadio + sSettings, Black, White);
-			SetString(2, logoSize + 5, sRadio + sExit, Black, White);
+			SetString(2, logoSize + 3, sRadio + sNewMap, Black, White);
+			SetString(2, logoSize + 4, sRadio + sNewGame, Black, White);
+			SetString(2, logoSize + 5, sRadio + sSettings, Black, White);
+			SetString(2, logoSize + 6, sRadio + sExit, Black, White);
 		} else {
 			SetString(2, logoSize + 2, sRadio + sNewGame, Black, White);
 			SetString(2, logoSize + 3, sRadio + sSettings, Black, White);
@@ -221,7 +236,7 @@ int Menu(bool inGame) {
 	if (inGame)
 		return k;
 	else
-		return k + 1;
+		return k + 2;
 }
 
 double Distance(int x1, int y1, int x2, int y2) {

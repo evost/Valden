@@ -14,7 +14,7 @@ private:
 public:
 	int x, y;
 	int hp, strength, dexterity, intelligence, maxhp, maxxp, level, cpoints, race, visDistance;
-	Hero(Map &dMap);
+	Hero();
 	void GetHero(Map &dMap);
 	void ShowInfo(short x, short y);
 	void SetVisibleCells(Map &dMap);
