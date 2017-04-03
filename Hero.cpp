@@ -38,7 +38,10 @@ void Hero::GetHero(Map &dMap) {
 void Hero::ShowInfo(short x, short y) {
 	SetString(x, y + 0, sCoordinates + sDelimeter + to_wstring(Hero::x) + sComma + to_wstring(Hero::y), Black, White);
 	SetString(x, y + 1, sHP + sDelimeter + to_wstring(hp) + sSlash + to_wstring(maxhp), Black, White);
-	SetString(x, y + 2, sXP + sDelimeter + FloatToWstring(xp) + sSlash + to_wstring(maxxp), Black, White);
+	if (level<maxLevel)
+		SetString(x, y + 2, sXP + sDelimeter + FloatToWstring(xp) + sSlash + to_wstring(maxxp), Black, White);
+	else
+		SetString(x, y + 2, sXP + sDelimeter + FloatToWstring(xp), Black, White);
 	SetString(x, y + 3, sLevel + sDelimeter + to_wstring(level), Black, White);
 }
 
