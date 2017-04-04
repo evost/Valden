@@ -90,7 +90,7 @@ void NewHero(Hero &dHero) {
 }
 
 void NewMap(Map &dMap, Hero &dHero, NPC &dNPC) {
-	Map nMap(dMap.Width, dMap.Height);
+	Map nMap(dMap.Width + 1, dMap.Height + 1);
 	NPC nNPC(dNPC.NPCk, nMap);
 	dMap = nMap;
 	dNPC = nNPC;
