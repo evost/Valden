@@ -23,6 +23,7 @@ int main() {
 			inGame = true;
 		case 0:
 			Game(VMap, VHero, VNPC, showHints);
+			if (VHero.hp <= 0) inGame = false;
 			break;
 		case 3:
 			break;
