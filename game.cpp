@@ -210,6 +210,8 @@ int Menu(bool inGame) {
 			SetString(2, logoSize + 4, sRadio + sExit, Black, White);
 		}
 		SetString(3, 7 + k, sAsterisk, Black, White);
+		for (int i = 0; i < copyrightSize; i++)
+			SetString(3, windowY - copyrightSize - 1 + i, sCopyright[i], Black, White);
 		Render();
 		button = ReadKey();
 		switch (button) {
