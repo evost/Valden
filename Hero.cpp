@@ -39,9 +39,10 @@ void Hero::ShowInfo(short x, short y) {
 void Hero::SetVisibleCells(Map &dMap) {
 	for (int mx = x - visDistance; mx <= x + visDistance; mx++)
 		for (int my = y - visDistance; my <= y + visDistance; my++)
-			if (mx >= 0 && my >= 0 && mx < dMap.Width && my < dMap.Height && Distance(mx, my, x, y) <= visDistance)
+			if (mx >= 0 && my >= 0 && mx <= dMap.Width && my <= dMap.Height && Distance(mx, my, x, y) <= visDistance)
 				dMap.SetVisible(mx, my);
 }
+
 void Hero::HeroStep(short dx, short dy, Map &dMap) {
 	dx += x;
 	dy += y;
