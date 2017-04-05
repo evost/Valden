@@ -186,7 +186,7 @@ void Game(Map &dMap, Hero &dHero, NPC &dNPC, bool &dShowHints) {
 	}
 }
 
-int Menu(bool inGame) {
+int Menu(bool inGame, bool newVersion, wstring versionNum) {
 	int k = 0, n;
 	if (inGame)
 		n = 5;
@@ -212,6 +212,10 @@ int Menu(bool inGame) {
 		SetString(3, 7 + k, sAsterisk, Black, White);
 		for (int i = 0; i < copyrightSize; i++)
 			SetString(3, windowY - copyrightSize - 1 + i, sCopyright[i], Black, White);
+		if (newVersion)
+			SetString(3, windowY - copyrightSize - 2, sVersion[newVersion] + versionNum, Black, White);
+		else
+			SetString(3, windowY - copyrightSize - 2, sVersion[newVersion], Black, White);
 		Render();
 		button = ReadKey();
 		switch (button) {

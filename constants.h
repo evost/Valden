@@ -22,7 +22,7 @@ const int newLevelPoints = characteristicsNumber;
 const int logSize = 16;
 const int logoSize = 5;
 const int historySize = 24;
-const int copyrightSize = 3;
+const int copyrightSize = 2;
 
 const short Black = 0;
 const short Blue = 1;

@@ -4,6 +4,7 @@
 #include "NPC.h"
 #include "constants.h"
 #include "game.h"
+#include "version.h"
 
 int main() {
 	Init(windowX, windowY, sWindowName);
@@ -12,8 +13,10 @@ int main() {
 	NPC VNPC(64, VMap);
 	bool showHints = false;
 	bool inGame = false;
+	wstring versionNun = Version(L"https://raw.githubusercontent.com/evost/test/master/version.md");
+	bool newVersion = versionNun != version;
 	while (true)
-		switch (Menu(inGame)) {
+		switch (Menu(inGame, newVersion, versionNun)) {
 		case 2:
 			NewHero(VHero);
 			for (int i = 0; i < logSize; i++)

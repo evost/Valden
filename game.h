@@ -19,5 +19,5 @@ void RenderWorld(Map &dMap, Hero &dHero, NPC &dNPC, bool hint);
 void NewHero(Hero &dHero);
 void NewMap(Map &dMap, Hero &dHero, NPC &dNPC);
 void Game(Map &dMap, Hero &dHero, NPC &dNPC, bool &showHints);
-int Menu(bool inGame);
+int Menu(bool inGame, bool newVersion, wstring versionNum);
 double Distance(int x1, int y1, int x2, int y2);

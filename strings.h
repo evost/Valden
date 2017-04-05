@@ -81,7 +81,8 @@ static wstring skMinus = L"-";
 static wstring skEnter = L"Enter";
 static wstring skSpace = L"Space";
 static wstring skTab = L"Tab";
-static wstring sCopyright[3] = { L"Вы можете скачать самую новую версию на", L"https://github.com/evost/Valden-builds",  L"(c) github.com/evost" };
+static wstring sVersion[2] = { L"Страница проекта",  L"Вышла новая версия " };
+static wstring sCopyright[2] = { L"https://github.com/evost/Valden-builds",  L"(c) github.com/evost" };
 static wstring sLogo[5] = {
 	L" _    __        __     __           ",
 	L"| |  / /____ _ / /____/ /___   ____ ",
