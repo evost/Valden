@@ -83,6 +83,7 @@ static wstring skSpace = L"Space";
 static wstring skTab = L"Tab";
 static wstring sVersion[2] = { L"Страница проекта",  L"Вышла новая версия " };
 static wstring sCopyright[2] = { L"https://github.com/evost/Valden-builds",  L"(c) github.com/evost" };
+static wstring sNersionURL = L"https://raw.githubusercontent.com/evost/test/master/version.md";
 static wstring sLogo[5] = {
 	L" _    __        __     __           ",
 	L"| |  / /____ _ / /____/ /___   ____ ",

@@ -13,10 +13,12 @@ int main() {
 	NPC VNPC(64, VMap);
 	bool showHints = false;
 	bool inGame = false;
-	wstring versionNun = Version(L"https://raw.githubusercontent.com/evost/test/master/version.md");
-	bool newVersion = versionNun != version;
+	wstring versionNum = Version(sNersionURL);
+	bool newVersion = false;
+	if (versionNum != L"")
+		newVersion = versionNum != version;
 	while (true)
-		switch (Menu(inGame, newVersion, versionNun)) {
+		switch (Menu(inGame, newVersion, versionNum)) {
 		case 2:
 			NewHero(VHero);
 			for (int i = 0; i < logSize; i++)
