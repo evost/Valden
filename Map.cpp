@@ -13,9 +13,8 @@ Map::Map(int width, int height) {
 		Height = mapVisY;
 	else
 		Height = height - 1;
-	for (int x = 0; x <= Width; x++)
-		MainMap[x] = new TTile[Height + 1];
-	for (int x = 0; x <= Width; x++)
+	for (int x = 0; x <= Width; x++) {
+		MainMap[x] = new TTile[height];
 		for (int y = 0; y <= Height; y++) {
 			MainMap[x][y].isVisible = false;
 			int chance = rand() % 100 + 1;
@@ -27,6 +26,7 @@ Map::Map(int width, int height) {
 			else
 				MainMap[x][y] = Tiles[grass];
 		}
+	}
 }
 
 void Map::GetMap() {
