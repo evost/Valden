@@ -81,6 +81,7 @@ static wstring skMinus = L"-";
 static wstring skEnter = L"Enter";
 static wstring skSpace = L"Space";
 static wstring skTab = L"Tab";
+static wstring sLoading = L"Загрузка...";
 static wstring sVersion[2] = { L"Страница проекта",  L"Вышла новая версия " };
 static wstring sCopyright[2] = { L"https://github.com/evost/Valden-builds",  L"(c) github.com/evost" };
 static wstring sNersionURL = L"https://raw.githubusercontent.com/evost/test/master/version.md";

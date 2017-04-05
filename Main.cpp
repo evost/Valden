@@ -8,6 +8,9 @@
 
 int main() {
 	Init(windowX, windowY, sWindowName);
+	SetString(mapVisX / 2, mapVisY / 2, sLoading, Black, White);
+	Border(windowX, windowY, borderDelimiter);
+	Render();
 	Map VMap(128, 64);
 	Hero VHero;
 	NPC VNPC(64, VMap);
