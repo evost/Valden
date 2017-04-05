@@ -86,3 +86,23 @@ wstring Version(wstring url) {
 	}
 	return newVersion;
 }
+
+template<typename T> void Save(T &object, wstring path) {
+	wofstream out(path, ios::binary | ios::out);
+	out.write((wchar_t*)&object, sizeof object);
+	out.close();
+}
+
+template<typename T> void Load(T &object, wstring path) {
+	wifstream inf(path, ios::binary | ios::in);
+	inf.read((wchar_t*)&object, sizeof object);
+	inf.close();
+}
+
+bool SaveExist(wstring path) {
+	return !_waccess(path.c_str(), 0);
+}
+
+void CreateSaveDir(wstring path) {
+	CreateDirectoryW(path.c_str(), NULL);
+}

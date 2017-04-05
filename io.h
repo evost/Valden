@@ -24,3 +24,7 @@ short ReadKey();
 void Render();
 wstring FloatToWstring(float k);
 wstring Version(wstring url);
+template<typename T> void Save(T &object, wstring path);
+template<typename T> void Load(T &object, wstring path);
+bool SaveExist(wstring path);
+void CreateSaveDir(wstring path);
