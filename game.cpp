@@ -216,7 +216,7 @@ int Menu(bool inGame, bool newVersion, wstring versionNum) {
 			InGameMenu(logoSize + 2);
 		}
 		if (isSaveExistInt) {
-			IsSaveMenu(logoSize + 1 + inGameInt);
+			IsSaveMenu(logoSize + 2 + inGameInt);
 		}
 		DefMenu(logoSize + 2 + inGameInt + isSaveExistInt);
 		SetString(3, 7 + k, sAsterisk, Black, White);
@@ -249,7 +249,10 @@ int Menu(bool inGame, bool newVersion, wstring versionNum) {
 			break;
 		}
 	}
-	return k + (1 - isSaveExistInt) + (3 - inGameInt);
+	if (k <= 3 && inGameInt)
+		return k;
+	else
+		return k + (1 - isSaveExistInt) + (3 - inGameInt);
 }
 
 double Distance(int x1, int y1, int x2, int y2) {
