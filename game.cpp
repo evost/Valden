@@ -186,29 +186,39 @@ void Game(Map &dMap, Hero &dHero, NPC &dNPC, bool &dShowHints) {
 	}
 }
 
+void InGameMenu(int y) {
+	SetString(2, y + 0, sRadio + sContinue, Black, White);
+	SetString(2, y + 1, sRadio + sSave, Black, White);
+	SetString(2, y + 2, sRadio + sNewMap, Black, White);
+}
+
+void IsSaveMenu(int y) {
+	SetString(2, y + 0, sRadio + sLoad, Black, White);
+}
+
+void DefMenu(int y) {
+	SetString(2, y + 0, sRadio + sNewGame, Black, White);
+	SetString(2, y + 1, sRadio + sSettings, Black, White);
+	SetString(2, y + 2, sRadio + sExit, Black, White);
+}
+
 int Menu(bool inGame, bool newVersion, wstring versionNum) {
-	int k = 0, n;
-	if (inGame)
-		n = 5;
-	else
-		n = 3;
+	int inGameInt = inGame * 3;
+	int isSaveExistInt = SaveExist(sSavePath + sMapSave) || SaveExist(sSavePath + sHeroSave) || SaveExist(sSavePath + sNPCSave) * 1;
+	int k = 0, n = 3 + inGameInt + isSaveExistInt;
 	short button = 0;
 	while (button != 13) {
 		Border(windowX, windowY, borderDelimiter);
 		ShowMenuHints(borderDelimiter + 2, 1);
 		for (int i = 0; i < logoSize; i++)
 			SetString(2, 1 + i, sLogo[i], Black, Red);
-		if (inGame) {
-			SetString(2, logoSize + 2, sRadio + sContinue, Black, White);
-			SetString(2, logoSize + 3, sRadio + sNewMap, Black, White);
-			SetString(2, logoSize + 4, sRadio + sNewGame, Black, White);
-			SetString(2, logoSize + 5, sRadio + sSettings, Black, White);
-			SetString(2, logoSize + 6, sRadio + sExit, Black, White);
-		} else {
-			SetString(2, logoSize + 2, sRadio + sNewGame, Black, White);
-			SetString(2, logoSize + 3, sRadio + sSettings, Black, White);
-			SetString(2, logoSize + 4, sRadio + sExit, Black, White);
+		if (inGameInt) {
+			InGameMenu(logoSize + 2);
 		}
+		if (isSaveExistInt) {
+			IsSaveMenu(logoSize + 1 + inGameInt);
+		}
+		DefMenu(logoSize + 2 + inGameInt + isSaveExistInt);
 		SetString(3, 7 + k, sAsterisk, Black, White);
 		for (int i = 0; i < copyrightSize; i++)
 			SetString(3, windowY - copyrightSize - 1 + i, sCopyright[i], Black, White);
@@ -239,10 +249,7 @@ int Menu(bool inGame, bool newVersion, wstring versionNum) {
 			break;
 		}
 	}
-	if (inGame)
-		return k;
-	else
-		return k + 2;
+	return k + (1 - isSaveExistInt) + (3 - inGameInt);
 }
 
 double Distance(int x1, int y1, int x2, int y2) {
