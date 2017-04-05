@@ -16,7 +16,7 @@ int main() {
 	NPC VNPC(64, VMap);
 	bool showHints = false;
 	bool inGame = false;
-	wstring versionNum = Version(sNersionURL);
+	wstring versionNum = Version(sVersionURL);
 	bool newVersion = false;
 	if (versionNum != L"")
 		newVersion = versionNum != version;
@@ -34,8 +34,13 @@ int main() {
 			if (VHero.hp <= 0) inGame = false;
 			break;
 		case 1:
+			//Save game
 			break;
 		case 3:
+			//Load game
+			break;
+		case 5:
+			//Settings
 			break;
 		case 6:
 			return 0;
