@@ -4,6 +4,9 @@
 #include <string>
 #include <time.h>
 #include <conio.h>
+#include <fstream>
+#include <urlmon.h>
+#pragma comment( lib, "urlmon.lib" )
 
 using namespace std;
 
@@ -20,3 +23,4 @@ void Border(short x, short y, short x0);
 short ReadKey();
 void Render();
 wstring FloatToWstring(float k);
+wstring Version(wstring url);

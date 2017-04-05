@@ -75,3 +75,14 @@ void Render() {
 wstring FloatToWstring(float k) {
 	return (to_wstring((int)k) + L"." + to_wstring((int)((k - (float)(int)k) * 100)));
 }
+
+wstring Version(wstring url) {
+	wstring newVersion = L"";
+	if (!URLDownloadToFileW(0, url.c_str(), L"version.md", 0, 0)) {
+		wifstream inf(L"version.md", ios::binary | ios::in);
+		inf >> newVersion;
+		inf.close();
+		_wremove(L"version.md");
+	}
+	return newVersion;
+}
