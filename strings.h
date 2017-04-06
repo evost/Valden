@@ -88,6 +88,7 @@ static wstring sMapSave = L"Map.sv";
 static wstring sHeroSave = L"Hero.sv";
 static wstring sNPCSave = L"NPC.sv";
 static wstring sSavePath = L"save/";
+static wstring sSaveDin = L"din.";
 static wstring sVersion[2] = { L"Страница проекта",  L"Вышла новая версия " };
 static wstring sCopyright[2] = { L"https://github.com/evost/Valden-builds",  L"(c) github.com/evost" };
 static wstring sVersionURL = L"https://raw.githubusercontent.com/evost/Valden-builds/master/version.md";

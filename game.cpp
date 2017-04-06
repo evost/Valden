@@ -254,7 +254,3 @@ int Menu(bool inGame, bool newVersion, wstring versionNum) {
 	else
 		return k + (1 - isSaveExistInt) + (3 - inGameInt);
 }
-
-double Distance(int x1, int y1, int x2, int y2) {
-	return sqrt(pow(abs(x1 - x2), 2) + pow(abs(y1 - y2), 2));
-}

@@ -6,6 +6,7 @@
 #include "Map.h"
 #include "Hero.h"
 #include "NPC.h"
+#include "utility.h"
 
 static wstring gameLog[logSize];
 static short logPosition = 0;
@@ -20,4 +21,3 @@ void NewHero(Hero &dHero);
 void NewMap(Map &dMap, Hero &dHero, NPC &dNPC);
 void Game(Map &dMap, Hero &dHero, NPC &dNPC, bool &showHints);
 int Menu(bool inGame, bool newVersion, wstring versionNum);
-double Distance(int x1, int y1, int x2, int y2);

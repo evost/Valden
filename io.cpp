@@ -7,11 +7,6 @@ void SetSymbol(short x, short y, wchar_t c, short background, short text) {
 	buffer[x + y * (src.Right + 1)].Attributes = (WORD)((background << 4) | text);
 }
 
-void SetString(short x, short y, wstring s, short background, short text) {
-	for (unsigned int i = 0; i < s.length(); i++)
-		SetSymbol(x + i, y, s[i], background, text);
-}
-
 void Clear() {
 	for (int i = 0; i < (src.Right + 1)*(src.Bottom + 1); i++) {
 		buffer[i].Char.UnicodeChar = ' ';
@@ -21,10 +16,6 @@ void Clear() {
 
 void Randomize() {
 	srand((int)time(0));
-}
-
-void Randomize(int sid) {
-	srand(sid);
 }
 
 void Init(short x, short y, wstring name) {
@@ -45,24 +36,6 @@ void Init(short x, short y, wstring name) {
 	Clear();
 }
 
-void Border(short x, short y, short x0) {
-	for (int i = 1; i < y; i++) {
-		SetSymbol(0, i, L'║', 0, 15);
-		SetSymbol(x0, i, L'║', 0, 15);
-		SetSymbol(x, i, L'║', 0, 15);
-	}
-	for (int i = 1; i < x; i++) {
-		SetSymbol(i, 0, L'═', 0, 15);
-		SetSymbol(i, y, L'═', 0, 15);
-	}
-	SetSymbol(x0, 0, L'╦', 0, 15);
-	SetSymbol(x0, y, L'╩', 0, 15);
-	SetSymbol(0, 0, L'╔', 0, 15);
-	SetSymbol(0, y, L'╚', 0, 15);
-	SetSymbol(x, 0, L'╗', 0, 15);
-	SetSymbol(x, y, L'╝', 0, 15);
-}
-
 short ReadKey() {
 	return _getch();
 }
@@ -70,39 +43,4 @@ short ReadKey() {
 void Render() {
 	WriteConsoleOutputW(hStdOut, buffer, { src.Right + 1 , src.Bottom + 1 }, { 0, 0 }, &src);
 	Clear();
-}
-
-wstring FloatToWstring(float k) {
-	return (to_wstring((int)k) + L"." + to_wstring((int)((k - (float)(int)k) * 100)));
-}
-
-wstring Version(wstring url) {
-	wstring newVersion = L"";
-	if (!URLDownloadToFileW(0, url.c_str(), L"version.md", 0, 0)) {
-		wifstream inf(L"version.md", ios::binary | ios::in);
-		inf >> newVersion;
-		inf.close();
-		_wremove(L"version.md");
-	}
-	return newVersion;
-}
-
-template<typename T> void Save(T &object, wstring path) {
-	wofstream out(path, ios::binary | ios::out);
-	out.write((wchar_t*)&object, sizeof object);
-	out.close();
-}
-
-template<typename T> void Load(T &object, wstring path) {
-	wifstream inf(path, ios::binary | ios::in);
-	inf.read((wchar_t*)&object, sizeof object);
-	inf.close();
-}
-
-bool SaveExist(wstring path) {
-	return !_waccess(path.c_str(), 0);
-}
-
-void CreateSaveDir(wstring path) {
-	CreateDirectoryW(path.c_str(), NULL);
 }
