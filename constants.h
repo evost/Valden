@@ -2,11 +2,16 @@
 
 #include "structs.h"
 
-const int mapVisX = 64;
-const int mapVisY = 32;
-const int windowX = mapVisX + 32;
-const int windowY = mapVisY + 1;
-const int borderDelimiter = mapVisX + 1;
+const int minMapVisY = 31;
+const int maxMapVisY = 60;
+const int minFontSize = 8;
+const int maxFontSize = 64;
+static int mapVisY = minMapVisY;
+static int mapVisX = mapVisY * 2;
+static int windowX = mapVisX + 32;
+static int windowY = mapVisY + 1;
+static int borderDelimiter = mapVisX + 1;
+static int fontSize = 21;
 
 const int invSize = 9;
 const int startSkill = 5;

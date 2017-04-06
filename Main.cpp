@@ -46,7 +46,7 @@ int main() {
 			inGame = true;
 			break;
 		case 5:
-			//Settings
+			Settings();
 			break;
 		case 6:
 			return 0;

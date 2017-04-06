@@ -62,6 +62,17 @@ void ShowMenuHints(short x, short y) {
 	SetString(x + 6, y + 1, sDelimeter + sUse, Black, White);
 }
 
+void ShowSettingsHints(short x, short y) {
+	SetString(x, y + 0, skArrows, Black, Green);
+	SetString(x + 6, y + 0, sDelimeter + sSelect, Black, White);
+	SetString(x, y + 1, skEnter, Black, Green);
+	SetString(x + 6, y + 1, sDelimeter + sUse, Black, White);
+	SetString(x, y + 2, skSpace, Black, Green);
+	SetString(x + 6, y + 2, sDelimeter + sClear, Black, White);
+	SetString(x, y + 3, skEsc, Black, Green);
+	SetString(x + 6, y + 3, sDelimeter + sBack, Black, White);
+}
+
 void ShowHeroInfo(Hero &dHero, short x, short y) {
 	SetString(x, y + 0, sCoordinates + sDelimeter + to_wstring(dHero.x) + sComma + to_wstring(dHero.y), Black, White);
 	SetString(x, y + 1, sHP + sDelimeter + to_wstring(dHero.hp) + sSlash + to_wstring(dHero.maxhp), Black, White);
@@ -449,11 +460,11 @@ int Menu(bool inGame, bool newVersion, wstring versionNum) {
 		DefMenu(logoSize + 2 + inGameInt + isSaveExistInt);
 		SetString(3, 7 + k, sAsterisk, Black, White);
 		for (int i = 0; i < copyrightSize; i++)
-			SetString(3, windowY - copyrightSize - 1 + i, sCopyright[i], Black, White);
+			SetString(2, windowY - copyrightSize - 1 + i, sCopyright[i], Black, White);
 		if (newVersion)
-			SetString(3, windowY - copyrightSize - 2, sVersion[newVersion] + versionNum, Black, White);
+			SetString(2, windowY - copyrightSize - 2, sVersion[newVersion] + versionNum, Black, White);
 		else
-			SetString(3, windowY - copyrightSize - 2, sVersion[newVersion], Black, White);
+			SetString(2, windowY - copyrightSize - 2, sVersion[newVersion], Black, White);
 		Render();
 		button = ReadKey();
 		switch (button) {
@@ -483,5 +494,75 @@ int Menu(bool inGame, bool newVersion, wstring versionNum) {
 		return k + (1 - isSaveExistInt) + (3 - inGameInt);
 }
 
-void CreateHero(Hero &dHero) {
-}
+void Settings() {
+	short button = 0;
+	short k = 0;
+	short n = 2;
+	short dfontSize = 0;
+	short dmapVisY = 0;
+	while (button != 27) {
+		SetString(2, 2, sRadio + sTileSize + sDelimeter + to_wstring(fontSize + dfontSize), Black, White);
+		SetString(2, 3, sRadio + sTileNum + sDelimeter + to_wstring((mapVisY + dmapVisY) * 2 + 32) + sX + to_wstring((mapVisY + dmapVisY) + 1), Black, White);
+		SetString(2, 4, sResolution + sDelimeter + to_wstring(2 + ((mapVisY + dmapVisY) * 2 + 32 + 1) * 3 * (fontSize + dfontSize) / 5) + sX + to_wstring(32 + ((mapVisY + dmapVisY) + 1 + 1)*(fontSize + dfontSize)), Black, White);
+		SetString(3, 2 + k, sAsterisk, Black, White);
+		Border(windowX, windowY, borderDelimiter);
+		ShowSettingsHints(borderDelimiter + 2, 1);
+		Render();
+		button = ReadKey();
+		switch (button) {
+		case 224:
+			switch (ReadKey()) {
+			case 72:
+				k = (k - 1 + n) % n;
+				break;
+			case 75:
+				switch (k) {
+				case 0:
+					if (fontSize + dfontSize > minFontSize) dfontSize--;
+					break;
+				case 1:
+					if (mapVisY + dmapVisY > minMapVisY) dmapVisY--;
+					break;
+				default:
+					break;
+				}
+				break;
+			case 77:
+				switch (k) {
+				case 0:
+					if (fontSize + dfontSize < maxFontSize) dfontSize++;
+					break;
+				case 1:
+					if (mapVisY + dmapVisY < maxMapVisY) dmapVisY++;
+					break;
+				default:
+					break;
+				}
+				break;
+			case 80:
+				k = (k + 1 + n) % n;
+				break;
+			default:
+				break;
+			}
+			break;
+		case 13:
+			fontSize += dfontSize;
+			mapVisY += dmapVisY;
+			mapVisX = mapVisY * 2;
+			windowX = mapVisX + 32;
+			windowY = mapVisY + 1;
+			borderDelimiter = mapVisX + 1;
+			SetWindow(windowX, windowY, fontSize);
+			dfontSize = 0;
+			dmapVisY = 0;
+			break;
+		case 32:
+			dfontSize = 0;
+			dmapVisY = 0;
+			break;
+		default:
+			break;
+		}
+	}
+};
