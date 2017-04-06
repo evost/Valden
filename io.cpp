@@ -18,20 +18,29 @@ void Randomize() {
 	srand((int)time(0));
 }
 
-void Init(short x, short y, wstring name) {
+void Init(wstring name) {
 	Randomize();
-	src = { 0, 0, x, y };
 	CONSOLE_FONT_INFOEX fontInfo;
 	fontInfo.cbSize = sizeof(fontInfo);
 	GetCurrentConsoleFontEx(hStdOut, TRUE, &fontInfo);
 	wcscpy_s(fontInfo.FaceName, L"Lucida Console");
-	fontInfo.dwFontSize.Y = 20;
 	SetCurrentConsoleFontEx(hStdOut, TRUE, &fontInfo);
-	SetConsoleWindowInfo(hStdOut, true, &src);
-	SetConsoleScreenBufferSize(hStdOut, { x + 1, y + 1 });
 	SetConsoleTitleW(name.c_str());
 	CONSOLE_CURSOR_INFO cur = { 1, false };
 	SetConsoleCursorInfo(hStdOut, &cur);
+}
+
+void SetWindow(short x, short y, short fontSize) {
+	src = { 0, 0, x, y };
+	CONSOLE_FONT_INFOEX fontInfo;
+	fontInfo.cbSize = sizeof(fontInfo);
+	GetCurrentConsoleFontEx(hStdOut, TRUE, &fontInfo);
+	fontInfo.dwFontSize.Y = fontSize;
+	SetCurrentConsoleFontEx(hStdOut, TRUE, &fontInfo);
+	SetConsoleScreenBufferSize(hStdOut, { x + 1, y + 1 });
+	SetConsoleWindowInfo(hStdOut, true, &src);
+	SetConsoleScreenBufferSize(hStdOut, { x + 1, y + 1 });
+	free(buffer);
 	buffer = (CHAR_INFO*)malloc((x + 1) * (y + 1) * sizeof(CHAR_INFO));
 	Clear();
 }

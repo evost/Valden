@@ -2,7 +2,8 @@
 #include "version.h"
 
 int main() {
-	Init(windowX, windowY, sWindowName);
+	Init(sWindowName);
+	SetWindow(windowX, windowY, fontSize);
 	SetString(mapVisX / 2, mapVisY / 2, sLoading, Black, White);
 	Border(windowX, windowY, borderDelimiter);
 	Render();
