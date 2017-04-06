@@ -4,4 +4,4 @@
 
 using namespace std;
 
-static wstring version = L"v0.0.100";
+static wstring version = L"v0.0.124";
