@@ -51,6 +51,10 @@ const int goblin = 1;
 const int weapon = 0;
 const int armor = 1;
 
+const TTile Tiles[3] = { { 0, Green, '.' },{ 1, Green, '!' },{ 2, LightGray, 'o' } };
+const TTile NPC_tiles[2] = { { 0, Brown, '^' },{ 1, Yellow, 'g' } };
+const TNPC NPC_types[2] = { { 0, 3, 2, 1, 5, 3, 1, 3, 0, 0 },{ 1, 5, 3, 3, 7, 5, 2, 4, 0, 0 } };
+
 const TItem sword1 = { 0, 2, 0, 0, 0, 0, 0 , 0 };
 const TItem spear1 = { 0, 4, 0, 0, 0, 0, 0 , 1 };
 const TItem sword2 = { 0, 8, 0, 0, 0, 0, 0 , 2 };

@@ -6,9 +6,8 @@
 
 class Map {
 private:
-	TTile **MainMap = NULL;
-	TTile Tiles[3] = { { 0, Green, '.' },{ 1, Green, '!'},{ 2, LightGray, 'o' } };
 public:
+	TTile **MainMap = NULL;
 	int Width, Height, curX, curY;
 	Map(int width, int height);
 	void GetMap();
