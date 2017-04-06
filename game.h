@@ -1,11 +1,6 @@
 #pragma once
 
-#include "io.h"
-#include "strings.h"
 #include "constants.h"
-#include "Map.h"
-#include "Hero.h"
-#include "NPC.h"
 #include "utility.h"
 
 static wstring gameLog[logSize];

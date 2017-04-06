@@ -1,7 +1,6 @@
 #pragma once
 
 #include <iostream>
-#include "structs.h"
 #include "constants.h"
 
 class Map {

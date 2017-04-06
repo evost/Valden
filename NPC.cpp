@@ -1,7 +1,4 @@
 #include "NPC.h"
-#include "io.h"
-#include "Map.h"
-#include "strings.h"
 #include "game.h"
 
 NPC::NPC(int k, Map &dMap) {
@@ -42,7 +39,10 @@ void NPC::NPCstep(Map &dMap, Hero &dHero) {
 						dHero.hp -= NPCs[i].strength - dHero.GetDefense();
 					} else
 						AddLog(sMonsters[NPCs[i].type] + sNoDamage);
-					if (dHero.hp <= 0) dHero.Death();
+					if (dHero.hp <= 0) {
+						dHero.hp = 0;
+						AddLog(sDeath);
+					}
 				} else
 					AddLog(sHeroDodged + sMonsters[NPCs[i].type]);
 			} else

@@ -1,8 +1,3 @@
-#include "io.h"
-#include "Map.h"
-#include "Hero.h"
-#include "NPC.h"
-#include "constants.h"
 #include "game.h"
 #include "version.h"
 

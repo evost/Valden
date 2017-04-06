@@ -62,6 +62,16 @@ void ShowMenuHints(short x, short y) {
 	SetString(x + 6, y + 1, sDelimeter + sUse, Black, White);
 }
 
+void ShowHeroInfo(Hero &dHero, short x, short y) {
+	SetString(x, y + 0, sCoordinates + sDelimeter + to_wstring(dHero.x) + sComma + to_wstring(dHero.y), Black, White);
+	SetString(x, y + 1, sHP + sDelimeter + to_wstring(dHero.hp) + sSlash + to_wstring(dHero.maxhp), Black, White);
+	if (dHero.level < maxLevel)
+		SetString(x, y + 2, sXP + sDelimeter + FloatToWstring(dHero.xp) + sSlash + to_wstring(dHero.maxxp), Black, White);
+	else
+		SetString(x, y + 2, sXP + sDelimeter + FloatToWstring(dHero.xp), Black, White);
+	SetString(x, y + 3, sLevel + sDelimeter + to_wstring(dHero.level), Black, White);
+}
+
 void RenderWorld(Map &dMap, Hero &dHero, NPC &dNPC, bool hint) {
 	dMap.GetMap();
 	dNPC.GetNPCs(dMap, dHero);
@@ -73,7 +83,7 @@ void RenderWorld(Map &dMap, Hero &dHero, NPC &dNPC, bool hint) {
 		ShowGameHints(borderDelimiter + 2, 1);
 		SetString(borderDelimiter + 5, windowY - 1, sDelimeter + sInfo, Black, White);
 	} else {
-		dHero.ShowInfo(borderDelimiter + 2, 1);
+		ShowHeroInfo(dHero, borderDelimiter + 2, 1);
 		SetString(borderDelimiter + 5, windowY - 1, sDelimeter + sHints, Black, White);
 	}
 }
@@ -83,7 +93,52 @@ void NewHero(Hero &dHero) {
 		AddLog(sSpace);
 	Hero nHero;
 	dHero = nHero;
-	dHero.CreateHero();
+	int k = 0;
+	short button = 0;
+	while (button != 13) {
+		Border(windowX, windowY, borderDelimiter);
+		SetString(2, 1, sSelectRace, Black, White);
+		SetString(2, 3, sRadio + sRaceHuman, Black, White);
+		SetString(2, 4, sRadio + sRaceDwarf, Black, White);
+		SetString(2, 5, sRadio + sRaceElf, Black, White);
+		SetString(3, 3 + k, sAsterisk, Black, White);
+		Render();
+		button = ReadKey();
+		switch (button) {
+		case 224:
+			switch (ReadKey()) {
+			case 72:
+				k = (k - 1 + raceCount) % raceCount;
+				break;
+			case 80:
+				k = (k + 1 + raceCount) % raceCount;
+				break;
+			default:
+				break;
+			}
+			break;
+		default:
+			break;
+		}
+	}
+	dHero.race = k;
+	switch (dHero.race) {
+	case 0:
+		dHero.dexterity++;
+		dHero.intelligence++;
+		break;
+	case 1:
+		dHero.strength++;
+		dHero.intelligence++;
+		break;
+	case 2:
+		dHero.strength++;
+		dHero.dexterity++;
+		break;
+	default:
+		break;
+	}
+
 	for (int i = 0; i < historySize; i++)
 		SetString(2, 1 + i, sHistory[i], Black, White);
 	Border(windowX, windowY, borderDelimiter);
@@ -107,6 +162,177 @@ void NewMap(Map &dMap, Hero &dHero, NPC &dNPC) {
 	if (dMap.curY < 0) dMap.curY = 0;
 	if (dMap.curY > (dMap.Height - mapVisY)) dMap.curY = dMap.Height - mapVisY + 1;
 	dHero.SetVisibleCells(dMap);
+}
+
+void ShowInventory(Hero &dHero, short x, short y) {
+	int k = 0;
+	short button = 0;
+	TItem item;
+	while (button != 27 && button != 73 && button != 105 && button != 152 && button != 232) {
+		Border(windowX, windowY, borderDelimiter);
+		if (dHero.cweapon.type == -1)
+			SetString(2, 1, sCWeapon + sLack, Black, White);
+		else
+			SetString(2, 1, sCWeapon + sItems[dHero.cweapon.id], Black, White);
+		if (dHero.cweapon.type == -1)
+			SetString(2, 2, sCArmor + sLack, Black, White);
+		else
+			SetString(2, 2, sCArmor + sItems[dHero.carmor.id], Black, White);
+		for (int i = 0; i < invSize; i++)
+			if (dHero.invertory[i].type == -1)
+				SetString(2, 4 + i, sRadio + sLack, Black, White);
+			else
+				SetString(2, 4 + i, sRadio + sItems[dHero.invertory[i].id], Black, White);
+		ShowInventoryHints(borderDelimiter + 2, 1);
+		SetString(3, 4 + k, sAsterisk, Black, White);
+		Render();
+		button = ReadKey();
+		switch (button) {
+		case 224:
+			SetString(3, 4 + k, sSpace, Black, White);
+			switch (ReadKey()) {
+			case 72:
+				k = (k - 1 + invSize) % invSize;
+				break;
+			case 80:
+				k = (k + 1 + invSize) % invSize;
+				break;
+			default:
+				break;
+			}
+			break;
+		case 13:
+			switch (dHero.invertory[k].type) {
+			case 0:
+				item = dHero.cweapon;
+				dHero.cweapon = dHero.invertory[k];
+				dHero.invertory[k] = item;
+				break;
+			case 1:
+				item = dHero.carmor;
+				dHero.carmor = dHero.invertory[k];
+				dHero.invertory[k] = item;
+				break;
+			default:
+				break;
+			}
+			break;
+		case 32:
+			dHero.invertory[k].type = -1;
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+void ShowCharacteristics(Hero &dHero) {
+	int dstrength = 0, ddexterity = 0, dintelligence = 0;
+	int k = 0;
+	short button = 0;
+	while (button != 27 && button != 67 && button != 99 && button != 145 && button != 225) {
+		Border(windowX, windowY, borderDelimiter);
+		SetString(2, 1, sRace + sDelimeter + sRaces[dHero.race], Black, White);
+		SetString(2, 2, sRadio + sStrength + sDelimeter + to_wstring(dHero.strength + dstrength), Black, White);
+		SetString(2, 3, sRadio + sDexterity + sDelimeter + to_wstring(dHero.dexterity + ddexterity), Black, White);
+		SetString(2, 4, sRadio + sIntelligence + sDelimeter + to_wstring(dHero.intelligence + dintelligence), Black, White);
+		SetString(2, 5, sMaxHP + sDelimeter + to_wstring(dHero.maxhp + dstrength), Black, White);
+		SetString(2, 6, sMulExp + sDelimeter + to_wstring(100 + dHero.intelligence + dintelligence) + sPercent, Black, White);
+		SetString(2, 7, sDodgeÑhance + sDelimeter + to_wstring(dHero.dexterity + ddexterity) + sPercent, Black, White);
+		SetString(2, 8, sVisDistance + sDelimeter + to_wstring(dHero.visDistance), Black, White);
+		SetString(2, 9, sDamage + sDelimeter + to_wstring(dHero.GetDamage() + dstrength), Black, White);
+		SetString(2, 10, sDefense + sDelimeter + to_wstring(dHero.GetDefense()), Black, White);
+		SetString(2, 11, sPoints + sDelimeter + to_wstring(dHero.cpoints), Black, White);
+		SetString(3, 2 + k, sAsterisk, Black, White);
+		ShowCharacteristicsHints(borderDelimiter + 2, 1);
+		Render();
+		button = ReadKey();
+		switch (button) {
+		case 224:
+			switch (ReadKey()) {
+			case 72:
+				k = (k - 1 + characteristicsNumber) % characteristicsNumber;
+				break;
+			case 80:
+				k = (k + 1 + characteristicsNumber) % characteristicsNumber;
+				break;
+			default:
+				break;
+			}
+			break;
+		case 61:
+		case 43:
+			if (dHero.cpoints > 0) {
+				switch (k) {
+				case 0:
+					dstrength++;
+					break;
+				case 1:
+					ddexterity++;
+					break;
+				case 2:
+					dintelligence++;
+					dHero.visDistance++;
+					break;
+				default:
+					break;
+				}
+				dHero.cpoints--;
+			}
+			break;
+		case 45:
+			switch (k) {
+			case 0:
+				if (dstrength > 0) {
+					dstrength--;
+					dHero.cpoints++;
+				}
+				break;
+			case 1:
+				if (ddexterity > 0) {
+					ddexterity--;
+					dHero.cpoints++;
+				}
+				break;
+			case 2:
+				if (dintelligence > 0) {
+					dintelligence--;
+					dHero.visDistance--;
+					dHero.cpoints++;
+				}
+				break;
+			default:
+				break;
+			}
+			break;
+		case 13:
+			dHero.strength += dstrength;
+			dHero.maxhp += dstrength;
+			dHero.hp += dstrength;
+			dHero.dexterity += ddexterity;
+			dHero.intelligence += dintelligence;
+			dstrength = 0;
+			ddexterity = 0;
+			dintelligence = 0;
+			break;
+		case 27:
+		case 67:
+		case 99:
+		case 145:
+		case 225:
+		case 32:
+			dHero.cpoints += dstrength;
+			dHero.cpoints += ddexterity;
+			dHero.cpoints += dintelligence;
+			dHero.visDistance -= dintelligence;
+			dstrength = 0;
+			ddexterity = 0;
+			dintelligence = 0;
+			break;
+		default:
+			break;
+		}
+	}
 }
 
 void Game(Map &dMap, Hero &dHero, NPC &dNPC, bool &dShowHints) {
@@ -146,13 +372,13 @@ void Game(Map &dMap, Hero &dHero, NPC &dNPC, bool &dShowHints) {
 			case 105:
 			case 152:
 			case 232:
-				dHero.ShowInventory(windowX, windowY);
+				ShowInventory(dHero, windowX, windowY);
 				break;
 			case 67:
 			case 99:
 			case 145:
 			case 225:
-				dHero.ShowCharacteristics();
+				ShowCharacteristics(dHero);
 				break;
 			case 87:
 			case 119:
@@ -255,4 +481,7 @@ int Menu(bool inGame, bool newVersion, wstring versionNum) {
 		return k;
 	else
 		return k + (1 - isSaveExistInt) + (3 - inGameInt);
+}
+
+void CreateHero(Hero &dHero) {
 }
