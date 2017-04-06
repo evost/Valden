@@ -556,6 +556,8 @@ void Settings() {
 			SetWindow(windowX, windowY, fontSize);
 			dfontSize = 0;
 			dmapVisY = 0;
+			CreateSaveDir(sSavePath);
+			SaveSettings(fontSize, mapVisY);
 			break;
 		case 32:
 			dfontSize = 0;

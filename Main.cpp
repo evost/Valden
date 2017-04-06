@@ -3,6 +3,13 @@
 
 int main() {
 	Init(sWindowName);
+	if (SaveExist(sSavePath + sSettingsSave)) {
+		LoadSettings(fontSize, mapVisY);
+		mapVisX = mapVisY * 2;
+		windowX = mapVisX + 32;
+		windowY = mapVisY + 1;
+		borderDelimiter = mapVisX + 1;
+	}
 	SetWindow(windowX, windowY, fontSize);
 	SetString(mapVisX / 2, mapVisY / 2, sLoading, Black, White);
 	Border(windowX, windowY, borderDelimiter);
