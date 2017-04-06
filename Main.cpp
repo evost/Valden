@@ -24,8 +24,6 @@ int main() {
 		switch (Menu(inGame, newVersion, versionNum)) {
 		case 4:
 			NewHero(VHero);
-			for (int i = 0; i < logSize; i++)
-				AddLog(sSpace);
 		case 2:
 			NewMap(VMap, VHero, VNPC);
 			inGame = true;
@@ -34,10 +32,22 @@ int main() {
 			if (VHero.hp <= 0) inGame = false;
 			break;
 		case 1:
-			//Save game
+			CreateSaveDir(sSavePath);
+			Save(VHero, sSavePath + sHeroSave);
+			SaveMap(VMap);
+			SaveNPC(VNPC);
 			break;
 		case 3:
-			//Load game
+			if (SaveExist(sSavePath + sHeroSave))
+				Load(VHero, sSavePath + sHeroSave);
+			else
+				NewHero(VHero);
+			if (SaveExist(sSavePath + sMapSave) && SaveExist(sSavePath + sSaveDin + sMapSave) && SaveExist(sSavePath + sNPCSave) && SaveExist(sSavePath + sSaveDin + sNPCSave)) {
+				LoadMap(VMap);
+				LoadNPC(VNPC, VMap);
+			} else
+				NewMap(VMap, VHero, VNPC);
+			inGame = true;
 			break;
 		case 5:
 			//Settings

@@ -79,6 +79,8 @@ void RenderWorld(Map &dMap, Hero &dHero, NPC &dNPC, bool hint) {
 }
 
 void NewHero(Hero &dHero) {
+	for (int i = 0; i < logSize; i++)
+		AddLog(sSpace);
 	Hero nHero;
 	dHero = nHero;
 	dHero.CreateHero();
