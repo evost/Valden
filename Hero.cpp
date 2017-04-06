@@ -212,6 +212,11 @@ void Hero::ShowCharacteristics() {
 			ddexterity = 0;
 			dintelligence = 0;
 			break;
+		case 27:
+		case 67:
+		case 99:
+		case 145:
+		case 225:
 		case 32:
 			cpoints += dstrength;
 			cpoints += ddexterity;
