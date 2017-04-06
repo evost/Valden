@@ -31,4 +31,6 @@ void SaveNPC(NPC &dNPC);
 void LoadNPC(NPC &dNPC, Map &dMap);
 void SaveMap(Map &dMap);
 void LoadMap(Map &dMap);
+void SaveSettings(short &fontSize, short &mapVisY);
+void LoadSettings(short &fontSize, short &mapVisY);
 double Distance(int x1, int y1, int x2, int y2);

@@ -104,6 +104,20 @@ void LoadMap(Map &dMap) {
 	dMap.MainMap = ddMap.MainMap;
 }
 
+void SaveSettings(short &fontSize, short &mapVisY) {
+	ofstream outf(sSavePath + sSettingsSave, ios::binary | ios::out);
+	outf << fontSize << ' ';
+	outf << mapVisY << ' ';
+	outf.close();
+}
+
+void LoadSettings(short &fontSize, short &mapVisY) {
+	ifstream inf(sSavePath + sSettingsSave, ios::binary | ios::in);
+	inf >> fontSize;
+	inf >> mapVisY;
+	inf.close();
+}
+
 double Distance(int x1, int y1, int x2, int y2) {
 	return sqrt(pow(abs(x1 - x2), 2) + pow(abs(y1 - y2), 2));
 }

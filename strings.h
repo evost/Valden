@@ -91,6 +91,7 @@ static wstring sLoading = L"Загрузка...";
 static wstring sMapSave = L"Map.sv";
 static wstring sHeroSave = L"Hero.sv";
 static wstring sNPCSave = L"NPC.sv";
+static wstring sSettingsSave = L"settings.sv";
 static wstring sSavePath = L"save/";
 static wstring sSaveDin = L"din.";
 static wstring sVersion[2] = { L"Страница проекта",  L"Вышла новая версия " };
