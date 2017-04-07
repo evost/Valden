@@ -6,13 +6,14 @@ Already implemented:
 - [x] Prehistory
 - [x] Fog of war
 - [x] Keyboard hints
+- [x] Save / load
+- [x] Display settings
 
 In developing:
 - [ ] NPC path searching
 - [ ] Game balance
 - [ ] New items
 - [ ] New hostile NPCs
-- [ ] Save / load
 - [ ] Expanding the characteristics of items
 - [ ] Trading
 - [ ] Colony management
@@ -21,7 +22,6 @@ In developing:
 - [ ] Cooperative mode
 - [ ] Stocks (chest, storage)
 - [ ] Classes (mage / archer)
-- [ ] Display settings
 - [ ] Traps
 - [ ] Health recovery system
 - [ ] Stamina and mana
