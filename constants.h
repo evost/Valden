@@ -46,9 +46,19 @@ const short LightMagenta = 13;
 const short Yellow = 14;
 const short White = 15;
 
-const int tree = 1;
-const int rock = 2;
-const int grass = 0;
+const int grassD = 0;
+const int grassL = 1;
+const int grassB = 2;
+const int sandD = 3;
+const int sandL = 4;
+const int sandB = 5;
+const int treeD = 6;
+const int treeL = 7;
+const int treeB = 8;
+const int rockD = 9;
+const int rockL = 10;
+const int rockW = 11;
+const int water = 12;
 
 const int bat = 0;
 const int goblin = 1;
@@ -56,7 +66,7 @@ const int goblin = 1;
 const int weapon = 0;
 const int armor = 1;
 
-const TTile Tiles[3] = { { 0, Green, '.' },{ 1, Green, '!' },{ 2, LightGray, 'o' } };
+const TTile Tiles[13] = {  { 0, Green, ',' }, { 1, LightGreen, ',' }, { 2, Brown, ',' }, { 3, Green, '.' },  { 4, LightGreen, '.' }, { 5, Green, '.' }, { 6, Green, '!' }, { 7, LightGreen, '!' }, { 8, Brown, '!' }, { 9, DarkGray, 'o' }, { 10, LightGray, 'o' }, { 11, White, 'o' } , { 12, Blue, '~' } };
 const TTile NPC_tiles[2] = { { 0, Brown, '^' },{ 1, Yellow, 'g' } };
 const TNPC NPC_types[2] = { { 0, 3, 2, 1, 5, 3, 1, 3, 0, 0 },{ 1, 5, 3, 3, 7, 5, 2, 4, 0, 0 } };
 

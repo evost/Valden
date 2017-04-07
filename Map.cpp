@@ -18,13 +18,30 @@ Map::Map(int width, int height) {
 		for (int y = 0; y <= Height; y++) {
 			MainMap[x][y].isVisible = false;
 			int chance = rand() % 100 + 1;
-			if (chance > 75)
-				if (chance > 90)
-					MainMap[x][y] = Tiles[rock];
-				else
-					MainMap[x][y] = Tiles[tree];
+			if (chance <= 13)
+				MainMap[x][y] = Tiles[grassD];
+			else if (chance <= 26)
+				MainMap[x][y] = Tiles[grassB];
+			else if (chance <= 38)
+				MainMap[x][y] = Tiles[grassL];
+			else if (chance <= 51)
+				MainMap[x][y] = Tiles[sandD];
+			else if (chance <= 64)
+				MainMap[x][y] = Tiles[sandB];
+			else if (chance <= 76)
+				MainMap[x][y] = Tiles[sandL];
+			else if (chance <= 82)
+				MainMap[x][y] = Tiles[treeD];
+			else if (chance <= 87)
+				MainMap[x][y] = Tiles[treeB];
+			else if (chance <= 91)
+				MainMap[x][y] = Tiles[treeL];
+			else if (chance <= 95)
+				MainMap[x][y] = Tiles[rockD];
+			else if (chance <= 98)
+				MainMap[x][y] = Tiles[rockL];
 			else
-				MainMap[x][y] = Tiles[grass];
+				MainMap[x][y] = Tiles[rockW];
 		}
 	}
 }
@@ -37,7 +54,10 @@ void Map::GetMap() {
 }
 
 bool Map::IsFree(int x, int y) {
-	return !MainMap[x][y].type;
+	if (MainMap[x][y].type > 5)
+		return false;
+	else
+		return true;
 }
 
 void Map::SetVisible(int x, int y) {
