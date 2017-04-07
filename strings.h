@@ -86,6 +86,7 @@ static wstring skEnter = L"Enter";
 static wstring skSpace = L"Space";
 static wstring skTab = L"Tab";
 static wstring sX = L"x";
+static wstring sPlus = L" +";
 static wstring sLoading = L"Загрузка...";
 static wstring sMapSave = L"Map.sv";
 static wstring sHeroSave = L"Hero.sv";

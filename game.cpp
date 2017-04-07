@@ -175,27 +175,52 @@ void NewMap(Map &dMap, Hero &dHero, NPC &dNPC) {
 	dHero.SetVisibleCells(dMap);
 }
 
+void ShowItemInfo(TItem item) {
+	SetString(2, windowY - 7, sDamage + sPlus + to_wstring(item.damage), Black, White);
+	SetString(2, windowY - 6, sDefense + sPlus + to_wstring(item.defense), Black, White);
+	SetString(2, windowY - 5, sStrength + sPlus + to_wstring(item.dstrength), Black, White);
+	SetString(2, windowY - 4, sDexterity + sPlus + to_wstring(item.ddexterity), Black, White);
+	SetString(2, windowY - 3, sIntelligence + sPlus + to_wstring(item.dintelligence), Black, White);
+	SetString(2, windowY - 2, sHP + sPlus + to_wstring(item.dmaxhp), Black, White);
+}
+
 void ShowInventory(Hero &dHero, short x, short y) {
 	int k = 0;
 	short button = 0;
 	TItem item;
 	while (button != 27 && button != 73 && button != 105 && button != 152 && button != 232) {
 		Border(windowX, windowY, borderDelimiter);
+		if (k < 2)
+			switch (k) {
+			case 0:
+				ShowItemInfo(dHero.cweapon);
+				break;
+			case 1:
+				ShowItemInfo(dHero.carmor);
+				break;
+			default:
+				break;
+			}
+		else if (dHero.invertory[k - 2].type != -1)
+			ShowItemInfo(dHero.invertory[k - 2]);
 		if (dHero.cweapon.type == -1)
-			SetString(2, 1, sCWeapon + sLack, Black, White);
+			SetString(2, 1, sRadio + sCWeapon + sLack, Black, White);
 		else
-			SetString(2, 1, sCWeapon + sItems[dHero.cweapon.id], Black, White);
-		if (dHero.cweapon.type == -1)
-			SetString(2, 2, sCArmor + sLack, Black, White);
+			SetString(2, 1, sRadio + sCWeapon + sItems[dHero.cweapon.id], Black, White);
+		if (dHero.carmor.type == -1)
+			SetString(2, 2, sRadio + sCArmor + sLack, Black, White);
 		else
-			SetString(2, 2, sCArmor + sItems[dHero.carmor.id], Black, White);
+			SetString(2, 2, sRadio + sCArmor + sItems[dHero.carmor.id], Black, White);
 		for (int i = 0; i < invSize; i++)
 			if (dHero.invertory[i].type == -1)
 				SetString(2, 4 + i, sRadio + sLack, Black, White);
 			else
 				SetString(2, 4 + i, sRadio + sItems[dHero.invertory[i].id], Black, White);
 		ShowInventoryHints(borderDelimiter + 2, 1);
-		SetString(3, 4 + k, sAsterisk, Black, White);
+		if (k < 2)
+			SetString(3, 1 + k, sAsterisk, Black, White);
+		else
+			SetString(3, 2 + k, sAsterisk, Black, White);
 		Render();
 		button = ReadKey();
 		switch (button) {
@@ -203,33 +228,62 @@ void ShowInventory(Hero &dHero, short x, short y) {
 			SetString(3, 4 + k, sSpace, Black, White);
 			switch (ReadKey()) {
 			case 72:
-				k = (k - 1 + invSize) % invSize;
+				k = (k - 1 + (invSize + 2)) % (invSize + 2);
 				break;
 			case 80:
-				k = (k + 1 + invSize) % invSize;
+				k = (k + 1 + (invSize + 2)) % (invSize + 2);
 				break;
 			default:
 				break;
 			}
 			break;
 		case 13:
-			switch (dHero.invertory[k].type) {
-			case 0:
-				item = dHero.cweapon;
-				dHero.cweapon = dHero.invertory[k];
-				dHero.invertory[k] = item;
-				break;
-			case 1:
-				item = dHero.carmor;
-				dHero.carmor = dHero.invertory[k];
-				dHero.invertory[k] = item;
-				break;
-			default:
-				break;
+			if (k < 2) {
+				for (int i = 0; i < invSize; i++)
+					if (dHero.invertory[i].type == -1)
+						switch (k) {
+						case 0:
+							dHero.invertory[i] = dHero.cweapon;
+							dHero.cweapon.type = -1;
+							break;
+						case 1:
+							dHero.invertory[i] = dHero.carmor;
+							dHero.carmor.type = -1;
+							break;
+						default:
+							break;
+						}
 			}
+			else
+				switch (dHero.invertory[k - 2].type) {
+				case 0:
+					item = dHero.cweapon;
+					dHero.cweapon = dHero.invertory[k - 2];
+					dHero.invertory[k - 2] = item;
+					break;
+				case 1:
+					item = dHero.carmor;
+					dHero.carmor = dHero.invertory[k - 2];
+					dHero.invertory[k - 2] = item;
+					break;
+				default:
+					break;
+				}
 			break;
 		case 32:
-			dHero.invertory[k].type = -1;
+			if (k < 2)
+				switch (k) {
+				case 0:
+					dHero.cweapon.type = -1;
+					break;
+				case 1:
+					dHero.carmor.type = -1;
+					break;
+				default:
+					break;
+				}
+			else
+				dHero.invertory[k - 2].type = -1;
 			break;
 		default:
 			break;
