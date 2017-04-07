@@ -5,12 +5,12 @@
 using namespace std;
 
 static wstring sCoordinates = L"Координаты";
-static wstring sHP = L"Здоровье  ";
-static wstring sXP = L"Опыт      ";
-static wstring sStrength = L"Сила     ";
-static wstring sDexterity = L"Ловкость ";
+static wstring sHP = L"Здоровье";
+static wstring sXP = L"Опыт";
+static wstring sStrength = L"Сила";
+static wstring sDexterity = L"Ловкость";
 static wstring sIntelligence = L"Интеллект";
-static wstring sLevel = L"Уровень   ";
+static wstring sLevel = L"Уровень";
 static wstring sMonsters[2] = { L"Летучий мыш", L"Гоблин" };
 static wstring sCWeapon = L"Оружие : ";
 static wstring sCArmor = L"Броня  : ";
@@ -38,7 +38,7 @@ static wstring sSelect = L"Выбор";
 static wstring sUse = L"Использовать";
 static wstring sDelete = L"Выкинуть";
 static wstring sBack = L"Назад";
-static wstring sDamage = L"Урон  ";
+static wstring sDamage = L"Урон";
 static wstring sDefense = L"Защита";
 static wstring sMaxHP = L"Максимальное здоровье";
 static wstring sPoints = L"Очки";
@@ -66,7 +66,6 @@ static wstring sRaceDwarf = L"Дварф (+ к силе и интеллекту)
 static wstring sRaceElf = L"Эльф (+ к силе и ловкости)";
 static wstring sRace = L"Раса";
 static wstring sRaces[3] = { L"Человек", L"Дварф", L"Эльф" };
-
 static wstring sDelimeter = L": ";
 static wstring sSlash = L" / ";
 static wstring sComma = L", ";
