@@ -1,5 +1,5 @@
 #include "Map.h"
-#include "io.h"
+#include "Game.h"
 
 Map::Map(int width, int height) {
 	curX = 0;
@@ -44,6 +44,27 @@ Map::Map(int width, int height) {
 				MainMap[x][y] = Tiles[rockW];
 		}
 	}
+	for (int i = 0; i < width * height / 1000; i++) {
+		int x = rand() % width;
+		int y = rand() % height;
+		int r = rand() % 5 + 3;
+		for (int mx = x - r; mx <= x + r; mx++)
+			for (int my = y - r; my <= y + r; my++)
+				if (mx >= 0 && my >= 0 && mx <= Width && my <= Height && Distance(mx, my, x, y) <= r)
+					if (Distance(mx, my, x, y) >= r - 2)
+						MainMap[mx][my] = Tiles[waterL];
+					else
+						MainMap[mx][my] = Tiles[waterD];
+		int x0 = x + rand() % (2 * r) - r;
+		int y0 = y + rand() % (2 * r) - r;
+		for (int mx = x0 - r; mx <= x0 + r; mx++)
+			for (int my = y0 - r; my <= y0 + r; my++)
+				if (mx >= 0 && my >= 0 && mx <= Width && my <= Height && Distance(mx, my, x0, y0) <= r)
+					if (Distance(mx, my, x0, y0) >= r - 2 && Distance(mx, my, x, y) >= r - 1)
+						MainMap[mx][my] = Tiles[waterL];
+					else
+						MainMap[mx][my] = Tiles[waterD];
+	}
 }
 
 void Map::GetMap() {
@@ -54,7 +75,7 @@ void Map::GetMap() {
 }
 
 bool Map::IsFree(int x, int y) {
-	if (MainMap[x][y].type > 5)
+	if (MainMap[x][y].type > waterL)
 		return false;
 	else
 		return true;
