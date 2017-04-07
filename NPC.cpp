@@ -31,7 +31,7 @@ bool NPC::NoNPCs(short x, short y) {
 
 void NPC::NPCstep(Map &dMap, Hero &dHero) {
 	for (int i = 0; i < NPCk; i++)
-		if (NPCs[i].hp > 0) {
+		if (NPCs[i].hp > 0 && dHero.hp > 0) {
 			if (abs(NPCs[i].x - dHero.x) + abs(NPCs[i].y - dHero.y) == 1) {
 				if (rand() % 100 >= dHero.dexterity) {
 					if (NPCs[i].strength - dHero.GetDefense() > 0) {
