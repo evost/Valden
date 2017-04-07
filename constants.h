@@ -13,7 +13,7 @@ extern short windowY;
 extern short borderDelimiter;
 extern short fontSize;
 
-const int invSize = 9;
+const int invSize = 20;
 const int startSkill = 5;
 const int startSkillRandom = 5;
 const int startHp = 10;
