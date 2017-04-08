@@ -10,6 +10,7 @@ public:
 	TItem carmor, cweapon;
 	TItem invertory[invSize];
 	int x, y;
+	int killed;
 	int hp, strength, dexterity, intelligence, maxhp, maxxp, level, cpoints, race, visDistance;
 	Hero();
 	void GetHero(Map &dMap);

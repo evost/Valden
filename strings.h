@@ -74,6 +74,7 @@ static wstring sDamage = L"Урон";
 static wstring sDefense = L"Защита";
 static wstring sMaxHP = L"Максимальное здоровье";
 static wstring sPoints = L"Очки";
+static wstring sKilled = L"Убито";
 static wstring sAccept = L"Принять";
 static wstring sClear = L"Очистить";
 static wstring sIncrease = L"Увеличить";

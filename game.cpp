@@ -308,6 +308,7 @@ void ShowCharacteristics(Hero &dHero) {
 		SetString(2, 9, sDamage + sDelimeter + to_wstring(dHero.GetDamage() + dstrength), Black, White);
 		SetString(2, 10, sDefense + sDelimeter + to_wstring(dHero.GetDefense()), Black, White);
 		SetString(2, 11, sPoints + sDelimeter + to_wstring(dHero.cpoints), Black, White);
+		SetString(2, 11, sKilled + sDelimeter + to_wstring(dHero.killed), Black, White);
 		SetString(3, 2 + k, sAsterisk, Black, White);
 		ShowCharacteristicsHints(borderDelimiter + 2, 1);
 		Render();

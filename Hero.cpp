@@ -6,6 +6,7 @@ Hero::Hero() {
 	dexterity = startSkill + rand() % startSkillRandom;
 	intelligence = startSkill + rand() % startSkillRandom;
 	level = 1;
+	killed = 0;
 	cpoints = 0;
 	maxhp = startHp + strength;
 	hp = maxhp;
@@ -65,6 +66,7 @@ int Hero::GetDefense() {
 
 void Hero::ExpInc(float dxp) {
 	if (dxp > 0) {
+		killed++;
 		dxp += (dxp*intelligence) / 100;
 		xp += dxp;
 		AddLog(sIncExp1 + FloatToWstring(dxp) + sIncExp2);
