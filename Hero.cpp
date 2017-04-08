@@ -6,7 +6,7 @@ Hero::Hero() {
 	dexterity = startSkill + rand() % startSkillRandom;
 	intelligence = startSkill + rand() % startSkillRandom;
 	level = 1;
-	cpoints = newLevelPoints;
+	cpoints = 0;
 	maxhp = startHp + strength;
 	hp = maxhp;
 	xp = 0;
