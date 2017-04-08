@@ -12,12 +12,10 @@ Hero::Hero() {
 	xp = 0;
 	maxxp = XP_table[level - 1];
 	visDistance = heroStartVisDistance + intelligence;
-	carmor = armor1;
-	cweapon = sword1;
+	cweapon = Items[0];
+	carmor = Items[1];
 	for (int i = 0; i < invSize; i++)
 		invertory[i].type = -1;
-	invertory[0] = spear1;
-	invertory[1] = armor2;
 	x = 0;
 	y = 0;
 }
@@ -77,18 +75,16 @@ void Hero::ExpInc(float dxp) {
 			AddLog(sNewLevel);
 			cpoints += newLevelPoints;
 		}
-		if (rand() % 100 < 10)
+		if (rand() % 100 < 30)
 			for (int i = 0; i < invSize; i++)
 				if (invertory[i].type == -1) {
-					int random = rand() % 100;
-					if (random < 50)
-						invertory[i] = spear1;
-					else if (random < 75)
-						invertory[i] = armor2;
-					else if (random < 90)
-						invertory[i] = sword2;
-					else
-						invertory[i] = armor3;
+					int min = 2 * (level - 2);
+					int max = level * 2 + 1;
+					if (max > itemsNum) max = itemsNum;
+					if (min < 0) min = 0;
+					if (min > max) min = max - 1;
+					int random = rand() % (max - min + 1) + min;
+					invertory[i] = Items[random];
 					AddLog(sReceived + sItems[invertory[i].id]);
 					break;
 				}

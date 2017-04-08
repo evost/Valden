@@ -36,7 +36,28 @@ static wstring sDodged = L" увернулся!";
 static wstring sHeroDodged = L"Вы увернулись от ";
 static wstring sNoDamage = L" не пробил защиту";
 static wstring sReceived = L"Получено ";
-static wstring sItems[6] = { L"Железный меч", L"Копье", L"Стальной меч", L"Кожанная броня", L"Кольчуга", L"Латные доспехи" };
+static wstring sItems[itemsNum] = {
+	L"Дубина",
+	L"Крестьянская одежда",
+	L"Кинжал",
+	L"Меховой плащ",
+	L"Топор",
+	L"Стеганка",
+	L"Палица",
+	L"Кожанная броня",
+	L"Копье",
+	L"Клепаная броня",
+	L"Булава",
+	L"Кольчуга",
+	L"Боевой топор",
+	L"Железный доспех",
+	L"Железный меч",
+	L"Пластинчатый доспех",
+	L"Боевой молот",
+	L"Стальной доспех",
+	L"Стальной меч",
+	L"Латный доспех"
+};
 static wstring sMotion = L"Движение";
 static wstring sAttack = L"Атака";
 static wstring sInventory = L"Инвентарь";
