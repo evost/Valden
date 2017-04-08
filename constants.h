@@ -61,16 +61,61 @@ const int rockL = 11;
 const int rockW = 12;
 const int waterD = 13;
 
-const int bat = 0;
-const int goblin = 1;
+const int NPCTypesNum = 10;
+const int rat = 0;
+const int vepr = 1;
+const int wolf = 2;
+const int goblin = 3;
+const int gnoll = 4;
+const int bear = 5;
+const int Ork = 6;
+const int Troll = 7;
+const int Werewolf = 8;
+const int Ogr = 9;
 
 const int weapon = 0;
 const int armor = 1;
 
-const TTile Tiles[14] = {  { 0, Green, ',' }, { 1, LightGreen, ',' }, { 2, Brown, ',' }, { 3, Green, '.' },  { 4, LightGreen, '.' }, { 5, Green, '.' }, { 6, LightBlue, '~' }, { 7, Green, '!' }, { 8, LightGreen, '!' }, { 9, Brown, '!' }, { 10, DarkGray, 'o' }, { 11, LightGray, 'o' }, { 12, White, 'o' }, { 13, Blue, '~' } };
-const TTile NPC_tiles[2] = { { 0, Brown, '^' },{ 1, Yellow, 'g' } };
-const TNPC NPC_types[2] = { { 0, 3, 2, 1, 5, 3, 1, 3, 0, 0 },{ 1, 5, 3, 3, 7, 5, 2, 4, 0, 0 } };
-
+const TTile NPC_tiles[NPCTypesNum] = {
+	{ 0, DarkGray, '^' },
+	{ 1, Brown, 'm' },
+	{ 2, White, 'w' },
+	{ 3, Yellow, 'g' },
+	{ 4, Brown, 'n' },
+	{ 5, Brown, 'M' },
+	{ 6, Yellow, 'c' },
+	{ 7, Yellow, '&' },
+	{ 8, LightGray, 'W' },
+	{ 9, Yellow, 'G' }
+};
+const TNPC NPC_types[NPCTypesNum] = {
+	{ 0, 4,  2, 2, 5, 4,  1, 3, 0, 0 },
+	{ 1, 8,  3, 4, 3, 8,  2, 3, 0, 0 },
+	{ 2, 16, 4, 5, 5, 16, 3, 3, 0, 0 },
+	{ 3, 20, 5, 7, 5, 20, 4, 4, 0, 0 },
+	{ 4, 24, 6, 10, 4, 24, 5, 4, 0, 0 },
+	{ 5, 28, 7, 12, 2, 28, 6, 4, 0, 0 },
+	{ 6, 32, 8, 15, 6, 32, 7, 5, 0, 0 },
+	{ 7, 36, 9, 19, 3, 36, 8, 5, 0, 0 },
+	{ 8, 40, 10, 22, 7, 40, 9, 5, 0, 0 },
+	{ 9, 44, 11, 26, 2, 44, 10, 6, 0, 0 }
+};
+const TTile Tiles[14] = {
+	{ 0, Green, ',' },
+	{ 1, LightGreen, ',' },
+	{ 2, Brown, ',' },
+	{ 3, Green, '.' },
+	{ 4, LightGreen, '.' },
+	{ 5, Green, '.' },
+	{ 6, LightBlue, '~' },
+	{ 7, Green, '!' },
+	{ 8, LightGreen, '!' },
+	{ 9, Brown, '!' },
+	{ 10, DarkGray, 'o' },
+	{ 11, LightGray, 'o' },
+	{ 12, White, 'o' },
+	{ 13, Blue, '~' }
+};
 const TItem sword1 = { 0, 2, 0, 0, 0, 0, 0 , 0 };
 const TItem spear1 = { 0, 4, 0, 0, 0, 0, 0 , 1 };
 const TItem sword2 = { 0, 8, 0, 0, 0, 0, 0 , 2 };

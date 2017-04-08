@@ -1,14 +1,21 @@
 #include "NPC.h"
 #include "game.h"
 
-NPC::NPC(int k, Map &dMap) {
+NPC::NPC(int k, Map &dMap, int heroLevel) {
 	NPCs = (TNPC*)malloc(k * sizeof(TNPC));
 	NPCk = k;
 	for (int i = 0; i < k; i++) {
-		if (rand() % 100 < 70)
-			NPCs[i] = NPC_types[bat];
+		int l1 = heroLevel - 2, l2 = heroLevel - 1, l3 = heroLevel;
+		if (l1 < 0) l1 = 0;
+		if (l2 > NPCTypesNum - 1) l2 = NPCTypesNum - 1;
+		if (l3 > NPCTypesNum - 1) l3 = NPCTypesNum - 1;
+		int random = rand() % 100;
+		if (random < 50)
+			NPCs[i] = NPC_types[l1];
+		else if (random < 83)
+			NPCs[i] = NPC_types[l2];
 		else
-			NPCs[i] = NPC_types[goblin];
+			NPCs[i] = NPC_types[l3];
 		do {
 			NPCs[i].x = rand() % (dMap.Width - 4) + 2;
 			NPCs[i].y = rand() % (dMap.Height - 4) + 2;

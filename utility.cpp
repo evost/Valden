@@ -66,7 +66,7 @@ void SaveNPC(NPC &dNPC) {
 
 void LoadNPC(NPC &dNPC, Map &dMap) {
 	Load(dNPC, sSavePath + sNPCSave);
-	NPC ddNPC(dNPC.NPCk, dMap);
+	NPC ddNPC(dNPC.NPCk, dMap, 1);
 	ifstream inf(sSavePath + sSaveDin + sNPCSave, ios::binary | ios::in);
 	for (int i = 0; i < ddNPC.NPCk; i++) {
 		inf >> ddNPC.NPCs[i].type;

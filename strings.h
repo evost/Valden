@@ -11,7 +11,18 @@ static wstring sStrength = L"Сила";
 static wstring sDexterity = L"Ловкость";
 static wstring sIntelligence = L"Интеллект";
 static wstring sLevel = L"Уровень";
-static wstring sMonsters[2] = { L"Летучий мыш", L"Гоблин" };
+static wstring sMonsters[NPCTypesNum] = { 
+	L"Крыс",
+	L"Вепрь",
+	L"Волк",
+	L"Гоблин",
+	L"Гнолл",
+	L"Медведь",
+	L"Орк",
+	L"Тролль",
+	L"Волколак",
+	L"Огр"
+};
 static wstring sCWeapon = L"Оружие : ";
 static wstring sCArmor = L"Броня  : ";
 static wstring sIncExp1 = L"Получено ";
