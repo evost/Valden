@@ -40,6 +40,7 @@ void SetWindow(short x, short y, short fontSize) {
 	SetConsoleScreenBufferSize(hStdOut, { x + 1, y + 1 });
 	SetConsoleWindowInfo(hStdOut, true, &src);
 	SetConsoleScreenBufferSize(hStdOut, { x + 1, y + 1 });
+	SetConsoleWindowInfo(hStdOut, true, &src);
 	free(buffer);
 	buffer = (CHAR_INFO*)malloc((x + 1) * (y + 1) * sizeof(CHAR_INFO));
 	Clear();
