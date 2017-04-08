@@ -77,16 +77,21 @@ void Hero::ExpInc(float dxp) {
 			AddLog(sNewLevel);
 			cpoints += newLevelPoints;
 		}
-		if (rand() % 100 < 30)
+		int chance = rand() % 100;
+		if (chance < 33)
 			for (int i = 0; i < invSize; i++)
 				if (invertory[i].type == -1) {
-					int min = 2 * (level - 2);
-					int max = level * 2 + 1;
-					if (max > itemsNum) max = itemsNum;
-					if (min < 0) min = 0;
-					if (min > max) min = max - 1;
-					int random = rand() % (max - min + 1) + min;
-					invertory[i] = Items[random];
+					if (chance < 8)
+						invertory[i] = poultices[chance % 3];
+					else {
+						int min = 2 * (level - 2);
+						int max = level * 2 + 1;
+						if (max > itemsNum) max = itemsNum;
+						if (min < 0) min = 0;
+						if (min > max) min = max - 1;
+						int random = rand() % (max - min + 1) + min;
+						invertory[i] = Items[random];
+					}
 					AddLog(sReceived + sItems[invertory[i].id]);
 					break;
 				}

@@ -242,11 +242,11 @@ void ShowInventory(Hero &dHero, short x, short y) {
 				for (int i = 0; i < invSize; i++)
 					if (dHero.invertory[i].type == -1)
 						switch (k) {
-						case 0:
+						case weapon:
 							dHero.invertory[i] = dHero.cweapon;
 							dHero.cweapon.type = -1;
 							break;
-						case 1:
+						case armor:
 							dHero.invertory[i] = dHero.carmor;
 							dHero.carmor.type = -1;
 							break;
@@ -256,15 +256,20 @@ void ShowInventory(Hero &dHero, short x, short y) {
 			}
 			else
 				switch (dHero.invertory[k - 2].type) {
-				case 0:
+				case weapon:
 					item = dHero.cweapon;
 					dHero.cweapon = dHero.invertory[k - 2];
 					dHero.invertory[k - 2] = item;
 					break;
-				case 1:
+				case armor:
 					item = dHero.carmor;
 					dHero.carmor = dHero.invertory[k - 2];
 					dHero.invertory[k - 2] = item;
+					break;
+				case poultice:
+					dHero.hp += dHero.invertory[k - 2].dmaxhp;
+					if (dHero.hp > dHero.maxhp) dHero.hp = dHero.maxhp;
+					dHero.invertory[k - 2].type = -1;
 					break;
 				default:
 					break;
@@ -273,10 +278,10 @@ void ShowInventory(Hero &dHero, short x, short y) {
 		case 32:
 			if (k < 2)
 				switch (k) {
-				case 0:
+				case weapon:
 					dHero.cweapon.type = -1;
 					break;
-				case 1:
+				case armor:
 					dHero.carmor.type = -1;
 					break;
 				default:

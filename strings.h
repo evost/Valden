@@ -36,7 +36,7 @@ static wstring sDodged = L" увернулся!";
 static wstring sHeroDodged = L"Вы увернулись от ";
 static wstring sNoDamage = L" не пробил защиту";
 static wstring sReceived = L"Получено ";
-static wstring sItems[itemsNum] = {
+static wstring sItems[itemsNum + poulticeNum] = {
 	L"Дубина",
 	L"Крестьянская одежда",
 	L"Кинжал",
@@ -56,7 +56,10 @@ static wstring sItems[itemsNum] = {
 	L"Боевой молот",
 	L"Стальной доспех",
 	L"Стальной меч",
-	L"Латный доспех"
+	L"Латный доспех",
+	L"Малая припарка",
+	L"Средняя припарка",
+	L"Большая припарка"
 };
 static wstring sMotion = L"Движение";
 static wstring sAttack = L"Атака";
