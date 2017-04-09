@@ -77,10 +77,10 @@ void Hero::ExpInc(float dxp) {
 			cpoints += newLevelPoints;
 		}
 		int chance = rand() % 100;
-		if (chance < 25)
+		if (chance < 34)
 			for (int i = 0; i < invSize; i++)
 				if (invertory[i].type == blank) {
-					if (chance < 5)
+					if (chance < 11)
 						invertory[i] = poultices[chance % poulticeNum];
 					else {
 						int min = 2 * (level - 2);
