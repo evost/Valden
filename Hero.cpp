@@ -28,8 +28,13 @@ void Hero::GetHero(Map &dMap) {
 void Hero::SetVisibleCells(Map &dMap) {
 	for (int mx = x - visDistance; mx <= x + visDistance; mx++)
 		for (int my = y - visDistance; my <= y + visDistance; my++)
-			if (mx >= 0 && my >= 0 && mx <= dMap.Width && my <= dMap.Height && Distance(mx, my, x, y) <= visDistance)
-				dMap.SetVisible(mx, my);
+			if (mx >= 0 && my >= 0 && mx <= dMap.Width && my <= dMap.Height && Distance(mx, my, x, y) <= visDistance) {
+				if (dMap.MainMap[mx][my].type >= minTrap && dMap.MainMap[mx][my].type < trapKnown && dMap.MainMap[mx][my].isVisible == false && (rand() % 100 < intelligence)) {
+					AddLog(sSeeTrap);
+					dMap.MainMap[mx][my] = Tiles[trapKnown];
+				}
+				dMap.MainMap[mx][my].isVisible = true;
+			}
 }
 
 void Hero::HeroStep(short dx, short dy, Map &dMap) {
@@ -47,6 +52,27 @@ void Hero::HeroStep(short dx, short dy, Map &dMap) {
 		else if (((y - dMap.curY) < scrollDist) && (dMap.curY > 0))
 			dMap.curY--;
 		SetVisibleCells(dMap);
+		if (dMap.MainMap[x][y].type >= minTrap && dMap.MainMap[x][y].type <= trapKnown)
+			if (rand() % 100 < (dexterity + intelligence) * trapDisarmpc) {
+				AddLog(sDisarmTrap);
+				dMap.MainMap[x][y] = Tiles[trapUsed];
+			}
+			else {
+				AddLog(sFallTrap);
+				dMap.MainMap[x][y] = Tiles[trapUsed];
+				int damage = (int)(hp * trapHPpc);
+				if (hp > 1 && damage >= hp)
+					damage = hp - 1;
+				else if (damage >= hp)
+					damage = hp;
+				if (damage == 0) damage = 1;
+				hp -= damage;
+				AddLog(sReceived + to_wstring(damage) + sDamageToHero2);
+				if (hp <= 0) {
+					hp = 0;
+					AddLog(sDeath);
+				}
+			}
 	}
 }
 
@@ -69,7 +95,7 @@ void Hero::ExpInc(float dxp) {
 		killed++;
 		dxp += (dxp*intelligence) / 100;
 		xp += dxp;
-		AddLog(sIncExp1 + FloatToWstring(dxp) + sIncExp2);
+		AddLog(sReceived + FloatToWstring(dxp) + sIncExp);
 		if (xp >= XP_table[level - 1] && level < maxLevel) {
 			level++;
 			maxxp = XP_table[level - 1];

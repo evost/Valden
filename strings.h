@@ -11,7 +11,7 @@ static wstring sStrength = L"Сила";
 static wstring sDexterity = L"Ловкость";
 static wstring sIntelligence = L"Интеллект";
 static wstring sLevel = L"Уровень";
-static wstring sMonsters[NPCTypesNum] = { 
+static wstring sMonsters[NPCTypesNum] = {
 	L"Крыс",
 	L"Вепрь",
 	L"Волк",
@@ -25,8 +25,7 @@ static wstring sMonsters[NPCTypesNum] = {
 };
 static wstring sCWeapon = L"Оружие : ";
 static wstring sCArmor = L"Броня  : ";
-static wstring sIncExp1 = L"Получено ";
-static wstring sIncExp2 = L" опыта";
+static wstring sIncExp = L" опыта";
 static wstring sNewLevel = L"Новый уровень!";
 static wstring sDamageToEnemy = L"Нанесен урон ";
 static wstring sDamageToHero1 = L" нанес ";
@@ -36,6 +35,9 @@ static wstring sDodged = L" увернулся!";
 static wstring sHeroDodged = L"Вы увернулись от ";
 static wstring sNoDamage = L" не пробил защиту";
 static wstring sReceived = L"Получено ";
+static wstring sSeeTrap = L"Вы обнаружили ловушку";
+static wstring sDisarmTrap = L"Вы обезвредили ловушку";
+static wstring sFallTrap = L"Вы попали в ловушку";
 static wstring sItems[itemsNum + poulticeNum] = {
 	L"Дубина",
 	L"Крестьянская одежда",
@@ -66,6 +68,8 @@ static wstring sAttack = L"Атака";
 static wstring sInventory = L"Инвентарь";
 static wstring sCharacteristics = L"Характеристики";
 static wstring sDodgeСhance = L"Шанс увернуться";
+static wstring sSeeTrapChance = L"Шанс заметить ловушку";
+static wstring sDisarmTrapChance = L"Шанс обезвредить ловушку";
 static wstring sMenu = L"Меню";
 static wstring sInfo = L"Информация";
 static wstring sHints = L"Управление";
@@ -85,7 +89,7 @@ static wstring sDecrease = L"Уменьшить";
 static wstring sMulExp = L"Множитель опыта";
 static wstring sVisDistance = L"Дальность обзора";
 static wstring sSkip = L"Пропуск хода";
-static wstring sDeath = L"Вы убиты!";
+static wstring sDeath = L"Герой мертв!";
 static wstring sContinue = L"Продолжить";
 static wstring sSave = L"Сохранить";
 static wstring sLoad = L"Загрузить";

@@ -12,7 +12,6 @@ extern short windowX;
 extern short windowY;
 extern short borderDelimiter;
 extern short fontSize;
-
 const int invSize = 20;
 const int startSkill = 5;
 const int startSkillRandom = 5;
@@ -28,7 +27,6 @@ const int logSize = 16;
 const int logoSize = 5;
 const int historySize = 24;
 const int copyrightSize = 2;
-
 const short Black = 0;
 const short Blue = 1;
 const short Green = 2;
@@ -45,22 +43,6 @@ const short LightRed = 12;
 const short LightMagenta = 13;
 const short Yellow = 14;
 const short White = 15;
-
-const int grassD = 0;
-const int grassL = 1;
-const int grassB = 2;
-const int sandD = 3;
-const int sandL = 4;
-const int sandB = 5;
-const int waterL = 6;
-const int treeD = 7;
-const int treeL = 8;
-const int treeB = 9;
-const int rockD = 10;
-const int rockL = 11;
-const int rockW = 12;
-const int waterD = 13;
-
 const int NPCTypesNum = 10;
 const int rat = 0;
 const int vepr = 1;
@@ -72,12 +54,6 @@ const int Ork = 6;
 const int Troll = 7;
 const int Werewolf = 8;
 const int Ogr = 9;
-
-const int blank = -1;
-const int weapon = 0;
-const int armor = 1;
-const int poultice = 2;
-
 const TTile NPC_tiles[NPCTypesNum] = {
 	{ 0, DarkGray, '^' },
 	{ 1, Brown, 'm' },
@@ -102,23 +78,55 @@ const TNPC NPC_types[NPCTypesNum] = {
 	{ 8, 40, 10, 22, 7, 40, 9, 5, 0, 0 },
 	{ 9, 44, 11, 26, 2, 44, 10, 6, 0, 0 }
 };
-const TTile Tiles[14] = {
+const int tilesNum = 19;
+const int grassD = 0;
+const int grassL = 1;
+const int grassB = 2;
+const int sandD = 3;
+const int sandL = 4;
+const int sandB = 5;
+const int trapGrassD = 6;
+const int trapGrassL = 7;
+const int trapGrassB = 8;
+const int trapKnown = 9;
+const int trapUsed = 10;
+const int waterL = 11;
+const int treeD = 12;
+const int treeL = 13;
+const int treeB = 14;
+const int rockD = 15;
+const int rockL = 16;
+const int rockW = 17;
+const int waterD = 18;
+const int minTrap = trapGrassD;
+const double trapHPpc = 0.15;
+const double trapDisarmpc = 0.5;
+const TTile Tiles[tilesNum] = {
 	{ 0, Green, ',' },
 	{ 1, LightGreen, ',' },
 	{ 2, Brown, ',' },
 	{ 3, Green, '.' },
 	{ 4, LightGreen, '.' },
-	{ 5, Green, '.' },
-	{ 6, LightBlue, '~' },
-	{ 7, Green, '!' },
-	{ 8, LightGreen, '!' },
-	{ 9, Brown, '!' },
-	{ 10, DarkGray, 'o' },
-	{ 11, LightGray, 'o' },
-	{ 12, White, 'o' },
-	{ 13, Blue, '~' }
+	{ 5, Brown, '.' },
+	{ 6, Green, ',' },
+	{ 7, LightGreen, ',' },
+	{ 8, Brown, ',' },
+	{ 9, Red, '_' },
+	{ 10, Brown, '_' },
+	{ 11, LightBlue, '~' },
+	{ 12, Green, '!' },
+	{ 13, LightGreen, '!' },
+	{ 14, Brown, '!' },
+	{ 15, DarkGray, 'o' },
+	{ 16, LightGray, 'o' },
+	{ 17, White, 'o' },
+	{ 18, Blue, '~' }
 };
 const int itemsNum = 20;
+const int blank = -1;
+const int weapon = 0;
+const int armor = 1;
+const int poultice = 2;
 const TItem Items[itemsNum] = {
 	{ 0, 2, 0, 0, 0, 0, 0, 0 }, { 1, 0, 1, 0, 0, 0, 0, 1 },
 	{ 0, 4, 0, 0, 0, 0, 0, 2 }, { 1, 0, 2, 0, 0, 0, 0, 3 },
@@ -137,5 +145,4 @@ const TItem poultices[poulticeNum] = {
 	{ 2, 0, 0, 0, 0, 0, 20, 21 },
 	{ 2, 0, 0, 0, 0, 0, 25, 22 }
 };
-
-const TItem blankItem = { -1, 0, 0, 0, 0, 0, 0, 0};
+const TItem blankItem = { -1, 0, 0, 0, 0, 0, 0, 0 };

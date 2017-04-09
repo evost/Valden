@@ -11,5 +11,4 @@ public:
 	Map(int width, int height);
 	void GetMap();
 	bool IsFree(int x, int y);
-	void SetVisible(int x, int y);
 };

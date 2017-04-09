@@ -93,7 +93,8 @@ void RenderWorld(Map &dMap, Hero &dHero, NPC &dNPC, bool hint) {
 	if (hint) {
 		ShowGameHints(borderDelimiter + 2, 1);
 		SetString(borderDelimiter + 5, windowY - 1, sDelimeter + sInfo, Black, White);
-	} else {
+	}
+	else {
 		ShowHeroInfo(dHero, borderDelimiter + 2, 1);
 		SetString(borderDelimiter + 5, windowY - 1, sDelimeter + sHints, Black, White);
 	}
@@ -311,11 +312,13 @@ void ShowCharacteristics(Hero &dHero) {
 		SetString(2, 5, sMaxHP + sDelimeter + to_wstring(dHero.maxhp + dstrength), Black, White);
 		SetString(2, 6, sMulExp + sDelimeter + to_wstring(100 + dHero.intelligence + dintelligence) + sPercent, Black, White);
 		SetString(2, 7, sDodge—hance + sDelimeter + to_wstring(dHero.dexterity + ddexterity) + sPercent, Black, White);
-		SetString(2, 8, sVisDistance + sDelimeter + to_wstring(dHero.visDistance), Black, White);
-		SetString(2, 9, sDamage + sDelimeter + to_wstring(dHero.GetDamage() + dstrength), Black, White);
-		SetString(2, 10, sDefense + sDelimeter + to_wstring(dHero.GetDefense()), Black, White);
-		SetString(2, 11, sPoints + sDelimeter + to_wstring(dHero.cpoints), Black, White);
-		SetString(2, 12, sKilled + sDelimeter + to_wstring(dHero.killed), Black, White);
+		SetString(2, 8, sSeeTrapChance + sDelimeter + to_wstring(dHero.intelligence + dintelligence) + sPercent, Black, White);
+		SetString(2, 9, sDisarmTrapChance + sDelimeter + to_wstring((int)((dHero.dexterity + ddexterity + dHero.intelligence + dintelligence) * trapDisarmpc)) + sPercent, Black, White);
+		SetString(2, 10, sVisDistance + sDelimeter + to_wstring(dHero.visDistance), Black, White);
+		SetString(2, 11, sDamage + sDelimeter + to_wstring(dHero.GetDamage() + dstrength), Black, White);
+		SetString(2, 12, sDefense + sDelimeter + to_wstring(dHero.GetDefense()), Black, White);
+		SetString(2, 13, sPoints + sDelimeter + to_wstring(dHero.cpoints), Black, White);
+		SetString(2, 14, sKilled + sDelimeter + to_wstring(dHero.killed), Black, White);
 		SetString(3, 2 + k, sAsterisk, Black, White);
 		ShowCharacteristicsHints(borderDelimiter + 2, 1);
 		Render();
@@ -511,8 +514,8 @@ int Menu(bool inGame, bool newVersion, wstring versionNum) {
 	while (button != 13) {
 		Border(windowX, windowY, borderDelimiter);
 		ShowMenuHints(borderDelimiter + 2, 1);
-		for (int i = 0; i < logoSize; i++)
-			SetString((mapVisX - sLogo[i].length() + 1) / 2, 1 + i, sLogo[i], Black, Red);
+		for (short i = 0; i < logoSize; i++)
+			SetString((short)(mapVisX - sLogo[i].length() + 1) / 2, 1 + i, sLogo[i], Black, Red);
 		if (inGameInt) {
 			InGameMenu(logoSize + 2);
 		}

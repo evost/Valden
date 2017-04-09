@@ -17,28 +17,34 @@ Map::Map(int width, int height) {
 		MainMap[x] = new TTile[height];
 		for (int y = 0; y <= Height; y++) {
 			MainMap[x][y].isVisible = false;
-			int chance = rand() % 100 + 1;
-			if (chance <= 13)
+			int chance = rand() % 100;
+			if (chance < 12)
 				MainMap[x][y] = Tiles[grassD];
-			else if (chance <= 26)
+			else if (chance < 13)
+				MainMap[x][y] = Tiles[trapGrassD];
+			else if (chance < 25)
 				MainMap[x][y] = Tiles[grassB];
-			else if (chance <= 38)
+			else if (chance < 26)
+				MainMap[x][y] = Tiles[trapGrassB];
+			else if (chance < 37)
 				MainMap[x][y] = Tiles[grassL];
-			else if (chance <= 51)
+			else if (chance < 38)
+				MainMap[x][y] = Tiles[trapGrassL];
+			else if (chance < 51)
 				MainMap[x][y] = Tiles[sandD];
-			else if (chance <= 64)
+			else if (chance < 64)
 				MainMap[x][y] = Tiles[sandB];
-			else if (chance <= 76)
+			else if (chance < 76)
 				MainMap[x][y] = Tiles[sandL];
-			else if (chance <= 82)
+			else if (chance < 82)
 				MainMap[x][y] = Tiles[treeD];
-			else if (chance <= 87)
+			else if (chance < 87)
 				MainMap[x][y] = Tiles[treeB];
-			else if (chance <= 91)
+			else if (chance < 91)
 				MainMap[x][y] = Tiles[treeL];
-			else if (chance <= 95)
+			else if (chance < 95)
 				MainMap[x][y] = Tiles[rockD];
-			else if (chance <= 98)
+			else if (chance < 98)
 				MainMap[x][y] = Tiles[rockL];
 			else
 				MainMap[x][y] = Tiles[rockW];
@@ -79,8 +85,4 @@ bool Map::IsFree(int x, int y) {
 		return false;
 	else
 		return true;
-}
-
-void Map::SetVisible(int x, int y) {
-	MainMap[x][y].isVisible = true;
 }
