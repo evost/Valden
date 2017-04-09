@@ -57,9 +57,9 @@ static wstring sItems[itemsNum + poulticeNum] = {
 	L"Стальной доспех",
 	L"Стальной меч",
 	L"Латный доспех",
-	L"Малая припарка",
-	L"Средняя припарка",
-	L"Большая припарка"
+	L"Молоко",
+	L"Пирог",
+	L"Припарка"
 };
 static wstring sMotion = L"Движение";
 static wstring sAttack = L"Атака";
