@@ -16,7 +16,7 @@ Hero::Hero() {
 	cweapon = Items[0];
 	carmor = Items[1];
 	for (int i = 0; i < invSize; i++)
-		invertory[i].type = -1;
+		invertory[i] = blankItem;
 	x = 0;
 	y = 0;
 }
@@ -51,14 +51,14 @@ void Hero::HeroStep(short dx, short dy, Map &dMap) {
 }
 
 int Hero::GetDamage() {
-	if (cweapon.type == -1)
+	if (cweapon.type == blank)
 		return strength;
 	else
 		return strength + cweapon.damage;
 }
 
 int Hero::GetDefense() {
-	if (carmor.type == -1)
+	if (carmor.type == blank)
 		return 0;
 	else
 		return carmor.defense;
@@ -78,11 +78,11 @@ void Hero::ExpInc(float dxp) {
 			cpoints += newLevelPoints;
 		}
 		int chance = rand() % 100;
-		if (chance < 33)
+		if (chance < 25)
 			for (int i = 0; i < invSize; i++)
-				if (invertory[i].type == -1) {
-					if (chance < 8)
-						invertory[i] = poultices[chance % 3];
+				if (invertory[i].type == blank) {
+					if (chance < 5)
+						invertory[i] = poultices[chance % poulticeNum];
 					else {
 						int min = 2 * (level - 2);
 						int max = level * 2 + 1;

@@ -73,6 +73,7 @@ const int Troll = 7;
 const int Werewolf = 8;
 const int Ogr = 9;
 
+const int blank = -1;
 const int weapon = 0;
 const int armor = 1;
 const int poultice = 2;
@@ -136,3 +137,5 @@ const TItem poultices[poulticeNum] = {
 	{ 2, 0, 0, 0, 0, 0, 20, 21 },
 	{ 2, 0, 0, 0, 0, 0, 25, 22 }
 };
+
+const TItem blankItem = { -1, 0, 0, 0, 0, 0, 0, 0};
