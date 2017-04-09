@@ -73,7 +73,6 @@ void Hero::ExpInc(float dxp) {
 		if (xp >= XP_table[level - 1] && level < maxLevel) {
 			level++;
 			maxxp = XP_table[level - 1];
-			hp = maxhp;
 			AddLog(sNewLevel);
 			cpoints += newLevelPoints;
 		}
