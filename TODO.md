@@ -8,13 +8,16 @@ Already implemented:
 - [x] Keyboard hints
 - [x] Save / load
 - [x] Display settings
+- [x] New items
+- [x] New hostile NPCs
+- [x] Health recovery system
+- [x] Ponds, new tiles
+- [x] Expanding the characteristics of items
+- [x] Traps
 
 In developing:
 - [ ] NPC path searching
 - [ ] Game balance
-- [ ] New items
-- [ ] New hostile NPCs
-- [ ] Expanding the characteristics of items
 - [ ] Trading
 - [ ] Colony management
 - [ ] Missions and non-hostile NPCs
@@ -22,8 +25,6 @@ In developing:
 - [ ] Cooperative mode
 - [ ] Stocks (chest, storage)
 - [ ] Classes (mage / archer)
-- [ ] Traps
-- [ ] Health recovery system
 - [ ] Stamina and mana
 - [ ] Abilities, skills, craft
-- [ ] Buildings, ponds, new tiles
+- [ ] Buildings
