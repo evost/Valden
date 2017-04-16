@@ -75,12 +75,17 @@ void ShowSettingsHints(short x, short y) {
 
 void ShowHeroInfo(Hero &dHero, short x, short y) {
 	SetString(x, y + 0, sCoordinates + sDelimeter + to_wstring(dHero.x) + sComma + to_wstring(dHero.y), Black, White);
-	SetString(x, y + 1, sHP + sDelimeter + to_wstring(dHero.hp) + sSlash + to_wstring(dHero.maxhp), Black, White);
-	if (dHero.level < maxLevel)
-		SetString(x, y + 2, sXP + sDelimeter + FloatToWstring(dHero.xp) + sSlash + to_wstring(dHero.maxxp), Black, White);
+	SetString(x, y + 1, sLevel + sDelimeter + to_wstring(dHero.level), Black, White);
+	SetString(x, y + 2, sHP + sDelimeter + to_wstring(dHero.hp) + sSlash + to_wstring(dHero.maxhp), Black, White);
+	for (int i = 0; i < (float)dHero.hp / (float)dHero.maxhp*(windowX - borderDelimiter - 3); i++)
+		SetString(x + i, y + 3, sSpace, Red, White);
+	if (dHero.level <= maxLevel) {
+		SetString(x, y + 4, sXP + sDelimeter + FloatToWstring(dHero.xp) + sSlash + to_wstring(dHero.maxxp), Black, White);
+		for (int i = 0; i < (float)dHero.xp / (float)dHero.maxxp *(windowX - borderDelimiter - 3); i++)
+			SetString(x + i, y + 5, sSpace, Brown, White);
+	}
 	else
-		SetString(x, y + 2, sXP + sDelimeter + FloatToWstring(dHero.xp), Black, White);
-	SetString(x, y + 3, sLevel + sDelimeter + to_wstring(dHero.level), Black, White);
+		SetString(x, y + 4, sXP + sDelimeter + FloatToWstring(dHero.xp), Black, White);
 }
 
 void RenderWorld(Map &dMap, Hero &dHero, NPC &dNPC, bool hint) {
