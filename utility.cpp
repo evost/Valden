@@ -118,6 +118,6 @@ void LoadSettings(short &fontSize, short &mapVisY) {
 	inf.close();
 }
 
-double Distance(int x1, int y1, int x2, int y2) {
-	return sqrt(pow(abs(x1 - x2), 2) + pow(abs(y1 - y2), 2));
+float Distance(int x1, int y1, int x2, int y2) {
+	return (float)sqrt(pow(abs(x1 - x2), 2) + pow(abs(y1 - y2), 2));
 }

@@ -1,172 +1,107 @@
 ﻿#pragma once
 
 #include <string>
+#include "constants.h"
 
 using namespace std;
 
-static wstring sCoordinates = L"Координаты";
-static wstring sHP = L"Здоровье";
-static wstring sXP = L"Опыт";
-static wstring sStrength = L"Сила";
-static wstring sDexterity = L"Ловкость";
-static wstring sIntelligence = L"Интеллект";
-static wstring sLevel = L"Уровень";
-static wstring sMonsters[NPCTypesNum] = {
-	L"Крыс",
-	L"Вепрь",
-	L"Волк",
-	L"Гоблин",
-	L"Гнолл",
-	L"Медведь",
-	L"Орк",
-	L"Тролль",
-	L"Волколак",
-	L"Огр"
-};
-static wstring sCWeapon = L"Оружие : ";
-static wstring sCArmor = L"Броня  : ";
-static wstring sIncExp = L" опыта";
-static wstring sNewLevel = L"Новый уровень!";
-static wstring sDamageToEnemy = L"Нанесен урон ";
-static wstring sDamageToHero1 = L" нанес ";
-static wstring sDamageToHero2 = L" урона";
-static wstring sKilling = L" убит!";
-static wstring sDodged = L" увернулся!";
-static wstring sHeroDodged = L"Вы увернулись от ";
-static wstring sNoDamage = L" не пробил защиту";
-static wstring sReceived = L"Получено ";
-static wstring sSeeTrap = L"Вы обнаружили ловушку";
-static wstring sDisarmTrap = L"Вы обезвредили ловушку";
-static wstring sFallTrap = L"Вы попали в ловушку";
-static wstring sItems[itemsNum + poulticeNum] = {
-	L"Дубина",
-	L"Крестьянская одежда",
-	L"Кинжал",
-	L"Меховой плащ",
-	L"Топор",
-	L"Стеганка",
-	L"Палица",
-	L"Кожанная броня",
-	L"Копье",
-	L"Клепаная броня",
-	L"Булава",
-	L"Кольчуга",
-	L"Боевой топор",
-	L"Железный доспех",
-	L"Железный меч",
-	L"Пластинчатый доспех",
-	L"Боевой молот",
-	L"Стальной доспех",
-	L"Стальной меч",
-	L"Латный доспех",
-	L"Молоко",
-	L"Пирог",
-	L"Припарка"
-};
-static wstring sMotion = L"Движение";
-static wstring sAttack = L"Атака";
-static wstring sInventory = L"Инвентарь";
-static wstring sCharacteristics = L"Характеристики";
-static wstring sDodgeСhance = L"Шанс увернуться";
-static wstring sSeeTrapChance = L"Шанс заметить ловушку";
-static wstring sDisarmTrapChance = L"Шанс обезвредить ловушку";
-static wstring sMenu = L"Меню";
-static wstring sInfo = L"Информация";
-static wstring sHints = L"Управление";
-static wstring sSelect = L"Выбор";
-static wstring sUse = L"Использовать";
-static wstring sDelete = L"Выкинуть";
-static wstring sBack = L"Назад";
-static wstring sDamage = L"Урон";
-static wstring sDefense = L"Защита";
-static wstring sMaxHP = L"Максимальное здоровье";
-static wstring sPoints = L"Очки";
-static wstring sKilled = L"Убито";
-static wstring sAccept = L"Принять";
-static wstring sClear = L"Очистить";
-static wstring sIncrease = L"Увеличить";
-static wstring sDecrease = L"Уменьшить";
-static wstring sMulExp = L"Множитель опыта";
-static wstring sVisDistance = L"Дальность обзора";
-static wstring sSkip = L"Пропуск хода";
-static wstring sDeath = L"Герой мертв!";
-static wstring sContinue = L"Продолжить";
-static wstring sSave = L"Сохранить";
-static wstring sLoad = L"Загрузить";
-static wstring sNewGame = L"Новая игра";
-static wstring sNewMap = L"Новая карта";
-static wstring sSettings = L"Настройки";
-static wstring sExit = L"Выход";
-static wstring sTileSize = L"Размер тайла";
-static wstring sTileNum = L"Количество тайлов";
-static wstring sResolution = L"Разрешение (примерно)";
-static wstring sSelectRace = L"Выберите расу";
-static wstring sRaceHuman = L"Человек (+ к ловкости и интеллекту)";
-static wstring sRaceDwarf = L"Дварф (+ к силе и интеллекту)";
-static wstring sRaceElf = L"Эльф (+ к силе и ловкости)";
-static wstring sRace = L"Раса";
-static wstring sRaces[3] = { L"Человек", L"Дварф", L"Эльф" };
-static wstring sDelimeter = L": ";
-static wstring sSlash = L" / ";
-static wstring sComma = L", ";
-static wstring sSpace = L" ";
-static wstring sAsterisk = L"*";
-static wstring sPercent = L"%";
-static wstring sRadio = L"( ) ";
-static wstring sLack = L"---";
-static wstring sWindowName = L"Valden";
-static wstring skArrows = L"arrows";
-static wstring skWASD = L"wasd";
-static wstring skI = L"i";
-static wstring skC = L"c";
-static wstring skEsc = L"Esc";
-static wstring skPlus = L"+";
-static wstring skMinus = L"-";
-static wstring skEnter = L"Enter";
-static wstring skSpace = L"Space";
-static wstring skTab = L"Tab";
-static wstring sX = L"x";
-static wstring sPlus = L" +";
-static wstring sLoading = L"Загрузка...";
-static wstring sMapSave = L"Map.sv";
-static wstring sHeroSave = L"Hero.sv";
-static wstring sNPCSave = L"NPC.sv";
-static wstring sSettingsSave = L"settings.sv";
-static wstring sSavePath = L"save/";
-static wstring sSaveDin = L"din.";
-static wstring sVersion[2] = { L"Страница проекта",  L"Вышла новая версия " };
-static wstring sCopyright[2] = { L"https://github.com/evost/Valden-builds",  L"(c) github.com/evost" };
-static wstring sVersionURL = L"https://raw.githubusercontent.com/evost/Valden-builds/master/version.md";
-static wstring sLogo[5] = {
-	L" _    __        __     __           ",
-	L"| |  / /____ _ / /____/ /___   ____ ",
-	L"| | / // __ `// // __  // _ \\ / __ \\",
-	L"| |/ // /_/ // // /_/ //  __// / / /",
-	L"|___/ \\__,_//_/ \\__,_/ \\___//_/ /_/ "
-};
-static wstring sHistory[24] = {
-	L"Еще вчера Ваш отец вел войско против Орды Оскверненных.",
-	L"Эта битва должна была стать решающей и освободить весь",
-	L"Валден от нескончаемых набегов ужаснейших существ.",
-	L"Однако, объеденное войско дварфов,",
-	L"людей и эльфов оказалось разбито.",
-	L"Сегодня, вы очнулись на поле брани - вокруг трупы ваших",
-	L"товарищей и изуродованных тварей.Миазмы и Ваши раны не дают",
-	L"свободно дышать, и, собрав последние силы в кулак, Вы",
-	L"пытаетесь найти хотя бы кого - то, кто остался в живых.",
-	L"Никого.Отец, братья - все, кто отправился завоевывать славу",
-	L"мертвы.Остается только подобрать оружие и двигаться",
-	L"вперед - к родной деревне.",
-	L"Вас, как младшего в семье, никогда не готовили к престолу,",
-	L"всю юность вы потратили на службу и скитания по Валдену в",
-	L"поисках денег и славы.",
-	L"Однако теперь, похоже, не осталось никого, кроме Вас,",
-	L"кто смог бы собрать новое войско и одержать победу",
-	L"над Ордой Оскверненных.",
-	L"В деревне не осталось никого кроме стариков, жен да детей -",
-	L"собрать даже маленький отряд для отражения атак нечисти",
-	L"будет не просто.",
-	L"Но это все равно лучше чем подыхать здесь.",
-	L" ",
-	L"Нажмите любую клавишу для продолжения."
-};
+extern wstring sCoordinates;
+extern wstring sHP;
+extern wstring sXP;
+extern wstring sStrength;
+extern wstring sDexterity;
+extern wstring sIntelligence;
+extern wstring sLevel;
+extern wstring sMonsters[NPCTypesNum];
+extern wstring sCWeapon;
+extern wstring sCArmor;
+extern wstring sIncExp;
+extern wstring sNewLevel;
+extern wstring sDamageToEnemy;
+extern wstring sDamageToHero1;
+extern wstring sDamageToHero2;
+extern wstring sKilling;
+extern wstring sDodged;
+extern wstring sHeroDodged;
+extern wstring sNoDamage;
+extern wstring sReceived;
+extern wstring sSeeTrap;
+extern wstring sDisarmTrap;
+extern wstring sFallTrap;
+extern wstring sItems[itemsNum + poulticeNum];
+extern wstring sMotion;
+extern wstring sAttack;
+extern wstring sInventory;
+extern wstring sCharacteristics;
+extern wstring sDodgeСhance;
+extern wstring sSeeTrapChance;
+extern wstring sDisarmTrapChance;
+extern wstring sMenu;
+extern wstring sInfo;
+extern wstring sHints;
+extern wstring sSelect;
+extern wstring sUse;
+extern wstring sDelete;
+extern wstring sBack;
+extern wstring sDamage;
+extern wstring sDefense;
+extern wstring sMaxHP;
+extern wstring sPoints;
+extern wstring sKilled;
+extern wstring sAccept;
+extern wstring sClear;
+extern wstring sIncrease;
+extern wstring sDecrease;
+extern wstring sMulExp;
+extern wstring sVisDistance;
+extern wstring sSkip;
+extern wstring sDeath;
+extern wstring sContinue;
+extern wstring sSave;
+extern wstring sLoad;
+extern wstring sNewGame;
+extern wstring sNewMap;
+extern wstring sSettings;
+extern wstring sExit;
+extern wstring sTileSize;
+extern wstring sTileNum;
+extern wstring sResolution;
+extern wstring sSelectRace;
+extern wstring sRaceHuman;
+extern wstring sRaceDwarf;
+extern wstring sRaceElf;
+extern wstring sRace;
+extern wstring sRaces[3];
+extern wstring sDelimeter;
+extern wstring sSlash;
+extern wstring sComma;
+extern wstring sSpace;
+extern wstring sAsterisk;
+extern wstring sPercent;
+extern wstring sRadio;
+extern wstring sLack;
+extern wstring sWindowName;
+extern wstring skArrows;
+extern wstring skWASD;
+extern wstring skI;
+extern wstring skC;
+extern wstring skEsc;
+extern wstring skPlus;
+extern wstring skMinus;
+extern wstring skEnter;
+extern wstring skSpace;
+extern wstring skTab;
+extern wstring sX;
+extern wstring sPlus;
+extern wstring sLoading;
+extern wstring sMapSave;
+extern wstring sHeroSave;
+extern wstring sNPCSave;
+extern wstring sSettingsSave;
+extern wstring sSavePath;
+extern wstring sSaveDin;
+extern wstring sVersion[2];
+extern wstring sCopyright[2];
+extern wstring sVersionURL;
+extern wstring sLogo[logoSize];
+extern wstring sHistory[historySize];

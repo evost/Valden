@@ -16,61 +16,61 @@ void ShowLog() {
 
 void ShowGameHints(short x, short y) {
 	SetString(x, y + 0, skArrows, Black, Green);
-	SetString(x + 6, y + 0, sDelimeter + sMotion, Black, White);
+	SetString(x + keyLength, y + 0, sDelimeter + sMotion, Black, White);
 	SetString(x, y + 1, skWASD, Black, Green);
-	SetString(x + 6, y + 1, sDelimeter + sAttack, Black, White);
+	SetString(x + keyLength, y + 1, sDelimeter + sAttack, Black, White);
 	SetString(x, y + 2, skI, Black, Green);
-	SetString(x + 6, y + 2, sDelimeter + sInventory, Black, White);
+	SetString(x + keyLength, y + 2, sDelimeter + sInventory, Black, White);
 	SetString(x, y + 3, skC, Black, Green);
-	SetString(x + 6, y + 3, sDelimeter + sCharacteristics, Black, White);
+	SetString(x + keyLength, y + 3, sDelimeter + sCharacteristics, Black, White);
 	SetString(x, y + 4, skSpace, Black, Green);
-	SetString(x + 6, y + 4, sDelimeter + sSkip, Black, White);
+	SetString(x + keyLength, y + 4, sDelimeter + sSkip, Black, White);
 	SetString(x, y + 5, skEsc, Black, Green);
-	SetString(x + 6, y + 5, sDelimeter + sMenu, Black, White);
+	SetString(x + keyLength, y + 5, sDelimeter + sMenu, Black, White);
 }
 
 void ShowCharacteristicsHints(short x, short y) {
 	SetString(x, y + 0, skArrows, Black, Green);
-	SetString(x + 6, y + 0, sDelimeter + sSelect, Black, White);
+	SetString(x + keyLength, y + 0, sDelimeter + sSelect, Black, White);
 	SetString(x, y + 1, skPlus, Black, Green);
-	SetString(x + 6, y + 1, sDelimeter + sIncrease, Black, White);
+	SetString(x + keyLength, y + 1, sDelimeter + sIncrease, Black, White);
 	SetString(x, y + 2, skMinus, Black, Green);
-	SetString(x + 6, y + 2, sDelimeter + sDecrease, Black, White);
+	SetString(x + keyLength, y + 2, sDelimeter + sDecrease, Black, White);
 	SetString(x, y + 3, skEnter, Black, Green);
-	SetString(x + 6, y + 3, sDelimeter + sAccept, Black, White);
+	SetString(x + keyLength, y + 3, sDelimeter + sAccept, Black, White);
 	SetString(x, y + 4, skSpace, Black, Green);
-	SetString(x + 6, y + 4, sDelimeter + sClear, Black, White);
+	SetString(x + keyLength, y + 4, sDelimeter + sClear, Black, White);
 	SetString(x, y + 5, skEsc + sComma + skC, Black, Green);
-	SetString(x + 6, y + 5, sDelimeter + sBack, Black, White);
+	SetString(x + keyLength, y + 5, sDelimeter + sBack, Black, White);
 }
 
 void ShowInventoryHints(short x, short y) {
 	SetString(x, y + 0, skArrows, Black, Green);
-	SetString(x + 6, y + 0, sDelimeter + sSelect, Black, White);
+	SetString(x + keyLength, y + 0, sDelimeter + sSelect, Black, White);
 	SetString(x, y + 1, skEnter, Black, Green);
-	SetString(x + 6, y + 1, sDelimeter + sUse, Black, White);
+	SetString(x + keyLength, y + 1, sDelimeter + sUse, Black, White);
 	SetString(x, y + 2, skSpace, Black, Green);
-	SetString(x + 6, y + 2, sDelimeter + sDelete, Black, White);
+	SetString(x + keyLength, y + 2, sDelimeter + sDelete, Black, White);
 	SetString(x, y + 3, skEsc + sComma + skI, Black, Green);
-	SetString(x + 6, y + 3, sDelimeter + sBack, Black, White);
+	SetString(x + keyLength, y + 3, sDelimeter + sBack, Black, White);
 }
 
 void ShowMenuHints(short x, short y) {
 	SetString(x, y + 0, skArrows, Black, Green);
-	SetString(x + 6, y + 0, sDelimeter + sSelect, Black, White);
+	SetString(x + keyLength, y + 0, sDelimeter + sSelect, Black, White);
 	SetString(x, y + 1, skEnter, Black, Green);
-	SetString(x + 6, y + 1, sDelimeter + sUse, Black, White);
+	SetString(x + keyLength, y + 1, sDelimeter + sUse, Black, White);
 }
 
 void ShowSettingsHints(short x, short y) {
 	SetString(x, y + 0, skArrows, Black, Green);
-	SetString(x + 6, y + 0, sDelimeter + sSelect, Black, White);
+	SetString(x + keyLength, y + 0, sDelimeter + sSelect, Black, White);
 	SetString(x, y + 1, skEnter, Black, Green);
-	SetString(x + 6, y + 1, sDelimeter + sUse, Black, White);
+	SetString(x + keyLength, y + 1, sDelimeter + sUse, Black, White);
 	SetString(x, y + 2, skSpace, Black, Green);
-	SetString(x + 6, y + 2, sDelimeter + sClear, Black, White);
+	SetString(x + keyLength, y + 2, sDelimeter + sClear, Black, White);
 	SetString(x, y + 3, skEsc, Black, Green);
-	SetString(x + 6, y + 3, sDelimeter + sBack, Black, White);
+	SetString(x + keyLength, y + 3, sDelimeter + sBack, Black, White);
 }
 
 void ShowHeroInfo(Hero &dHero, short x, short y) {
@@ -92,11 +92,11 @@ void RenderWorld(Map &dMap, Hero &dHero, NPC &dNPC, bool hint) {
 	SetString(borderDelimiter + 2, windowY - 1, skTab, Black, Green);
 	if (hint) {
 		ShowGameHints(borderDelimiter + 2, 1);
-		SetString(borderDelimiter + 5, windowY - 1, sDelimeter + sInfo, Black, White);
+		SetString(borderDelimiter + keyLength, windowY - 1, sDelimeter + sInfo, Black, White);
 	}
 	else {
 		ShowHeroInfo(dHero, borderDelimiter + 2, 1);
-		SetString(borderDelimiter + 5, windowY - 1, sDelimeter + sHints, Black, White);
+		SetString(borderDelimiter + keyLength, windowY - 1, sDelimeter + sHints, Black, White);
 	}
 }
 
@@ -135,15 +135,15 @@ void NewHero(Hero &dHero) {
 	}
 	dHero.race = k;
 	switch (dHero.race) {
-	case 0:
+	case human:
 		dHero.dexterity++;
 		dHero.intelligence++;
 		break;
-	case 1:
+	case dwarf:
 		dHero.strength++;
 		dHero.intelligence++;
 		break;
-	case 2:
+	case elf:
 		dHero.strength++;
 		dHero.dexterity++;
 		break;
@@ -340,13 +340,13 @@ void ShowCharacteristics(Hero &dHero) {
 		case 43:
 			if (dHero.cpoints > 0) {
 				switch (k) {
-				case 0:
+				case strength:
 					dstrength++;
 					break;
-				case 1:
+				case dexterity:
 					ddexterity++;
 					break;
-				case 2:
+				case intelligence:
 					dintelligence++;
 					dHero.visDistance++;
 					break;
@@ -358,19 +358,19 @@ void ShowCharacteristics(Hero &dHero) {
 			break;
 		case 45:
 			switch (k) {
-			case 0:
+			case strength:
 				if (dstrength > 0) {
 					dstrength--;
 					dHero.cpoints++;
 				}
 				break;
-			case 1:
+			case dexterity:
 				if (ddexterity > 0) {
 					ddexterity--;
 					dHero.cpoints++;
 				}
 				break;
-			case 2:
+			case intelligence:
 				if (dintelligence > 0) {
 					dintelligence--;
 					dHero.visDistance--;
@@ -523,7 +523,7 @@ int Menu(bool inGame, bool newVersion, wstring versionNum) {
 			IsSaveMenu(logoSize + 2 + inGameInt);
 		}
 		DefMenu(logoSize + 2 + inGameInt + isSaveExistInt);
-		SetString(3, 7 + k, sAsterisk, Black, White);
+		SetString(3, logoSize + 2 + k, sAsterisk, Black, White);
 		for (int i = 0; i < copyrightSize; i++)
 			SetString(2, windowY - copyrightSize - 1 + i, sCopyright[i], Black, White);
 		if (newVersion)
