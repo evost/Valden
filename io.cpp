@@ -1,5 +1,5 @@
 ﻿#include "io.h"
-
+#pragma comment (lib, "kernel32.lib")
 using namespace std;
 
 void SetSymbol(short x, short y, wchar_t c, short background, short text) {
@@ -14,12 +14,8 @@ void Clear() {
 	}
 }
 
-void Randomize() {
-	srand((int)time(0));
-}
-
 void Init(wstring name) {
-	Randomize();
+	srand((int)time(0));
 	CONSOLE_FONT_INFOEX fontInfo;
 	fontInfo.cbSize = sizeof(fontInfo);
 	GetCurrentConsoleFontEx(hStdOut, TRUE, &fontInfo);

@@ -12,7 +12,6 @@ static SMALL_RECT src;
 static CHAR_INFO* buffer = (CHAR_INFO*)malloc(sizeof(CHAR_INFO));
 
 void SetSymbol(short x, short y, wchar_t c, short background, short text);
-void Randomize();
 void Init(wstring name);
 void SetWindow(short x, short y, short fontSize);
 short ReadKey();
