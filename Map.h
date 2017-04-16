@@ -6,7 +6,7 @@
 class Map {
 private:
 public:
-	TTile **MainMap = NULL;
+	TTile **MainMap;
 	int Width, Height, curX, curY;
 	Map(int width, int height);
 	void GetMap();

@@ -7,7 +7,7 @@ class NPC {
 private:
 public:
 	int NPCk;
-	TNPC* NPCs = NULL;
+	TNPC* NPCs;
 	NPC(int k, Map &dMap, int heroLevel);
 	void GetNPCs(Map &dMap, Hero &dHero);
 	bool NoNPCs(short x, short y);
