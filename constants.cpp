@@ -3,13 +3,13 @@
 int minMapVisY = 31;
 int maxMapVisY = 60;
 int minFontSize = 8;
-int maxFontSize = 64;
+int maxFontSize = 36;
 short mapVisY = minMapVisY;
 short mapVisX = mapVisY * 2;
 short windowX = mapVisX + 32;
 short windowY = mapVisY + 1;
 short borderDelimiter = mapVisX + 1;
-short fontSize = 21;
+short fontSize = 16;
 int startSkill = 5;
 int startSkillRandom = 5;
 int startHp = 10;
