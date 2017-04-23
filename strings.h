@@ -28,6 +28,7 @@ extern wstring sReceived;
 extern wstring sSeeTrap;
 extern wstring sDisarmTrap;
 extern wstring sFallTrap;
+extern wstring sNoFreeSpace;
 extern wstring sItems[itemsNum + poulticeNum];
 extern wstring sMotion;
 extern wstring sAttack;

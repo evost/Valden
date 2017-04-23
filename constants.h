@@ -12,7 +12,7 @@ extern short windowX;
 extern short windowY;
 extern short borderDelimiter;
 extern short fontSize;
-const int invSize = 20;
+const int invSize = 16;
 extern int startSkill;
 extern int startSkillRandom;
 extern int startHp;

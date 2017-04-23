@@ -36,6 +36,7 @@ wstring sReceived = L"Получено ";
 wstring sSeeTrap = L"Вы обнаружили ловушку";
 wstring sDisarmTrap = L"Вы обезвредили ловушку";
 wstring sFallTrap = L"Вы попали в ловушку";
+wstring sNoFreeSpace = L"Нет свободного места";
 wstring sItems[itemsNum + poulticeNum] = {
 	L"Дубина",
 	L"Крестьянская одежда",

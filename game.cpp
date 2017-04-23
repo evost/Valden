@@ -226,7 +226,10 @@ void ShowInventory(Hero &dHero, short x, short y) {
 			if (dHero.invertory[i].type == blank)
 				SetString(2, 4 + i, sRadio + sLack, Black, White);
 			else
-				SetString(2, 4 + i, sRadio + sItems[dHero.invertory[i].id], Black, White);
+				if (dHero.invertory[i].level <= dHero.level)
+					SetString(2, 4 + i, sRadio + sItems[dHero.invertory[i].id], Black, White);
+				else
+					SetString(2, 4 + i, sRadio + sItems[dHero.invertory[i].id], Black, Brown);
 		ShowInventoryHints(borderDelimiter + 2, 1);
 		if (k < 2)
 			SetString(3, 1 + k, sAsterisk, Black, White);
@@ -266,25 +269,26 @@ void ShowInventory(Hero &dHero, short x, short y) {
 						}
 			}
 			else
-				switch (dHero.invertory[k - 2].type) {
-				case weapon:
-					item = dHero.cweapon;
-					dHero.cweapon = dHero.invertory[k - 2];
-					dHero.invertory[k - 2] = item;
-					break;
-				case armor:
-					item = dHero.carmor;
-					dHero.carmor = dHero.invertory[k - 2];
-					dHero.invertory[k - 2] = item;
-					break;
-				case poultice:
-					dHero.hp += dHero.invertory[k - 2].dmaxhp;
-					if (dHero.hp > dHero.maxhp) dHero.hp = dHero.maxhp;
-					dHero.invertory[k - 2] = blankItem;
-					break;
-				default:
-					break;
-				}
+				if (dHero.invertory[k - 2].level <= dHero.level)
+					switch (dHero.invertory[k - 2].type) {
+					case weapon:
+						item = dHero.cweapon;
+						dHero.cweapon = dHero.invertory[k - 2];
+						dHero.invertory[k - 2] = item;
+						break;
+					case armor:
+						item = dHero.carmor;
+						dHero.carmor = dHero.invertory[k - 2];
+						dHero.invertory[k - 2] = item;
+						break;
+					case poultice:
+						dHero.hp += dHero.invertory[k - 2].dmaxhp;
+						if (dHero.hp > dHero.maxhp) dHero.hp = dHero.maxhp;
+						dHero.invertory[k - 2] = blankItem;
+						break;
+					default:
+						break;
+					}
 			break;
 		case 8:
 			if (k < 2)
