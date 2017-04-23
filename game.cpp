@@ -185,12 +185,13 @@ void NewMap(Map &dMap, Hero &dHero, NPC &dNPC) {
 }
 
 void ShowItemInfo(TItem item) {
-	SetString(2, windowY - 7, sDamage + sPlus + to_wstring(item.damage), Black, White);
-	SetString(2, windowY - 6, sDefense + sPlus + to_wstring(item.defense), Black, White);
-	SetString(2, windowY - 5, sStrength + sPlus + to_wstring(item.dstrength), Black, White);
-	SetString(2, windowY - 4, sDexterity + sPlus + to_wstring(item.ddexterity), Black, White);
-	SetString(2, windowY - 3, sIntelligence + sPlus + to_wstring(item.dintelligence), Black, White);
-	SetString(2, windowY - 2, sHP + sPlus + to_wstring(item.dmaxhp), Black, White);
+	SetString(2, windowY - 8, sDamage + sPlus + to_wstring(item.damage), Black, White);
+	SetString(2, windowY - 7, sDefense + sPlus + to_wstring(item.defense), Black, White);
+	SetString(2, windowY - 6, sStrength + sPlus + to_wstring(item.dstrength), Black, White);
+	SetString(2, windowY - 5, sDexterity + sPlus + to_wstring(item.ddexterity), Black, White);
+	SetString(2, windowY - 4, sIntelligence + sPlus + to_wstring(item.dintelligence), Black, White);
+	SetString(2, windowY - 3, sHP + sPlus + to_wstring(item.dmaxhp), Black, White);
+	SetString(2, windowY - 2, sLevel + sDelimeter + to_wstring(item.level), Black, White);
 }
 
 void ShowInventory(Hero &dHero, short x, short y) {
