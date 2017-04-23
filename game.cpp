@@ -1,5 +1,8 @@
 #include "game.h"
 
+wstring gameLog[logSize];
+short logPosition = 0;
+
 void AddLog(wstring s) {
 	unsigned int k = 0;
 	while (k*(windowX - 3 - borderDelimiter) < s.length()) {

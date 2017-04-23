@@ -4,7 +4,6 @@
 #include "constants.h"
 
 class Map {
-private:
 public:
 	TTile **MainMap;
 	int Width, Height, curX, curY;

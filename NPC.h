@@ -4,7 +4,6 @@
 #include "Hero.h"
 
 class NPC {
-private:
 public:
 	int NPCk;
 	TNPC* NPCs;

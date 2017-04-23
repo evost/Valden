@@ -1,9 +1,8 @@
 #pragma once
 
-#include <string>
 #include <fstream>
 #include <urlmon.h>
-#pragma comment( lib, "urlmon.lib" )
+#pragma comment(lib, "urlmon.lib")
 #include "io.h"
 #include "Map.h"
 #include "NPC.h"

@@ -4,7 +4,6 @@
 #include "strings.h"
 
 class Hero {
-private:
 public:
 	float xp;
 	TItem carmor, cweapon;

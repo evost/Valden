@@ -3,8 +3,8 @@
 #include "constants.h"
 #include "utility.h"
 
-static wstring gameLog[logSize];
-static short logPosition = 0;
+extern wstring gameLog[logSize];
+extern short logPosition;
 
 void AddLog(wstring s);
 void NewHero(Hero &dHero);
