@@ -2,6 +2,7 @@
 #include "game.h"
 
 NPC::NPC(int k, Map &dMap, int heroLevel) {
+	bool isFree;
 	NPCs = (TNPC*)malloc(k * sizeof(TNPC));
 	NPCk = k;
 	for (int i = 0; i < k; i++) {
@@ -19,7 +20,11 @@ NPC::NPC(int k, Map &dMap, int heroLevel) {
 		do {
 			NPCs[i].x = rand() % (dMap.Width - 4) + 2;
 			NPCs[i].y = rand() % (dMap.Height - 4) + 2;
-		} while (!dMap.IsFree(NPCs[i].x, NPCs[i].y));
+			isFree = true;
+			for (int k = 0; k < i; k++)
+				if (NPCs[k].x == NPCs[i].x && NPCs[k].y == NPCs[i].y)
+					isFree = false;
+		} while (!dMap.IsFree(NPCs[i].x, NPCs[i].y) || !isFree);
 	}
 }
 
