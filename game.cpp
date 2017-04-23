@@ -52,7 +52,7 @@ void ShowInventoryHints(short x, short y) {
 	SetString(x + keyLength, y + 0, sDelimeter + sSelect, Black, White);
 	SetString(x, y + 1, skEnter, Black, Green);
 	SetString(x + keyLength, y + 1, sDelimeter + sUse, Black, White);
-	SetString(x, y + 2, skSpace, Black, Green);
+	SetString(x, y + 2, skBckspc, Black, Green);
 	SetString(x + keyLength, y + 2, sDelimeter + sDelete, Black, White);
 	SetString(x, y + 3, skEsc + sComma + skI, Black, Green);
 	SetString(x + keyLength, y + 3, sDelimeter + sBack, Black, White);
@@ -286,7 +286,7 @@ void ShowInventory(Hero &dHero, short x, short y) {
 					break;
 				}
 			break;
-		case 32:
+		case 8:
 			if (k < 2)
 				switch (k) {
 				case weapon:

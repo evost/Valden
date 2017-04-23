@@ -91,6 +91,7 @@ extern wstring skMinus;
 extern wstring skEnter;
 extern wstring skSpace;
 extern wstring skTab;
+extern wstring skBckspc;
 extern wstring sX;
 extern wstring sPlus;
 extern wstring sLoading;

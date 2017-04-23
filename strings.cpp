@@ -123,6 +123,7 @@ wstring skMinus = L"-";
 wstring skEnter = L"Enter";
 wstring skSpace = L"Space";
 wstring skTab = L"Tab";
+wstring skBckspc = L"Bckspc";
 wstring sX = L"x";
 wstring sPlus = L" +";
 wstring sLoading = L"Загрузка...";
