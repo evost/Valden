@@ -49,15 +49,18 @@ void NPC::NPCstep(Map &dMap, Hero &dHero) {
 					if (NPCs[i].strength - dHero.GetDefense() > 0) {
 						AddLog(sMonsters[NPCs[i].type] + sDamageToHero1 + to_wstring(NPCs[i].strength - dHero.GetDefense()) + sDamageToHero2);
 						dHero.hp -= NPCs[i].strength - dHero.GetDefense();
-					} else
+					}
+					else
 						AddLog(sMonsters[NPCs[i].type] + sNoDamage);
 					if (dHero.hp <= 0) {
 						dHero.hp = 0;
 						AddLog(sDeath);
 					}
-				} else
+				}
+				else
 					AddLog(sHeroDodged + sMonsters[NPCs[i].type]);
-			} else
+			}
+			else
 				if (Distance(NPCs[i].x, NPCs[i].y, dHero.x, dHero.y) <= NPCs[i].visDist && (abs(NPCs[i].x - dHero.x) + abs(NPCs[i].y - dHero.y) > 1))
 					if (NPCs[i].x < dHero.x && dMap.IsFree(NPCs[i].x + 1, NPCs[i].y) && NoNPCs(NPCs[i].x + 1, NPCs[i].y))
 						NPCs[i].x++;
@@ -81,7 +84,8 @@ int NPC::HeroAttack(int x, int y, int damage) {
 					AddLog(sMonsters[NPCs[i].type] + sKilling);
 					return NPCs[i].dxp;
 				}
-			} else
+			}
+			else
 				AddLog(sMonsters[NPCs[i].type] + sDodged);
 		}
 	return 0;

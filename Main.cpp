@@ -48,7 +48,8 @@ int main() {
 			if (SaveExist(sSavePath + sMapSave) && SaveExist(sSavePath + sSaveDin + sMapSave) && SaveExist(sSavePath + sNPCSave) && SaveExist(sSavePath + sSaveDin + sNPCSave)) {
 				LoadMap(VMap);
 				LoadNPC(VNPC, VMap);
-			} else
+			}
+			else
 				NewMap(VMap, VHero, VNPC);
 			inGame = true;
 			break;

@@ -119,7 +119,8 @@ void Hero::ExpInc(float dxp) {
 					}
 					AddLog(sReceived + sItems[invertory[i].id]);
 					break;
-				} else if (i = invSize - 1)
+				}
+				else if (i = invSize - 1)
 					AddLog(sNoFreeSpace);
 	}
 }
