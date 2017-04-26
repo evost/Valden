@@ -132,3 +132,4 @@ TItem poultices[poulticeNum] = {
 	{ 2, 0, 0, 0, 0, 0, 25, 1, 22 }
 };
 TItem blankItem = { -1, 0, 0, 0, 0, 0, 0, 0 };
+int spawnArea = 3;

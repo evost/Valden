@@ -171,8 +171,8 @@ void NewMap(GameMap &dMap, int width, int height, Hero &dHero, NPC &dNPC, int NP
 	dMap = nMap;
 	dNPC = nNPC;
 	do {
-		dHero.x = rand() % (dMap.Width - 6) + 3;
-		dHero.y = rand() % (dMap.Height - 6) + 3;
+		dHero.x = rand() % (dMap.Width - spawnArea * 2) + spawnArea;
+		dHero.y = rand() % (dMap.Height - spawnArea * 2) + spawnArea;
 	} while (!dMap.IsFree(dHero.x, dHero.y) || !dNPC.NoNPCs(dHero.x, dHero.y));
 	dMap.curX = dHero.x - mapVisX / 2;
 	if (dMap.curX < 0) dMap.curX = 0;

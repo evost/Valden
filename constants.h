@@ -96,3 +96,4 @@ extern TItem Items[itemsNum];
 const int poulticeNum = 3;
 extern TItem poultices[poulticeNum];
 extern TItem blankItem;
+extern int spawnArea;
