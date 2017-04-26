@@ -21,11 +21,11 @@ Hero::Hero() {
 	y = 0;
 }
 
-void Hero::GetHero(Map &dMap) {
+void Hero::GetHero(GameMap &dMap) {
 	SetSymbol((short)(x + 1 - dMap.curX), (short)(y + 1 - dMap.curY), 'X', Black, Red);
 }
 
-void Hero::SetVisibleCells(Map &dMap) {
+void Hero::SetVisibleCells(GameMap &dMap) {
 	for (int mx = x - visDistance; mx <= x + visDistance; mx++)
 		for (int my = y - visDistance; my <= y + visDistance; my++)
 			if (mx >= 0 && my >= 0 && mx <= dMap.Width && my <= dMap.Height && Distance(mx, my, x, y) <= visDistance) {
@@ -37,7 +37,7 @@ void Hero::SetVisibleCells(Map &dMap) {
 			}
 }
 
-void Hero::HeroStep(short dx, short dy, Map &dMap) {
+void Hero::HeroStep(short dx, short dy, GameMap &dMap) {
 	dx += x;
 	dy += y;
 	if (dx >= 0 && dy >= 0 && dx <= dMap.Width && dy <= dMap.Height && dMap.IsFree(dx, dy)) {

@@ -13,3 +13,7 @@ struct TNPC {
 struct TItem {
 	int type, damage, defense, dstrength, ddexterity, dintelligence, dmaxhp, level, id;
 };
+
+struct TStorage {
+	int type, x, y;
+};

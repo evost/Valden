@@ -1,13 +1,15 @@
 #pragma once
 
-#include <iostream>
 #include "constants.h"
+#include <map>
 
-class Map {
+using namespace std;
+
+class GameMap {
 public:
-	TTile **MainMap;
+	map<int, map<int, TTile>> MainMap;
 	int Width, Height, curX, curY;
-	Map(int width, int height);
+	GameMap(int width, int height);
 	void GetMap();
 	bool IsFree(int x, int y);
 };

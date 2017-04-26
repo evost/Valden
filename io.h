@@ -10,4 +10,4 @@ void Init(wstring name);
 void SetWindow(short x, short y, short fontSize);
 short ReadKey();
 void Render();
-wstring to_wstring(int i);
+//wstring to_wstring(int i);

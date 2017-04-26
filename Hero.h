@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Map.h"
+#include "GameMap.h"
 #include "strings.h"
 
 class Hero {
@@ -12,9 +12,9 @@ public:
 	int killed;
 	int hp, strength, dexterity, intelligence, maxhp, maxxp, level, cpoints, race, visDistance;
 	Hero();
-	void GetHero(Map &dMap);
-	void SetVisibleCells(Map &dMap);
-	void HeroStep(short dx, short dy, Map &dMap);
+	void GetHero(GameMap &dMap);
+	void SetVisibleCells(GameMap &dMap);
+	void HeroStep(short dx, short dy, GameMap &dMap);
 	int GetDamage();
 	int GetDefense();
 	void ExpInc(float dxp);

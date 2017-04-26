@@ -91,7 +91,7 @@ void ShowHeroInfo(Hero &dHero, short x, short y) {
 		SetString(x, y + 4, sXP + sDelimeter + FloatToWstring(dHero.xp), Black, White);
 }
 
-void RenderWorld(Map &dMap, Hero &dHero, NPC &dNPC, bool hint) {
+void RenderWorld(GameMap &dMap, Hero &dHero, NPC &dNPC, bool hint) {
 	dMap.GetMap();
 	dNPC.GetNPCs(dMap, dHero);
 	dHero.GetHero(dMap);
@@ -166,8 +166,8 @@ void NewHero(Hero &dHero) {
 	ReadKey();
 }
 
-void NewMap(Map &dMap, Hero &dHero, NPC &dNPC) {
-	Map nMap(dMap.Width + 1, dMap.Height + 1);
+void NewMap(GameMap &dMap, Hero &dHero, NPC &dNPC) {
+	GameMap nMap(dMap.Width + 1, dMap.Height + 1);
 	NPC nNPC(dNPC.NPCk, nMap, dHero.level);
 	dMap = nMap;
 	dNPC = nNPC;
@@ -424,7 +424,7 @@ void ShowCharacteristics(Hero &dHero) {
 	}
 }
 
-void Game(Map &dMap, Hero &dHero, NPC &dNPC, bool &dShowHints) {
+void Game(GameMap &dMap, Hero &dHero, NPC &dNPC, bool &dShowHints) {
 	short button = 0;
 	while (button != 27) {
 		RenderWorld(dMap, dHero, dNPC, dShowHints);

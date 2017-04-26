@@ -4,7 +4,7 @@
 #include <urlmon.h>
 #pragma comment(lib, "urlmon.lib")
 #include "io.h"
-#include "Map.h"
+#include "GameMap.h"
 #include "NPC.h"
 
 using namespace std;
@@ -27,9 +27,9 @@ template<class T> void Load(T &object, wstring path) {
 	inf.close();
 }
 void SaveNPC(NPC &dNPC);
-void LoadNPC(NPC &dNPC, Map &dMap);
-void SaveMap(Map &dMap);
-void LoadMap(Map &dMap);
+void LoadNPC(NPC &dNPC, GameMap &dMap);
+void SaveMap(GameMap &dMap);
+void LoadMap(GameMap &dMap);
 void SaveSettings(short &fontSize, short &mapVisY);
 void LoadSettings(short &fontSize, short &mapVisY);
 float Distance(int x1, int y1, int x2, int y2);

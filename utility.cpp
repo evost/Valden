@@ -64,14 +64,14 @@ void SaveNPC(NPC &dNPC) {
 	out.close();
 }
 
-void LoadNPC(NPC &dNPC, Map &dMap) {
+void LoadNPC(NPC &dNPC, GameMap &dMap) {
 	ifstream inf(sSavePath + sSaveDin + sNPCSave, ios::binary | ios::in);
 	int type;
 	dNPC.NPCs.clear();
 	inf >> dNPC.NPCk;
 	for (int i = 0; i < dNPC.NPCk; i++) {
 		inf >> type;
-		dNPC.NPCs.insert (pair<int,TNPC>(i,NPC_types[type]));
+		dNPC.NPCs.insert(pair<int, TNPC>(i, NPC_types[type]));
 		inf >> dNPC.NPCs[i].hp;
 		inf >> dNPC.NPCs[i].x;
 		inf >> dNPC.NPCs[i].y;
@@ -79,9 +79,12 @@ void LoadNPC(NPC &dNPC, Map &dMap) {
 	inf.close();
 }
 
-void SaveMap(Map &dMap) {
-	Save(dMap, sSavePath + sMapSave);
+void SaveMap(GameMap &dMap) {
 	ofstream outf(sSavePath + sSaveDin + sMapSave, ios::binary | ios::out);
+	outf << dMap.Width << ' ';
+	outf << dMap.Height << ' ';
+	outf << dMap.curX << ' ';
+	outf << dMap.curY << ' ';
 	for (int x = 0; x < dMap.Width; x++)
 		for (int y = 0; y < dMap.Height; y++) {
 			outf << dMap.MainMap[x][y].type << ' ';
@@ -90,18 +93,21 @@ void SaveMap(Map &dMap) {
 	outf.close();
 }
 
-void LoadMap(Map &dMap) {
-	Load(dMap, sSavePath + sMapSave);
-	Map ddMap(dMap.Width + 1, dMap.Height + 1);
+void LoadMap(GameMap &dMap) {
 	ifstream inf(sSavePath + sSaveDin + sMapSave, ios::binary | ios::in);
-	for (int x = 0; x < ddMap.Width; x++)
-		for (int y = 0; y < ddMap.Height; y++) {
-			inf >> ddMap.MainMap[x][y].type;
-			ddMap.MainMap[x][y] = Tiles[ddMap.MainMap[x][y].type];
-			inf >> ddMap.MainMap[x][y].isVisible;
+	int type;
+	dMap.MainMap.clear();
+	inf >> dMap.Width;
+	inf >> dMap.Height;
+	inf >> dMap.curX;
+	inf >> dMap.curY;
+	for (int x = 0; x < dMap.Width; x++)
+		for (int y = 0; y < dMap.Height; y++) {
+			inf >> type;
+			dMap.MainMap[x][y] = Tiles[type];
+			inf >> dMap.MainMap[x][y].isVisible;
 		}
 	inf.close();
-	dMap.MainMap = ddMap.MainMap;
 }
 
 void SaveSettings(short &fontSize, short &mapVisY) {
