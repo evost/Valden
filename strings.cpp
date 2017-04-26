@@ -133,7 +133,6 @@ wstring sHeroSave = L"Hero.sv";
 wstring sNPCSave = L"NPC.sv";
 wstring sSettingsSave = L"settings.sv";
 wstring sSavePath = L"save/";
-wstring sSaveDin = L"din.";
 wstring sVersion[2] = { L"Страница проекта",  L"Вышла новая версия " };
 wstring sCopyright[2] = { L"https://github.com/evost/Valden-builds",  L"(c) github.com/evost" };
 wstring sVersionURL = L"https://raw.githubusercontent.com/evost/Valden-builds/master/version.md";

@@ -53,7 +53,7 @@ void CreateSaveDir(wstring path) {
 }
 
 void SaveNPC(NPC &dNPC) {
-	ofstream out(sSavePath + sSaveDin + sNPCSave, ios::binary | ios::out);
+	ofstream out(sSavePath + sNPCSave, ios::binary | ios::out);
 	out << dNPC.NPCk << ' ';
 	for (int i = 0; i < dNPC.NPCk; i++) {
 		out << dNPC.NPCs[i].type << ' ';
@@ -65,7 +65,7 @@ void SaveNPC(NPC &dNPC) {
 }
 
 void LoadNPC(NPC &dNPC, GameMap &dMap) {
-	ifstream inf(sSavePath + sSaveDin + sNPCSave, ios::binary | ios::in);
+	ifstream inf(sSavePath + sNPCSave, ios::binary | ios::in);
 	int type;
 	dNPC.NPCs.clear();
 	inf >> dNPC.NPCk;
@@ -80,7 +80,7 @@ void LoadNPC(NPC &dNPC, GameMap &dMap) {
 }
 
 void SaveMap(GameMap &dMap) {
-	ofstream outf(sSavePath + sSaveDin + sMapSave, ios::binary | ios::out);
+	ofstream outf(sSavePath + sMapSave, ios::binary | ios::out);
 	outf << dMap.Width << ' ';
 	outf << dMap.Height << ' ';
 	outf << dMap.curX << ' ';
@@ -94,7 +94,7 @@ void SaveMap(GameMap &dMap) {
 }
 
 void LoadMap(GameMap &dMap) {
-	ifstream inf(sSavePath + sSaveDin + sMapSave, ios::binary | ios::in);
+	ifstream inf(sSavePath + sMapSave, ios::binary | ios::in);
 	int type;
 	dMap.MainMap.clear();
 	inf >> dMap.Width;

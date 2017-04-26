@@ -101,7 +101,6 @@ extern wstring sHeroSave;
 extern wstring sNPCSave;
 extern wstring sSettingsSave;
 extern wstring sSavePath;
-extern wstring sSaveDin;
 extern wstring sVersion[2];
 extern wstring sCopyright[2];
 extern wstring sVersionURL;
