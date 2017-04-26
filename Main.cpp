@@ -14,9 +14,9 @@ int main() {
 	SetString(mapVisX / 2, mapVisY / 2, sLoading, Black, White);
 	Border(windowX, windowY, borderDelimiter);
 	Render();
-	GameMap VMap(128, 64);
+	GameMap VMap(0, 0);
 	Hero VHero;
-	NPC VNPC(64, VMap, VHero.level);
+	NPC VNPC(0, VMap, 1);
 	bool showHints = false;
 	bool inGame = false;
 	wstring versionNum = Version(sVersionURL);
@@ -28,7 +28,7 @@ int main() {
 		case 4:
 			NewHero(VHero);
 		case 2:
-			NewMap(VMap, VHero, VNPC);
+			NewMap(VMap, 128, 64, VHero, VNPC, 64);
 			inGame = true;
 		case 0:
 			Game(VMap, VHero, VNPC, showHints);
@@ -43,14 +43,15 @@ int main() {
 		case 3:
 			if (SaveExist(sSavePath + sHeroSave))
 				Load(VHero, sSavePath + sHeroSave);
-			else
+			else {
 				NewHero(VHero);
-			if (SaveExist(sSavePath + sMapSave) && SaveExist(sSavePath + sSaveDin + sMapSave) && SaveExist(sSavePath + sNPCSave) && SaveExist(sSavePath + sSaveDin + sNPCSave)) {
+			}
+			if (SaveExist(sSavePath + sMapSave) && SaveExist(sSavePath + sNPCSave)) {
 				LoadMap(VMap);
 				LoadNPC(VNPC, VMap);
 			}
 			else
-				NewMap(VMap, VHero, VNPC);
+				NewMap(VMap, 128, 64, VHero, VNPC, 64);
 			inGame = true;
 			break;
 		case 5:

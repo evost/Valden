@@ -158,7 +158,6 @@ void NewHero(Hero &dHero) {
 	default:
 		break;
 	}
-
 	for (int i = 0; i < historySize; i++)
 		SetString(2, 1 + i, sHistory[i], Black, White);
 	Border(windowX, windowY, borderDelimiter);
@@ -166,15 +165,15 @@ void NewHero(Hero &dHero) {
 	ReadKey();
 }
 
-void NewMap(GameMap &dMap, Hero &dHero, NPC &dNPC) {
-	GameMap nMap(dMap.Width + 1, dMap.Height + 1);
-	NPC nNPC(dNPC.NPCk, nMap, dHero.level);
+void NewMap(GameMap &dMap, int width, int height, Hero &dHero, NPC &dNPC, int NPCk) {
+	GameMap nMap(width, height);
+	NPC nNPC(NPCk, nMap, dHero.level);
 	dMap = nMap;
 	dNPC = nNPC;
 	do {
 		dHero.x = rand() % (dMap.Width - 6) + 3;
 		dHero.y = rand() % (dMap.Height - 6) + 3;
-	} while (!dMap.IsFree(dHero.x, dHero.y));
+	} while (!dMap.IsFree(dHero.x, dHero.y) || !dNPC.NoNPCs(dHero.x, dHero.y));
 	dMap.curX = dHero.x - mapVisX / 2;
 	if (dMap.curX < 0) dMap.curX = 0;
 	if (dMap.curX > (dMap.Width - mapVisX)) dMap.curX = dMap.Width - mapVisX + 1;
