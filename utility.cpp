@@ -53,8 +53,8 @@ void CreateSaveDir(wstring path) {
 }
 
 void SaveNPC(NPC &dNPC) {
-	Save(dNPC, sSavePath + sNPCSave);
 	ofstream out(sSavePath + sSaveDin + sNPCSave, ios::binary | ios::out);
+	out << dNPC.NPCk << ' ';
 	for (int i = 0; i < dNPC.NPCk; i++) {
 		out << dNPC.NPCs[i].type << ' ';
 		out << dNPC.NPCs[i].hp << ' ';
@@ -65,18 +65,18 @@ void SaveNPC(NPC &dNPC) {
 }
 
 void LoadNPC(NPC &dNPC, Map &dMap) {
-	Load(dNPC, sSavePath + sNPCSave);
-	NPC ddNPC(dNPC.NPCk, dMap, 1);
 	ifstream inf(sSavePath + sSaveDin + sNPCSave, ios::binary | ios::in);
-	for (int i = 0; i < ddNPC.NPCk; i++) {
-		inf >> ddNPC.NPCs[i].type;
-		ddNPC.NPCs[i] = NPC_types[ddNPC.NPCs[i].type];
-		inf >> ddNPC.NPCs[i].hp;
-		inf >> ddNPC.NPCs[i].x;
-		inf >> ddNPC.NPCs[i].y;
+	int type;
+	dNPC.NPCs.clear();
+	inf >> dNPC.NPCk;
+	for (int i = 0; i < dNPC.NPCk; i++) {
+		inf >> type;
+		dNPC.NPCs.insert (pair<int,TNPC>(i,NPC_types[type]));
+		inf >> dNPC.NPCs[i].hp;
+		inf >> dNPC.NPCs[i].x;
+		inf >> dNPC.NPCs[i].y;
 	}
 	inf.close();
-	dNPC.NPCs = ddNPC.NPCs;
 }
 
 void SaveMap(Map &dMap) {

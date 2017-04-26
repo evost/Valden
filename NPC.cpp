@@ -3,7 +3,7 @@
 
 NPC::NPC(int k, Map &dMap, int heroLevel) {
 	bool isFree;
-	NPCs = (TNPC*)malloc(k * sizeof(TNPC));
+	NPCs.clear();
 	NPCk = k;
 	for (int i = 0; i < k; i++) {
 		int l1 = heroLevel - 2, l2 = heroLevel - 1, l3 = heroLevel;
@@ -12,11 +12,11 @@ NPC::NPC(int k, Map &dMap, int heroLevel) {
 		if (l3 > NPCTypesNum - 1) l3 = NPCTypesNum - 1;
 		int random = rand() % 100;
 		if (random < 50)
-			NPCs[i] = NPC_types[l1];
+			NPCs.insert(pair<int,TNPC>(i,NPC_types[l1]));
 		else if (random < 83)
-			NPCs[i] = NPC_types[l2];
+			NPCs.insert(pair<int,TNPC>(i,NPC_types[l2]));
 		else
-			NPCs[i] = NPC_types[l3];
+			NPCs.insert(pair<int,TNPC>(i,NPC_types[l3]));
 		do {
 			NPCs[i].x = rand() % (dMap.Width - 4) + 2;
 			NPCs[i].y = rand() % (dMap.Height - 4) + 2;

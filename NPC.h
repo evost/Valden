@@ -2,11 +2,12 @@
 
 #include "Map.h"
 #include "Hero.h"
+#include <map>
 
 class NPC {
 public:
 	int NPCk;
-	TNPC* NPCs;
+	map <int, TNPC> NPCs;
 	NPC(int k, Map &dMap, int heroLevel);
 	void GetNPCs(Map &dMap, Hero &dHero);
 	bool NoNPCs(short x, short y);
