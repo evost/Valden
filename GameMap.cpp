@@ -1,10 +1,10 @@
-#include "Map.h"
+#include "GameMap.h"
 #include "game.h"
 
-Map::Map(int width, int height) {
+GameMap::GameMap(int width, int height) {
+	MainMap.clear();
 	curX = 0;
 	curY = 0;
-	MainMap = (TTile**)malloc(width * height * sizeof(TTile));
 	if (width - 1 < mapVisX)
 		Width = mapVisX;
 	else
@@ -14,9 +14,7 @@ Map::Map(int width, int height) {
 	else
 		Height = height - 1;
 	for (int x = 0; x <= Width; x++) {
-		MainMap[x] = new TTile[height];
 		for (int y = 0; y <= Height; y++) {
-			MainMap[x][y].isVisible = false;
 			int chance = rand() % 100;
 			if (chance < 12)
 				MainMap[x][y] = Tiles[grassD];
@@ -48,6 +46,7 @@ Map::Map(int width, int height) {
 				MainMap[x][y] = Tiles[rockL];
 			else
 				MainMap[x][y] = Tiles[rockW];
+			MainMap[x][y].isVisible = false;
 		}
 	}
 	for (int i = 0; i < width * height / 1000; i++) {
@@ -73,14 +72,14 @@ Map::Map(int width, int height) {
 	}
 }
 
-void Map::GetMap() {
+void GameMap::GetMap() {
 	for (int x = curX; x < curX + mapVisX; x++)
 		for (int y = curY; y < curY + mapVisY; y++)
 			if (MainMap[x][y].isVisible)
 				SetSymbol((short)(x - curX + 1), (short)(y - curY + 1), MainMap[x][y].cell, Black, MainMap[x][y].color);
 }
 
-bool Map::IsFree(int x, int y) {
+bool GameMap::IsFree(int x, int y) {
 	if (MainMap[x][y].type > waterL)
 		return false;
 	else
