@@ -94,14 +94,23 @@ void LoadHero(Hero &dHero) {
 	inf >> dHero.race;
 	inf >> dHero.visDistance;
 	inf >> id;
-	dHero.carmor = Items[id];
+	if (id != 0)
+		dHero.carmor = Items[id - 1];
+	else
+		dHero.carmor = blankItem;
 	inf >> id;
-	dHero.cweapon = Items[id];
+	if (id != 0)
+		dHero.cweapon = Items[id - 1];
+	else
+		dHero.cweapon = blankItem;
 	inf >> k;
 	dHero.invertory.clear();
 	for (int i = 0; i < k; i++) {
 		inf >> id;
-		dHero.invertory[i] = Items[id];
+		if (id <= itemsNum)
+			dHero.invertory[i] = Items[id - 1];
+		else
+			dHero.invertory[i] = poultices[id - itemsNum];
 	}
 	inf.close();
 }
