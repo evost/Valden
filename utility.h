@@ -16,16 +16,8 @@ wstring FloatToWstring(float k);
 wstring Version(wstring url);
 bool SaveExist(wstring path);
 void CreateSaveDir(wstring path);
-template<class T> void Save(T &object, wstring path) {
-	ofstream out(path, ios::binary | ios::out);
-	out.write((char*)(&object), sizeof object);
-	out.close();
-}
-template<class T> void Load(T &object, wstring path) {
-	ifstream inf(path, ios::binary | ios::in);
-	inf.read((char*)(&object), sizeof object);
-	inf.close();
-}
+void SaveHero(Hero &dHero);
+void LoadHero(Hero &dHero);
 void SaveNPC(NPC &dNPC);
 void LoadNPC(NPC &dNPC, GameMap &dMap);
 void SaveMap(GameMap &dMap);

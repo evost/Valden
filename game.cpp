@@ -193,12 +193,13 @@ void ShowItemInfo(TItem item) {
 	SetString(2, windowY - 2, sLevel + sDelimeter + to_wstring(item.level), Black, White);
 }
 
-void ShowInventory(Hero &dHero, short x, short y) {
+void ShowInventory(Hero &dHero) {
 	int k = 0;
 	short button = 0;
-	TItem item;
 	while (button != 27 && button != 73 && button != 105 && button != 152 && button != 232) {
 		Border(windowX, windowY, borderDelimiter);
+		SetString(2, 1, sRadio + sCWeapon + sItems[dHero.cweapon.id], Black, White);
+		SetString(2, 2, sRadio + sCArmor + sItems[dHero.carmor.id], Black, White);
 		if (k < 2)
 			switch (k) {
 			case weapon:
@@ -212,79 +213,91 @@ void ShowInventory(Hero &dHero, short x, short y) {
 			default:
 				break;
 			}
-		else if (dHero.invertory[k - 2].type != blank)
+		else
 			ShowItemInfo(dHero.invertory[k - 2]);
-		if (dHero.cweapon.type == blank)
-			SetString(2, 1, sRadio + sCWeapon + sLack, Black, White);
-		else
-			SetString(2, 1, sRadio + sCWeapon + sItems[dHero.cweapon.id], Black, White);
-		if (dHero.carmor.type == blank)
-			SetString(2, 2, sRadio + sCArmor + sLack, Black, White);
-		else
-			SetString(2, 2, sRadio + sCArmor + sItems[dHero.carmor.id], Black, White);
-		for (int i = 0; i < invSize; i++)
-			if (dHero.invertory[i].type == blank)
-				SetString(2, 4 + i, sRadio + sLack, Black, White);
-			else
+		if (k - 2 <= invSize) {
+			for (int i = 0; i <= invSize && i < dHero.invertory.size(); i++)
 				if (dHero.invertory[i].level <= dHero.level)
 					SetString(2, 4 + i, sRadio + sItems[dHero.invertory[i].id], Black, White);
 				else
 					SetString(2, 4 + i, sRadio + sItems[dHero.invertory[i].id], Black, Brown);
+			if (k < 2)
+				SetString(3, 1 + k, sAsterisk, Black, White);
+			else
+				SetString(3, 4 + k - 2, sAsterisk, Black, White);
+		}
+		else {
+			SetString(2, 4, L"...", Black, White);
+			for (int i = ((k - 2 - 1) / invSize)*invSize + 1; i <= ((k - 2 - 1) / invSize + 1)*invSize && i < dHero.invertory.size(); i++)
+				if (dHero.invertory[i].level <= dHero.level)
+					SetString(2, 5 + i %(((i - 1)/invSize)*invSize + 1), sRadio + sItems[dHero.invertory[i].id], Black, White);
+				else
+					SetString(2, 5 + i %(((i - 1)/invSize)*invSize + 1), sRadio + sItems[dHero.invertory[i].id], Black, Brown);
+			SetString(3, 5 + (k - 2)%(((k - 2 - 1)/invSize)*invSize + 1), sAsterisk, Black, White);
+		}
+		if (((k - 2 - 1) / invSize + 1)*invSize + 1 < dHero.invertory.size())
+			SetString(2, 4 + invSize + 1, L"...", Black, White);
 		ShowInventoryHints(borderDelimiter + 2, 1);
-		if (k < 2)
-			SetString(3, 1 + k, sAsterisk, Black, White);
-		else
-			SetString(3, 2 + k, sAsterisk, Black, White);
 		Render();
 		button = ReadKey();
 		switch (button) {
 		case 224:
-			SetString(3, 4 + k, sSpace, Black, White);
 			switch (ReadKey()) {
 			case 72:
-				k = (k - 1 + (invSize + 2)) % (invSize + 2);
+				if (k > 0)
+					k--;
 				break;
 			case 80:
-				k = (k + 1 + (invSize + 2)) % (invSize + 2);
+				if (k < dHero.invertory.size() + 1)
+					k++;
 				break;
 			default:
 				break;
 			}
 			break;
 		case 13:
-			if (k < 2) {
-				for (int i = 0; i < invSize; i++)
-					if (dHero.invertory[i].type == blank)
-						switch (k) {
-						case weapon:
-							dHero.invertory[i] = dHero.cweapon;
-							dHero.cweapon = blankItem;
-							break;
-						case armor:
-							dHero.invertory[i] = dHero.carmor;
-							dHero.carmor = blankItem;
-							break;
-						default:
-							break;
-						}
-			}
+			if (k < 2)
+				switch (k) {
+				case weapon:
+					dHero.invertory[dHero.invertory.size()] = dHero.cweapon;
+					dHero.cweapon = blankItem;
+					break;
+				case armor:
+					dHero.invertory[dHero.invertory.size()] = dHero.carmor;
+					dHero.carmor = blankItem;
+					break;
+				default:
+					break;
+				}
 			else
 				if (dHero.invertory[k - 2].level <= dHero.level)
 					switch (dHero.invertory[k - 2].type) {
 					case weapon:
-						item = dHero.cweapon;
-						dHero.cweapon = dHero.invertory[k - 2];
-						dHero.invertory[k - 2] = item;
+						swap(dHero.cweapon, dHero.invertory[k - 2]);
+						if (dHero.invertory[k - 2].type == blank) {
+							for (unsigned int z = k - 2; z < dHero.invertory.size() - 1; z++)
+								dHero.invertory[z] = dHero.invertory[z + 1];
+							dHero.invertory.erase(dHero.invertory.size() - 1);
+							k--;
+						}
 						break;
 					case armor:
-						item = dHero.carmor;
-						dHero.carmor = dHero.invertory[k - 2];
-						dHero.invertory[k - 2] = item;
+						swap(dHero.carmor, dHero.invertory[k - 2]);
+						if (dHero.invertory[k - 2].type == blank) {
+							for (unsigned int z = k - 2; z < dHero.invertory.size() - 1; z++)
+								dHero.invertory[z] = dHero.invertory[z + 1];
+							dHero.invertory.erase(dHero.invertory.size() - 1);
+							k--;
+						}
 						break;
 					case poultice:
 						dHero.hp += dHero.invertory[k - 2].dmaxhp;
-						if (dHero.hp > dHero.maxhp) dHero.hp = dHero.maxhp;
-						dHero.invertory[k - 2] = blankItem;
+						if (dHero.hp > dHero.maxhp)
+							dHero.hp = dHero.maxhp;
+						for (unsigned int z = k - 2; z < dHero.invertory.size() - 1; z++)
+							dHero.invertory[z] = dHero.invertory[z + 1];
+						dHero.invertory.erase(dHero.invertory.size() - 1);
+						k--;
 						break;
 					default:
 						break;
@@ -302,8 +315,12 @@ void ShowInventory(Hero &dHero, short x, short y) {
 				default:
 					break;
 				}
-			else
-				dHero.invertory[k - 2] = blankItem;
+			else {
+				for (unsigned int z = k - 2; z < dHero.invertory.size() - 1; z++)
+					dHero.invertory[z] = dHero.invertory[z + 1];
+				dHero.invertory.erase(dHero.invertory.size() - 1);
+				k--;
+			}
 			break;
 		default:
 			break;
@@ -460,7 +477,7 @@ void Game(GameMap &dMap, Hero &dHero, NPC &dNPC, bool &dShowHints) {
 			case 105:
 			case 152:
 			case 232:
-				ShowInventory(dHero, windowX, windowY);
+				ShowInventory(dHero);
 				break;
 			case 67:
 			case 99:

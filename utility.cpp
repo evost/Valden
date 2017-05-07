@@ -52,6 +52,60 @@ void CreateSaveDir(wstring path) {
 	CreateDirectoryW(path.c_str(), NULL);
 }
 
+void SaveHero(Hero &dHero) {
+	ofstream out(sSavePath + sHeroSave, ios::binary | ios::out);
+	out << dHero.xp << ' ';
+	out << dHero.x << ' ';
+	out << dHero.y << ' ';
+	out << dHero.killed << ' ';
+	out << dHero.hp << ' ';
+	out << dHero.strength << ' ';
+	out << dHero.dexterity << ' ';
+	out << dHero.intelligence << ' ';
+	out << dHero.maxhp << ' ';
+	out << dHero.maxxp << ' ';
+	out << dHero.level << ' ';
+	out << dHero.cpoints << ' ';
+	out << dHero.race << ' ';
+	out << dHero.visDistance << ' ';
+	out << dHero.carmor.id << ' ';
+	out << dHero.cweapon.id << ' ';
+	out << dHero.invertory.size() << ' ';
+	for (int i = 0; i < dHero.invertory.size(); i++)
+		out << dHero.invertory[i].id << ' ';
+	out.close();
+}
+
+void LoadHero(Hero &dHero) {
+	int k, id;
+	ifstream inf(sSavePath + sHeroSave, ios::binary | ios::in);
+	inf >> dHero.xp;
+	inf >> dHero.x;
+	inf >> dHero.y;
+	inf >> dHero.killed;
+	inf >> dHero.hp;
+	inf >> dHero.strength;
+	inf >> dHero.dexterity;
+	inf >> dHero.intelligence;
+	inf >> dHero.maxhp;
+	inf >> dHero.maxxp;
+	inf >> dHero.level;
+	inf >> dHero.cpoints;
+	inf >> dHero.race;
+	inf >> dHero.visDistance;
+	inf >> id;
+	dHero.carmor = Items[id];
+	inf >> id;
+	dHero.cweapon = Items[id];
+	inf >> k;
+	dHero.invertory.clear();
+	for (int i = 0; i < k; i++) {
+		inf >> id;
+		dHero.invertory[i] = Items[id];
+	}
+	inf.close();
+}
+
 void SaveNPC(NPC &dNPC) {
 	ofstream out(sSavePath + sNPCSave, ios::binary | ios::out);
 	out << dNPC.NPCk << ' ';

@@ -36,13 +36,13 @@ int main() {
 			break;
 		case 1:
 			CreateSaveDir(sSavePath);
-			Save(VHero, sSavePath + sHeroSave);
+			SaveHero(VHero);
 			SaveMap(VMap);
 			SaveNPC(VNPC);
 			break;
 		case 3:
 			if (SaveExist(sSavePath + sHeroSave))
-				Load(VHero, sSavePath + sHeroSave);
+				LoadHero(VHero);
 			else {
 				NewHero(VHero);
 			}

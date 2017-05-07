@@ -37,7 +37,8 @@ wstring sSeeTrap = L"Вы обнаружили ловушку";
 wstring sDisarmTrap = L"Вы обезвредили ловушку";
 wstring sFallTrap = L"Вы попали в ловушку";
 wstring sNoFreeSpace = L"Нет свободного места";
-wstring sItems[itemsNum + poulticeNum] = {
+wstring sItems[itemsNum + poulticeNum + 1] = {
+	L"---",
 	L"Дубина",
 	L"Крестьянская одежда",
 	L"Кинжал",
@@ -112,7 +113,6 @@ wstring sSpace = L" ";
 wstring sAsterisk = L"*";
 wstring sPercent = L"%";
 wstring sRadio = L"( ) ";
-wstring sLack = L"---";
 wstring sWindowName = L"Valden";
 wstring skArrows = L"arrows";
 wstring skWASD = L"wasd";

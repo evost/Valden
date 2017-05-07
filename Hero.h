@@ -6,11 +6,11 @@
 class Hero {
 public:
 	float xp;
-	TItem carmor, cweapon;
-	TItem invertory[invSize];
 	int x, y;
 	int killed;
 	int hp, strength, dexterity, intelligence, maxhp, maxxp, level, cpoints, race, visDistance;
+	TItem carmor, cweapon;
+	map<int, TItem> invertory;
 	Hero();
 	void GetHero(GameMap &dMap);
 	void SetVisibleCells(GameMap &dMap);

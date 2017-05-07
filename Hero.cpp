@@ -15,8 +15,6 @@ Hero::Hero() {
 	visDistance = heroStartVisDistance + intelligence;
 	cweapon = Items[0];
 	carmor = Items[1];
-	for (int i = 0; i < invSize; i++)
-		invertory[i] = blankItem;
 	x = 0;
 	y = 0;
 }
@@ -103,24 +101,19 @@ void Hero::ExpInc(float dxp) {
 			cpoints += newLevelPoints;
 		}
 		int chance = rand() % 100;
-		if (chance < 34)
-			for (int i = 0; i < invSize; i++)
-				if (invertory[i].type == blank) {
-					if (chance < 11)
-						invertory[i] = poultices[chance % poulticeNum];
-					else {
-						int min = 2 * (level - 2);
-						int max = level * 2 + 1;
-						if (max > itemsNum) max = itemsNum;
-						if (min < 0) min = 0;
-						if (min > max) min = max - 1;
-						int random = rand() % (max - min + 1) + min;
-						invertory[i] = Items[random];
-					}
-					AddLog(sReceived + sItems[invertory[i].id]);
-					break;
-				}
-				else if (i = invSize - 1)
-					AddLog(sNoFreeSpace);
+		if (chance < 34) {
+			if (chance < 11)
+				invertory[invertory.size()] = poultices[chance % poulticeNum];
+			else {
+				int min = 2 * (level - 2);
+				int max = level * 2 + 1;
+				if (max > itemsNum) max = itemsNum;
+				if (min < 0) min = 0;
+				if (min > max) min = max - 1;
+				int random = rand() % (max - min + 1) + min;
+				invertory[invertory.size()] = Items[random];
+			}
+			AddLog(sReceived + sItems[invertory[invertory.size() - 1].id]);
+		}
 	}
 }
