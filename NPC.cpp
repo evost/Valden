@@ -12,11 +12,11 @@ NPC::NPC(int k, GameMap &dMap, int heroLevel) {
 		if (l3 > NPCTypesNum - 1) l3 = NPCTypesNum - 1;
 		int random = rand() % 100;
 		if (random < 50)
-			NPCs.insert(pair<int, TNPC>(i, NPC_types[l1]));
+			NPCs[i] = NPC_types[l1];
 		else if (random < 83)
-			NPCs.insert(pair<int, TNPC>(i, NPC_types[l2]));
+			NPCs[i] = NPC_types[l2];
 		else
-			NPCs.insert(pair<int, TNPC>(i, NPC_types[l3]));
+			NPCs[i] = NPC_types[l3];
 		do {
 			NPCs[i].x = rand() % (dMap.Width - 4) + 2;
 			NPCs[i].y = rand() % (dMap.Height - 4) + 2;
