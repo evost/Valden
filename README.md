@@ -16,4 +16,4 @@ If you are interested in the future of the project, you can see [TODO-list](http
 If you have any problems with the startup, we recommend downloading and installing [Visual C++ Redistributable](https://www.microsoft.com/en-US/download/details.aspx?id=48145).
 
 ## Source code
-This is **not** an open-source project, but you can ask how this or that works. Perhaps, the whole source code will be opened after the final release *(v1.0.0)*. But maybe not.
+This is an [open-source project](https://github.com/evost/Valden), so you can ask how this or that works. 
